@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import { Testimonials } from './MyComponents/Testimonials';
 import { ContactUs } from './MyComponents/ContactUs';
+import { Mentor } from './MyComponents/Mentor';
+import { MentorProfile } from './MyComponents/MentorProfile';
 
 function App() {
 
@@ -20,17 +22,38 @@ function App() {
       {
         name: "Samridh Amla",
         age: "28",
-        story: "Started my journey 20 years ago, still struggling."
+        story: "Started my journey 20 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/w2CKRB9.jpg",
       },
       {
         name: "Akshit Amla",
         age: "35",
-        story: "Started my journey 30 years ago, still struggling."
+        story: "Started my journey 30 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/ACeArwY.jpg"
       },
       {
         name: "Anil Amla",
         age: "65",
-        story: "Started my journey 50 years ago, still struggling."
+        story: "Started my journey 50 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/PKHvlRS.jpg",
+      },
+      {
+        name: "Anil Amla",
+        age: "65",
+        story: "Started my journey 50 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/PKHvlRS.jpg",
+      },
+      {
+        name: "Anil Amla",
+        age: "65",
+        story: "Started my journey 50 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/PKHvlRS.jpg",
+      },
+      {
+        name: "Anil Amla",
+        age: "65",
+        story: "Started my journey 50 years ago, still struggling.",
+        imageURL: "https://i.imgur.com/PKHvlRS.jpg",
       }
     ];
 
@@ -58,6 +81,7 @@ function App() {
           <Route  path="/mentors" element={<MentorList mentorListObj={mentorListObj} deleteMentor={deleteMentor} />} />
           <Route  path="/testimonials" element={<Testimonials />} />
           <Route  path="/contactUs" element={<ContactUs />} />
+          <Route  exact path="/mentor/:name" element={<MentorProfile />} />
         </Routes>
         <Footer />
         </div>
