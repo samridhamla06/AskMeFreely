@@ -16,6 +16,7 @@ export const MentorProfile = (props) => {
         mentorObj = props.dummmyMentorListObj;
     }
 
+
     //let broValue = query.get("bro")
     return (
         <div className="container bg">
