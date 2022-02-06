@@ -1,21 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL } from '../constants/url';
 
 export const Register = ({ rerenderValue }) => {
 
     const location = useLocation();
-    const userInfoFromGoogle = location.state.userInfo;
+    let navigate = useNavigate();
+    const userInfoFromGoogle = location.state? location.state.userInfo: {email : "betichod"};
+    console.log('info from google in Register',userInfoFromGoogle);
+    const [storyValue, setStoryValue] = useState("");
+    const [ageValue, setAgeValue] = useState("");
+    const [mentorValue, setMentorValue] = useState(false);
 
-    const [userInfoFromBackend, setUserInfo] = useState({});
+    let access_token = localStorage.getItem(ACCESS_TOKEN);
+
+    if(!access_token){
+        alert('No token present, Please log in and try again');
+        //navigate to homepage
+        navigate("/", {replace:true});
+    }
 
     useEffect(() => {
+        let access_token = localStorage.getItem(ACCESS_TOKEN);
+
+        if(!access_token){
+            alert('No token present, Please log in and try again');
+            //navigate to homepage
+            navigate("/", {replace:true});
+        }
+
         //API call to fetch user info
-        fetch('http://localhost:8080/mentors/user?emailId=' + userInfoFromGoogle.email)
+        fetch(GET_USER_URL,
+        { method: 'GET', headers: { 'Content-Type': 'application/json', 'authorization' : access_token }})
             .then(response => response.json())
             .then(response => {
                 console.log('User received from Backend', response);
-                userInfoFromBackend = { name: response.name, email: response.email, imageURL: response.imageURL, age: response.age, story: response.story, mentor: response.mentor }
-                setUserInfo(userInfoFromBackend);
+                //let newUserInfoFromBackend = { name: response.name, email: response.email, imageURL: response.imageURL, age: response.age, story: response.story, mentor: response.mentor }
+                //setUserInfo(newUserInfoFromBackend);
+                setStoryValue(response.story);
+                setMentorValue(response.mentor);
+                setAgeValue(response.age);
             })
             .catch(
                 err => {
@@ -27,25 +51,32 @@ export const Register = ({ rerenderValue }) => {
 
         event.preventDefault();
 
+        let access_token = localStorage.getItem(ACCESS_TOKEN);
+
+        if(!access_token){
+            alert('No token present, Please log in and try again');
+            navigate("/", {replace:true});
+        }
+
         //construct body
         const requestBody = {
             name: event.target.name.value,
             email: event.target.email.value,
             age: event.target.age.value,
             story: event.target.story.value,
-            isMentor: event.target.mentorCheckBox.value,
-            imageURL: 'https://i.imgur.com/PKHvlRS.jpg'
+            isMentor: event.target.mentorCheckBox.value == "on" ? true : false,
+            imageURL: (userInfoFromGoogle ? userInfoFromGoogle.imageURL : 'https://i.imgur.com/PKHvlRS.jpg')
         };
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'authorization' : access_token },
             body: JSON.stringify(requestBody)
         };
 
         console.log(requestOptions);
 
-        fetch('http://localhost:8080/mentors/mentor', requestOptions)
+        fetch(ADD_MENTOR_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
                 if (response.status == 'Successfully Saved') {
@@ -62,29 +93,39 @@ export const Register = ({ rerenderValue }) => {
                 });
     }
 
+    const handleTextAreaChange = (event) => {
+        setStoryValue(event.target.value);
+    };
+
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="formGroupExampleInput2">Name</label>
-                    <input type="text" class="form-control" id="name" value={userInfoFromGoogle.name} readonly="readonly" />
+                    <input type="text" className="form-control" id="name" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.name} readonly="readonly" />
                 </div>
                 <div className="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={userInfoFromGoogle.email} readonly="readonly" />
+                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.email} readonly="readonly" />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="exampleFormControlTextarea1">My Story</label>
-                    <textarea class="form-control" id="story" rows="3" value = {userInfoFromBackend.story}></textarea>
+                    <textarea className="form-control" id="story" rows="3" value={storyValue} onChange={handleTextAreaChange}></textarea>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="formGroupExampleInput2">Age</label>
-                    <input type="text" class="form-control" id="age" placeholder="Your Age" value = {userInfoFromBackend.age} />
+                    <input type="text" class="form-control" id="age" value={ageValue} onChange={(event) => { setAgeValue(event.target.value) }} />
                 </div>
-                <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="mentorCheckBox" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">I am a Mentor</label>
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" name="flexRadioDefault" id="mentorCheckBox" checked = {mentorValue}  onChange={
+                        (event) => 
+                        { 
+                            setMentorValue(event.target.value == "on") 
+                        }} />
+                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                        I am a Mentor
+                    </label>
                 </div>
                 <button type="submit" className="btn btn-primary" on>Submit</button>
             </form>

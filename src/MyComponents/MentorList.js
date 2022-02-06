@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { Mentor } from './Mentor'
 
-export const MentorList = ({ mentorListObj, deleteMentor }) => {
+export const MentorList = ({ mentorListObj }) => {
     console.log("Mentor List logs : " + { mentorListObj });
     return (
         <div>
             <h4>The mentors are:</h4>
             <div class="row row-cols-1 row-cols-md-3 g-4">
             {!mentorListObj.length ? <h2>No Mentors yet</h2> : mentorListObj.map((mentorObj, index) => {
-                        return <Mentor key={index} deleteMentor={deleteMentor} mentorObj={mentorObj} />
+                        return <Mentor key={index} mentorObj={mentorObj} />
                     })}
             </div>
         </div>

@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from  '../img/hero-img.png';
 
 export const AboutUs = () => {
-    useEffect(() => {
-        //document.getElementById('aboutUs-nav').classNameName = "nav-link text-secondary";
-    }
-    )
-
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6">
-                    <h1 className='text-success'>Welcome!</h1>
-                    <h2>Know More About Us</h2>
-                    <hr />
-                    <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore etae magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <button type="button" className="btn btn-success">Let's Know More</button>
-
-                </div>
-                <div className="col-md-6">
-                    <img src="http://themebubble.com/demo/marketingpro/wp-content/uploads/2016/10/seo-slide.png " alt="" />
+        <section id="hero" className="hero d-flex align-items-center">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6 d-flex flex-column justify-content-center">
+                        <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
+                        <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
+                        <div data-aos="fade-up" data-aos-delay="600">
+                            <div className="text-center text-lg-start">
+                                <a href="#about" className="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                                    <span>Get Started</span>
+                                    <i className="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                        <img src={logo} className="img-fluid" alt="" />
+                    </div>
                 </div>
             </div>
-        </div>
+
+        </section>
     )
 }

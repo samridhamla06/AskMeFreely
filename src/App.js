@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Header } from './MyComponents/Header';
 import { MentorList } from './MyComponents/MentorList';
@@ -16,7 +15,9 @@ import { Mentor } from './MyComponents/Mentor';
 import { MentorProfile } from './MyComponents/MentorProfile';
 import { ApiCall } from './utils/Api';
 import { Register } from './MyComponents/Register';
-import { Login } from './MyComponents/Login';
+import { GET_MENTOR_URL } from './constants/url';
+import { Events } from './MyComponents/Events';
+import './css/style.css';
 
 function App() {
 
@@ -27,11 +28,7 @@ function App() {
 
 
   const fetchMentorsFromServer = ()  => {
-    fetch('http://localhost:8080/mentors/mentor')
-      // , {
-      //   method: "GET",
-      //   headers: { "Content-type": "application/json;charset=UTF-8", "Access-Control-Allow-Credentials" : "true", "Access-Control-Allow-Origin" :  "*", "Access-Control-Allow-Headers" :  "*" }
-      // })
+    fetch(GET_MENTOR_URL)
       .then(
         response => response.json())
       .then(response => {
@@ -49,10 +46,10 @@ function App() {
     fetchMentorsFromServer();
   }
 
-  const updateUser = (userFromBackend) => {
+  const updateUser = (userFromBackend, isLoggedIn) => {
     console.log('user from backend', userFromBackend);
     setUser(userFromBackend);
-    setIsLoggedIn(true);
+    setIsLoggedIn(isLoggedIn);
   }
 
   useEffect(() => {
@@ -63,28 +60,26 @@ function App() {
 
 
   //method definition
-  const deleteMentor = (mentorToDelete) => {
-    setMentorList((currentMentorListObj) => {
-      currentMentorListObj = currentMentorListObj.filter(mentor => {
-        console.log('Compared attempted ' + mentor.name);
-        return mentor.name != mentorToDelete.name
-      });
-      return currentMentorListObj;
-    })
-  }
-
-
+  // const deleteMentor = (mentorToDelete) => {
+  //   setMentorList((currentMentorListObj) => {
+  //     currentMentorListObj = currentMentorListObj.filter(mentor => {
+  //       console.log('Compared attempted ' + mentor.name);
+  //       return mentor.name != mentorToDelete.name
+  //     });
+  //     return currentMentorListObj;
+  //   })
+  // }
   return (
     <>
       <div>
         <Header updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>
         <Routes>
           <Route exact path="/" element={<AboutUs />} />
-          <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} deleteMentor={deleteMentor} />} />
+          <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/register" element={<Register rerenderValue = {rerenderValue}/>} />
-          <Route path="/login" element={<Login rerenderValue = {rerenderValue}/>} />
+          <Route path="/events" element={<Events/>} />
           <Route exact path="/mentor/:name" element={<MentorProfile />} />
         </Routes>
         <Footer />

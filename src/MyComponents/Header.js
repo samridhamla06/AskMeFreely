@@ -1,84 +1,168 @@
-import React from 'react'
-import { Outlet, Link } from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import { Container } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import { useNavigate, Link } from 'react-router-dom';
+import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
+import logoImage from '../img/logo.png'
 import GoogleLogin from 'react-google-login';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton'
 
 export const Header = (props) => {
+
 
     const location = useLocation();
     let navigate = useNavigate();
 
-    const handleSelect = (selectedKey) => {
-        console.log(selectedKey);
-    }
-
-    const handleLogin = (googleData) => {
-        console.log('Try to login', googleData.tokenId);
-        fetch("http://localhost:8080/oauth2?tokenID=" + googleData.tokenId, {
+    function validateTokenAndLogin(tokenId) {
+        fetch(GOOGLE_AUTH_URL, {
             method: "POST",
             body: JSON.stringify({
-                token: googleData.tokenId
+                token: tokenId
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "authorization": tokenId
             }
         })
             .then((res) => res.json())
             .then((res) => {
                 // store returned user somehow
-                console.log('Update the user', res)
-                props.updateUser(res)
+                console.log('Update the user', res);
+                //update user state
+                props.updateUser(res, true);
+                //add token to local storage
+                localStorage.setItem(ACCESS_TOKEN, tokenId);
+                localStorage.setItem(LOGGED_IN_NAME, res.name);
+                localStorage.setItem(LOGGED_IN_EMAIL, res.email);
+                //refreshTokenSetup(googleData.tokenObj.expires_in,googleData.reloadAuthResponse);
             })
             .catch(
                 err => {
                     console.log(err);
                 });
+    }
 
+    //TODO: Move this part to App.js
+    useEffect(() => {
+
+        let access_token = localStorage.getItem(ACCESS_TOKEN);
+
+        //if token is present, then maybe we should try to validate the token and log in
+        if (!props.isLoggedIn && access_token) {
+            validateTokenAndLogin(access_token);
+        }
+
+    });
+
+    const handleSelect = (selectedKey) => {
+        console.log(selectedKey);
+    }
+
+    const handleLogout = () => {
+        props.updateUser(null, false);
+        //delete the access token as well
+        localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(LOGGED_IN_EMAIL);
+        localStorage.removeItem(LOGGED_IN_NAME);
+    }
+
+    const handleLogin = (googleData) => {
+        console.log('Try to login', googleData);
+
+        if (!googleData.tokenId) {
+            console.log('Token looks invalid');
+            return;
+        }
+
+        console.log('local stprage is', localStorage);
+
+        validateTokenAndLogin(googleData.tokenId);
     }
 
     const routeToProfile = () => {
         navigate("/register", {
-            replace:true, state: {userInfo: props.user}
+            replace: true, state: { userInfo: props.user }
         });
     }
 
-    return (
-        <>
-            <Navbar bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand href="/">Talk Freely</Navbar.Brand>
-                    <Nav className="me-auto" onSelect={handleSelect} id="myNavBar" activeKey={location.pathname}>
-                        <Nav.Link as={Link} to="/">About Us</Nav.Link>
-                        <Nav.Link as={Link} to="/mentors">Mentors</Nav.Link>
-                        <Nav.Link as={Link} to="/testimonials">Testimonials</Nav.Link>
-                        <Nav.Link as={Link} to="/contactUs">ContactUs</Nav.Link>
-                        {
-                        props.isLoggedIn ?
-                            <DropdownButton id="dropdown-basic-button" title={"Hi " + props.user.name}>
-                                <Dropdown.Item href="#/action-1">My Sessions</Dropdown.Item>
-                                <Dropdown.Item onClick={routeToProfile}>My Profile</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Log Out</Dropdown.Item>
-                            </DropdownButton> :
-                            <GoogleLogin
-                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-                                buttonText="Log In"
-                                onSuccess={handleLogin}
-                                onFailure={handleLogin}
-                                cookiePolicy={'single_host_origin'}
-                            />
-                    }
-                    </Nav>
 
-                </Container>
-            </Navbar>
-        </>
+    //Validate Token if user not logged in yet.
+    // return (
+    //     <>
+    //         <Navbar bg="dark" variant="dark">
+    //             <Container>
+    //                 <Navbar.Brand>Talk Freely</Navbar.Brand>
+    //                 <Nav className="me-auto" onSelect={handleSelect} id="myNavBar" activeKey={location.pathname}>
+    //                     <Nav.Link as={Link} to="/">About Us</Nav.Link>
+    //                     <Nav.Link as={Link} to="/mentors">Mentors</Nav.Link>
+    //                     <Nav.Link as={Link} to="/events">Group Sessions</Nav.Link>
+    //                     <Nav.Link as={Link} to="/testimonials">Testimonials</Nav.Link>
+    //                     <Nav.Link as={Link} to="/contactUs">ContactUs</Nav.Link>
+    //                     {
+    //                     props.isLoggedIn ?
+    //                         <DropdownButton id="dropdown-basic-button" title={"Hi " + props.user.name}>
+    //                             <Dropdown.Item href="#/action-1">My Sessions</Dropdown.Item>
+    //                             <Dropdown.Item onClick={routeToProfile}>My Profile</Dropdown.Item>
+    //                             <Dropdown.Item onClick = {handleLogout}> <Link to="/" style = {{"text-decoration":"none", "color":"black"}} >Log Out</Link></Dropdown.Item>
+    //                         </DropdownButton> :
+    //                         <GoogleLogin
+    //                             clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+    //                             buttonText="Log In"
+    //                             onSuccess={handleLogin}
+    //                             onFailure={handleLogin}
+    //                             cookiePolicy={'single_host_origin'}
+    //                         />
+    //                 }
+    //                 </Nav>
+
+    //             </Container>
+    //         </Navbar>
+    //     </>
+    // )
+
+    return (
+        <div className='container'>
+            <header id="header" className="header fixed-top">
+                <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
+                    <a href="index.html" className="logo d-flex align-items-center">
+                        <img src={logoImage} alt="" />
+                        <span>TalkFreely</span>
+                    </a>
+                    <nav id="navbar" className="navbar">
+                        <ul>
+                            <li><Link className="nav-link scrollto active" to="/">Home</Link></li>
+                            <li><Link className="nav-link scrollto" to="/mentors">Mentors</Link></li>
+                            <li><Link className="nav-link scrollto" to="/events">Events</Link></li>
+                            <li><Link className="nav-link scrollto" to="/testimonials">Testimonials</Link></li>
+                            <li><Link className="nav-link scrollto" to="/contactUs">Contact</Link></li>
+                            {
+                                props.isLoggedIn
+                                    ?
+                                    <li className="dropdown"><a href="#"><span>{"Hi " + props.user.name + " >"}<i className="arrow"></i></span></a>
+                                    <ul>
+                                        <li><Link to={{pathname: "/register",state: { userInfo: props.user.name }}}>My Profile</Link></li>
+                                        <li><Link to="#" onClick = {handleLogout}>Log Out</Link></li>
+                                    </ul>
+                                </li>
+                                    :
+                                    <>
+                                        <GoogleLogin
+                                            render={
+                                                renderProps => (
+                                                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="getstarted scrollto" >Log In</button>
+                                                )}
+                                            clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                                            buttonText="Log In"
+                                            onSuccess={handleLogin}
+                                            onFailure={handleLogin}
+                                            cookiePolicy={'single_host_origin'} />
+                                    </>
+
+                            }
+                        </ul>
+                        <i className="bi bi-list mobile-nav-toggle"></i>
+                    </nav>
+                </div>
+            </header>
+        </div>
     )
 }
 
