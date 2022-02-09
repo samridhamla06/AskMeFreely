@@ -1,0 +1,307 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+:root {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+  }
+  
+  a {
+    color: #4154f1;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #717ff5;
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Nunito", sans-serif;
+  }
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.header {
+    z-index: 2;
+    padding: 20px 0;
+    /* margin-bottom: 3px; */
+    position: static;
+    background-color: blue;
+  } 
+
+  .header .logo {
+    line-height: 0;
+    background-color: khaki;
+  }
+  .header .logo img {
+    max-height: 40px;
+    margin-right: 6px;
+  }
+  .header .logo span {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #012970;
+    font-family: "Nunito", sans-serif;
+    /* margin-top: 3px; */
+  }
+/*-------------------------------------------------------------
+# Nav bar in header
+--------------------------------------------------------------*/
+  .navbar {
+    padding: 0;
+    background-color: red;
+  }
+  .navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  } 
+  .navbar li {
+    position: static;
+    margin-left: 20px;
+  } 
+
+  .navbar ul li{
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 600;
+  }
+
+  .navbar .myButton, .navbar .myButton:focus{
+    background: #4154f1;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  .navbar .myButton:hover,  .navbar .myButton:focus:hover {
+    color: #fff;
+    background: #5969f3; 
+  }
+
+/*--------------------------------------------------------------
+# DropDown for my Home
+--------------------------------------------------------------*/
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /* min-width: 160px; */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  /* left: 14px; */
+  top: calc(100% + 1px); 
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  background: khaki;
+  border-radius: 4px;
+}
+
+.dropdown-content li{
+  min-width: 200px;
+  padding: 10px 20px;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content ul li:hover {
+  color: #4154f1;
+  background-color: black;
+}
+
+/*--------------------------------------------------------------
+# Styling for the My home
+--------------------------------------------------------------*/
+
+.myHome {
+    width: 100%;
+    height: 100vh;
+    /* background: url(../img/hero-bg.png) top center no-repeat; */
+    background-size: cover;
+    background-color:seagreen ;
+  }
+
+.myHome h1 {
+    margin: 0;
+    /* font-size: 48px;
+    font-weight: 700; */
+    color: #012970;
+  }
+
+.myHome h2 {
+    color: #444444;
+    margin: 15px 0 0 0;
+    font-size: 26px;
+}
+
+.myHome-get-started {
+    /* margin-left: 0px;
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 40px;
+    border-radius: 4px;    */
+    padding: 5px 5px;
+    border-radius: 4px; 
+    transition: 0.5s;
+    color: #fff;
+    background: #4154f1;
+    box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
+  }
+
+.myHome-get-started span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+/*--------------------------------------------------------------
+# Styling for the Mentor List Component
+--------------------------------------------------------------*/
+  .mentor-container {
+    background: #fff;
+    padding: 80px 0;
+  }
+  .mentor-container .mentor {
+    overflow: hidden;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
+    transition: 0.3s;
+  }
+  .mentor-container .mentor .mentor-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Brings that curved behavious of the DP */
+
+  .mentor-container .mentor .mentor-img:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: url(../img/team-shape.svg) no-repeat center bottom;
+    background-size: contain;
+    z-index: 1;
+  }
+
+  .mentor-container .mentor .mentor-info {
+    padding: 10px 15px 20px 15px;
+  }
+  .mentor-container  .mentor .mentor-info h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #012970;
+  }
+  .mentor-container  .mentor .mentor-info span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #aaaaaa;
+  }
+  .mentor-container  .mentor .mentor-info p {
+    font-style: italic;
+    font-size: 14px;
+    padding-top: 15px;
+    line-height: 26px;
+    color: #5e5e5e;
+  }
+
+/*--------------------------------------------------------------
+# Styling for the Events Component
+--------------------------------------------------------------*/
+  .myEvent-container {
+    background: white;
+    /* padding: 150px 0; */
+  }
+
+  .myEvent-container .myEvent {
+    position: relative;
+    overflow: hidden;
+    padding-top: 10px;
+  }
+
+  .myEvent-container .myEvent .myEvent-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .myEvent-container  .myEvent .myEvent-info p {
+    font-style: italic;
+    font-size: 14px;
+    padding-top: 8px;
+    line-height: 26px; 
+    color: #5e5e5e;
+  }
+
+  .myEvent-join-btn {
+    margin-left: 0px;
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 40px; 
+    border-radius: 4px;   
+    transition: 0.5s;
+    color: #fff;
+    background: #4154f1;
+    box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
+  }
+
+.myEvent-join-btn span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  /*--------------------------------------------------------------
+# Styling for the Register Component
+--------------------------------------------------------------*/
+
+  .register-form {
+    background: pink;
+    padding: 15px 15px 15px 15px; 
+    /* height: 100%;
+    width: 100%; */
+  }
+
+  .register-form .h4{
+    color:blue
+  }
+
+  .register-form .register-element{
+    margin: 5px;
+    padding: 15px 15px 15px 15px; 
+    background-color: yellow;
+    border-radius: 5px;
+    border-color: purple;
+    border: 5px;
+    width: 100%; 
+  }
+
+
