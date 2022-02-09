@@ -6,32 +6,32 @@ export const Register = ({ rerenderValue }) => {
 
     const location = useLocation();
     let navigate = useNavigate();
-    const userInfoFromGoogle = location.state? location.state.userInfo: {email : "betichod"};
-    console.log('info from google in Register',userInfoFromGoogle);
+    const userInfoFromGoogle = location.state ? location.state.userInfo : { email: "betichod" };
+    console.log('info from google in Register', userInfoFromGoogle);
     const [storyValue, setStoryValue] = useState("");
     const [ageValue, setAgeValue] = useState("");
     const [mentorValue, setMentorValue] = useState(false);
 
     let access_token = localStorage.getItem(ACCESS_TOKEN);
 
-    if(!access_token){
+    if (!access_token) {
         alert('No token present, Please log in and try again');
         //navigate to homepage
-        navigate("/", {replace:true});
+        navigate("/", { replace: true });
     }
 
     useEffect(() => {
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
-        if(!access_token){
+        if (!access_token) {
             alert('No token present, Please log in and try again');
             //navigate to homepage
-            navigate("/", {replace:true});
+            navigate("/", { replace: true });
         }
 
         //API call to fetch user info
         fetch(GET_USER_URL,
-        { method: 'GET', headers: { 'Content-Type': 'application/json', 'authorization' : access_token }})
+            { method: 'GET', headers: { 'Content-Type': 'application/json', 'authorization': access_token } })
             .then(response => response.json())
             .then(response => {
                 console.log('User received from Backend', response);
@@ -53,9 +53,9 @@ export const Register = ({ rerenderValue }) => {
 
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
-        if(!access_token){
+        if (!access_token) {
             alert('No token present, Please log in and try again');
-            navigate("/", {replace:true});
+            navigate("/", { replace: true });
         }
 
         //construct body
@@ -70,7 +70,7 @@ export const Register = ({ rerenderValue }) => {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'authorization' : access_token },
+            headers: { 'Content-Type': 'application/json', 'authorization': access_token },
             body: JSON.stringify(requestBody)
         };
 
@@ -97,38 +97,106 @@ export const Register = ({ rerenderValue }) => {
         setStoryValue(event.target.value);
     };
 
+    // return (
+    //     <div className='container pd-4'>
+    //         <form onSubmit={handleSubmit}>
+    //             <div class="form-group">
+    //                 <label htmlFor="formGroupExampleInput2">Name</label>
+    //                 <input type="text" class="form-control" id="name" value={userInfoFromGoogle.name} readonly="readonly" />
+    //             </div>
+    //             <div className="form-group">
+    //                 <label htmlFor="exampleInputEmail1">Email</label>
+    //                 <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={userInfoFromGoogle.email} readonly="readonly" />
+    //                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+    //             </div>
+    //             <div class="form-group">
+    //                 <label htmlFor="exampleFormControlTextarea1">My Story</label>
+    //                 <textarea class="form-control" id="story" rows="3" value = {storyValue}></textarea>
+    //             </div>
+    //             <div class="form-group">
+    //                 <label htmlFor="formGroupExampleInput2">Age</label>
+    //                 <input type="text" class="form-control" id="age" placeholder="Your Age" value = {ageValue} />
+    //             </div>
+    //             <div className="form-group form-check">
+    //                 <input type="checkbox" className="form-check-input" id="mentorCheckBox" />
+    //                 <label className="form-check-label" htmlFor="exampleCheck1">I am a Mentor</label>
+    //             </div>
+    //             <button type="submit" className="btn btn-primary" on>Submit</button>
+    //         </form>
+    //     </div>
+    // )
+
     return (
-        <div className='container'>
+        <div className='d-flex flex-column justify-items-center align-items-stretch register-form' >
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label for="formGroupExampleInput2">Name</label>
-                    <input type="text" className="form-control" id="name" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.name} readonly="readonly" />
+                <div className="flex-grow-1 register-element">
+                    <div className="d-flex flex-wrap">
+                        <div className = "register-caption mx-1">
+                            <h4>Name</h4>
+                            <input type="text" className="form-control" id="name" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.name} readonly="readonly" />
+                        </div>
+                        <div className = "register-caption mx-1">
+                            <h4>Age</h4>
+                            <input type="text" class="form-control" id="age" value={ageValue} onChange={(event) => { setAgeValue(event.target.value) }} />
+                        </div>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                <div className="flex-grow-1 register-element">
+                    <h4 className="register-caption">Email</h4>
                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.email} readonly="readonly" />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
-                <div className="form-group">
-                    <label for="exampleFormControlTextarea1">My Story</label>
+                <div className="register-element">
+                    <h4 className="register-caption">My Story</h4>
                     <textarea className="form-control" id="story" rows="3" value={storyValue} onChange={handleTextAreaChange}></textarea>
                 </div>
-                <div className="form-group">
-                    <label for="formGroupExampleInput2">Age</label>
-                    <input type="text" class="form-control" id="age" value={ageValue} onChange={(event) => { setAgeValue(event.target.value) }} />
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" type="checkbox" name="flexRadioDefault" id="mentorCheckBox" checked = {mentorValue}  onChange={
-                        (event) => 
-                        { 
-                            setMentorValue(event.target.value == "on") 
+                <div className="register-element align-item-center text-center">
+                    <input className="form-check-input" type="checkbox" name="flexRadioDefault" id="mentorCheckBox" checked={mentorValue} onChange={
+                        (event) => {
+                            setMentorValue(event.target.value == "on")
                         }} />
-                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                    <label className="form-check-label m-1" htmlFor="flexRadioDefault1">
                         I am a Mentor
                     </label>
                 </div>
                 <button type="submit" className="btn btn-primary" on>Submit</button>
             </form>
-        </div>
+            </div>
     )
 }
+
+/*        <div className='register-form'>
+            <div className='container'>
+                <form onSubmit={handleSubmit}>
+                <div class="row">
+                    <div className="col-6">
+                        <label for="formGroupExampleInput2">Name</label>
+                        <input type="text" className="form-control" id="name" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.name} readonly="readonly" />
+                    </div>
+                    <div className="col-6">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={!userInfoFromGoogle ? "" : userInfoFromGoogle.email} readonly="readonly" />
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div className="col-12">
+                        <label for="exampleFormControlTextarea1">My Story</label>
+                        <textarea className="form-control" id="story" rows="3" value={storyValue} onChange={handleTextAreaChange}></textarea>
+                    </div>
+                    <div className="col-12">
+                        <label for="formGroupExampleInput2">Age</label>
+                        <input type="text" class="form-control" id="age" value={ageValue} onChange={(event) => { setAgeValue(event.target.value) }} />
+                    </div>
+                    <div className="col-12 form-check">
+                        <input className="form-check-input" type="checkbox" name="flexRadioDefault" id="mentorCheckBox" checked={mentorValue} onChange={
+                            (event) => {
+                                setMentorValue(event.target.value == "on")
+                            }} />
+                        <label className="form-check-label" htmlFor="flexRadioDefault1">
+                            I am a Mentor
+                        </label>
+                    </div>
+                    <button type="submit" className="btn btn-primary" on>Submit</button>
+                    </div>
+                </form>
+                </div>
+            </div>*/

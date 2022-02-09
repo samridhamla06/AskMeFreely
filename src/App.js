@@ -17,7 +17,7 @@ import { ApiCall } from './utils/Api';
 import { Register } from './MyComponents/Register';
 import { GET_MENTOR_URL } from './constants/url';
 import { Events } from './MyComponents/Events';
-import './css/style.css';
+import './assets/css/main.css';
 
 function App() {
 

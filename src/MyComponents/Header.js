@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router';
 import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
-import logoImage from '../img/logo.png'
+import logoImage from '../assets/img/logo.png'
 import GoogleLogin from 'react-google-login';
 
 export const Header = (props) => {
@@ -119,50 +119,52 @@ export const Header = (props) => {
     // )
 
     return (
-        <div className='container'>
-            <header id="header" className="header fixed-top">
-                <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
-                    <a href="index.html" className="logo d-flex align-items-center">
+        <>
+            <div id="header" className="header fixed-top m-1">
+                <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
+                    <a href="index.html" className="logo d-flex align-items-center m-auto m-1 p-1">
                         <img src={logoImage} alt="" />
                         <span>TalkFreely</span>
                     </a>
                     <nav id="navbar" className="navbar">
-                        <ul>
-                            <li><Link className="nav-link scrollto active" to="/">Home</Link></li>
-                            <li><Link className="nav-link scrollto" to="/mentors">Mentors</Link></li>
-                            <li><Link className="nav-link scrollto" to="/events">Events</Link></li>
-                            <li><Link className="nav-link scrollto" to="/testimonials">Testimonials</Link></li>
-                            <li><Link className="nav-link scrollto" to="/contactUs">Contact</Link></li>
-                            {
-                                props.isLoggedIn
-                                    ?
-                                    <li className="dropdown"><a href="#"><span>{"Hi " + props.user.name + " >"}<i className="arrow"></i></span></a>
-                                    <ul>
-                                        <li><Link to={{pathname: "/register",state: { userInfo: props.user.name }}}>My Profile</Link></li>
-                                        <li><Link to="#" onClick = {handleLogout}>Log Out</Link></li>
-                                    </ul>
-                                </li>
-                                    :
-                                    <>
-                                        <GoogleLogin
-                                            render={
-                                                renderProps => (
-                                                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="getstarted scrollto" >Log In</button>
-                                                )}
-                                            clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-                                            buttonText="Log In"
-                                            onSuccess={handleLogin}
-                                            onFailure={handleLogin}
-                                            cookiePolicy={'single_host_origin'} />
-                                    </>
+                        <ul className='d-flex align-items-center justify-content-between'>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/mentors">Mentors</Link></li>
+                            <li><Link to="/events">Events</Link></li>
+                            {/* <li><Link to="/testimonials">Testimonials</Link></li> */}
+                            <li><Link to="/contactUs">Contact</Link></li>
+                            <li>
+                                {
+                                    props.isLoggedIn
+                                        ?
+                                            <div className="dropdown"><span>{"Hi " + props.user.name}</span>
+                                                <ul className="dropdown-content">
+                                                    <li><Link to={{ pathname: "/register", state: { userInfo: props.user } }}>My Profile</Link></li>
+                                                    <li><Link to="#" onClick={handleLogout}>Log Out</Link></li>
+                                                </ul>
+                                            </div>
+                                        :
+                                        <>
+                                            <GoogleLogin
+                                                render={
+                                                    renderProps => (
+                                                        <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
+                                                    )}
+                                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                                                buttonText="Log In"
+                                                onSuccess={handleLogin}
+                                                onFailure={handleLogin}
+                                                cookiePolicy={'single_host_origin'} />
+                                        </>
 
-                            }
+                                }
+                            </li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
                     </nav>
                 </div>
-            </header>
-        </div>
+            </div>
+        </>
     )
 }
 

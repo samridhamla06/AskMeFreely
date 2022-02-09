@@ -2,27 +2,94 @@ import React, { useEffect } from 'react';
 
 export const ContactUs = () => {
     useEffect(() => {
-        //document.getElementById('contactUs-nav').className = "nav-link text-secondary";
+        //document.getElementById('contactUs-nav').classNameName = "nav-link text-secondary";
     }
     )
 
     return (
-        <div className="container d-flex justify-content-center">
-        <div className="row my-2 mx-2">
-            <div className="col-md-6"> <img src="https://png.pngtree.com/png-vector/20190725/ourlarge/pngtree-message-icon-design-vector-png-image_1587713.jpg" alt="IMG" height="50%"/> </div>
-            <div className="col-md-6 mt-2">
-                <h2 className="form-title">Contact us</h2>
-                <p className="justify text-muted">Have an enquiry or would like to give us feedback?<br/>Fill out the form below to contact our team.</p>
-                <form>
-                    <div className="form-group pt-2 pl-1"> <label htmlFor="exampleInputName">Your name</label> <input type="text" className="form-control" id="exampleInputName"/> </div>
-                    <div className="form-group pl-1"> <label htmlFor="exampleInputEmail1">Your email address</label> <input type="email" className="form-control" id="exampleInputEmail1"/> </div>
-                    <div className="form-group pl-1"> <label htmlFor="exampleFormControlTextarea1">Your message</label> <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea> </div>
-                    <div className="row">
-                        <div className="col-md-3 offset-md-9 mt-4"><button type="submit" className="btn btn-primary" width = "20%">Send</button></div>
+        <section id="contact" className="contact">
+
+            <div className="container" data-aos="fade-up">
+
+                <header className="section-header">
+                    <h2>Contact</h2>
+                    <p>Contact Us</p>
+                </header>
+
+                <div className="row gy-4">
+
+                    <div className="col-lg-6">
+
+                        <div className="row gy-4">
+                            <div className="col-md-6">
+                                <div className="info-box">
+                                    <i className="bi bi-geo-alt"></i>
+                                    <h3>Address</h3>
+                                    <p>A108 Adam Street,<br/>New York, NY 535022</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="info-box">
+                                    <i className="bi bi-telephone"></i>
+                                    <h3>Call Us</h3>
+                                    <p>+1 5589 55488 55<br/>+1 6678 254445 41</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="info-box">
+                                    <i className="bi bi-envelope"></i>
+                                    <h3>Email Us</h3>
+                                    <p>info@example.com<br/>contact@example.com</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="info-box">
+                                    <i className="bi bi-clock"></i>
+                                    <h3>Open Hours</h3>
+                                    <p>Monday - Friday<br/>9:00AM - 05:00PM</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </form>
+
+                    <div className="col-lg-6">
+                        <form action="forms/contact.php" method="post" className="php-email-form">
+                            <div className="row gy-4">
+
+                                <div className="col-md-6">
+                                    <input type="text" name="name" className="form-control" placeholder="Your Name" required/>
+                                </div>
+
+                                <div className="col-md-6 ">
+                                    <input type="email" className="form-control" name="email" placeholder="Your Email" required/>
+                                </div>
+
+                                <div className="col-md-12">
+                                    <input type="text" className="form-control" name="subject" placeholder="Subject" required/>
+                                </div>
+
+                                <div className="col-md-12">
+                                    <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                </div>
+
+                                <div className="col-md-12 text-center">
+                                    <div className="loading">Loading</div>
+                                    <div className="error-message"></div>
+                                    <div className="sent-message">Your message has been sent. Thank you!</div>
+
+                                    <button type="submit">Send Message</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
-    </div>
+
+        </section>
     )
 }
