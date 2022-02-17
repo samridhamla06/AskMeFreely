@@ -1,3 +1,3 @@
 module.exports = {
-    baseURL: "http://192.168.1.8:8080"
+    baseURL: "https://talkfreely-test-backend.herokuapp.com"
 };
