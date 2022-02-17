@@ -55,7 +55,7 @@ export const MentorProfile = (props) => {
 
     //let broValue = query.get("bro")
     return (
-        <div className='container'>
+        <div >
             {showPrompt ?
                 <Modal
                     size="lg"
@@ -90,63 +90,64 @@ export const MentorProfile = (props) => {
                 </Modal>
                 : <div></div>
             }
+            <div className="d-flex flex-column bg-white justify-content-center">
+                <div className='flex-item m-2'>
+                    <div className='d-flex justify-content-center flex-wrap'>
+                        {/* 1st Row begins */}
 
+                        <div className='flex-grow-2 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-center p-5'>
+                            <img src={mentorObj.imageURL} alt="avatar" className="rounded-circle img-fluid align-self-center mt-1 mb-2" style={{ width: '150px' }} />
+                            <h4 >{mentorObj.name}</h4>
+                            <p className="text-muted mb-1">Full Stack Developer</p>
+                            <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                            <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}>Send Message</button>
+                        </div>
+                        <div className='flex-grow-1 mentor-profile-container flex-item border border-light m-2 p-2'>
+                            <h4>My Journey</h4>
+                            <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
+                        </div>
 
-            <div className="container bg">
-                <div className="row">
-                    <div className="col-lg-4">
-                        <div className="card mb-4">
-                            <div className="card-body text-center">
-                                <img src={mentorObj.imageURL} alt="avatar" className="rounded-circle img-fluid" style={{ width: '150px' }} />
-                                <h5 className="my-3">{mentorObj.name}</h5>
-                                <p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                                <div className="d-flex justify-content-center mb-2">
-                                    <button type="button" className="btn btn-outline-primary ms-1" onClick={() => setShowPrompt(true)}>Message</button>
-                                </div>
+                        {/* <div className='mentor-profile-container d-flex flex-column flex-grow-1 mx-1 border border-light mt-xs-2'>
+                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
+                                <div><p className="text-muted mb-1 p-1">LinkedInLogo</p></div>
+                                <div><p className=" mb-1 p-1">https://mdbootstrap.com</p></div>
                             </div>
-                        </div>
-                        <div className="card mb-4 mb-lg-0">
-                            <div className="card-body p-0">
-                                <ul className="list-group list-group-flush rounded-3">
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fas fa-globe fa-lg text-warning"></i>
-                                        <p className="mb-0">https://mdbootstrap.com</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-github fa-lg" style={{ color: '#333333' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-twitter fa-lg" style={{ color: '#55acee' }}></i>
-                                        <p className="mb-0">@mdbootstrap</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-instagram fa-lg" style={{ color: '#ac2bac' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fab fa-facebook-f fa-lg" style={{ color: '#3b5998' }}></i>
-                                        <p className="mb-0">mdbootstrap</p>
-                                    </li>
-                                </ul>
+
+                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
+                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
+                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-8">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="card mb-4 mb-md-0">
-                                    <div className="card-body">
-                                        <p className="mb-4"><span className="text-primary font-italic me-1">My Story</span></p>
-                                        <p className="mb-1" style={{ fontSize: '.77rem' }}>{mentorObj.story}</p>
-                                    </div>
-                                </div>
+
+                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
+                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
+                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
                             </div>
-                        </div>
+
+                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
+                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
+                                <p className="mb-1 p-1">https://mdbootstrap.com</p>
+                            </div>
+
+                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
+                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
+                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
+                            </div>
+                        </div> */}
+
                     </div>
                 </div>
+
+                {/* <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
+                    <h4>My Journey</h4>
+                    <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
+                </div> */}
+
+                <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
+                    <h4>How can I help ?</h4>
+                </div>
+
             </div>
+
         </div>
     )
 }

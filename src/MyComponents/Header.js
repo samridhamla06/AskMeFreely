@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
 import logoImage from '../assets/img/logo.png'
 import GoogleLogin from 'react-google-login';
+import { Redirect } from 'react-router';
 
 export const Header = (props) => {
 
@@ -57,6 +58,7 @@ export const Header = (props) => {
     }
 
     const handleLogout = () => {
+        console.log('logout is called');
         props.updateUser(null, false);
         //delete the access token as well
         localStorage.removeItem(ACCESS_TOKEN);
@@ -78,69 +80,40 @@ export const Header = (props) => {
     }
 
     const routeToProfile = () => {
+        console.log('routeToProfile is called');
         navigate("/register", {
             replace: true, state: { userInfo: props.user }
         });
     }
 
+    const newLocation1 = {
+        pathname: '/somewhere',
+        state: { fromDashboard: true }
+      }
 
-    //Validate Token if user not logged in yet.
-    // return (
-    //     <>
-    //         <Navbar bg="dark" variant="dark">
-    //             <Container>
-    //                 <Navbar.Brand>Talk Freely</Navbar.Brand>
-    //                 <Nav className="me-auto" onSelect={handleSelect} id="myNavBar" activeKey={location.pathname}>
-    //                     <Nav.Link as={Link} to="/">About Us</Nav.Link>
-    //                     <Nav.Link as={Link} to="/mentors">Mentors</Nav.Link>
-    //                     <Nav.Link as={Link} to="/events">Group Sessions</Nav.Link>
-    //                     <Nav.Link as={Link} to="/testimonials">Testimonials</Nav.Link>
-    //                     <Nav.Link as={Link} to="/contactUs">ContactUs</Nav.Link>
-    //                     {
-    //                     props.isLoggedIn ?
-    //                         <DropdownButton id="dropdown-basic-button" title={"Hi " + props.user.name}>
-    //                             <Dropdown.Item href="#/action-1">My Sessions</Dropdown.Item>
-    //                             <Dropdown.Item onClick={routeToProfile}>My Profile</Dropdown.Item>
-    //                             <Dropdown.Item onClick = {handleLogout}> <Link to="/" style = {{"text-decoration":"none", "color":"black"}} >Log Out</Link></Dropdown.Item>
-    //                         </DropdownButton> :
-    //                         <GoogleLogin
-    //                             clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-    //                             buttonText="Log In"
-    //                             onSuccess={handleLogin}
-    //                             onFailure={handleLogin}
-    //                             cookiePolicy={'single_host_origin'}
-    //                         />
-    //                 }
-    //                 </Nav>
-
-    //             </Container>
-    //         </Navbar>
-    //     </>
-    // )
-
+    const newLocation = { pathname: "/register", state: { fromDashboard: true } };
     return (
         <>
             <div id="header" className="header fixed-top m-1">
                 <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
-                    <a href="index.html" className="logo d-flex align-items-center m-auto m-1 p-1">
+                    <Link to="/" className="logo d-flex align-items-center m-1 p-1">
                         <img src={logoImage} alt="" />
                         <span>TalkFreely</span>
-                    </a>
-                    <nav id="navbar" className="navbar">
+                    </Link>
+                    <nav id="navbar" className="navbar m-2 p-1">
                         <ul className='d-flex align-items-center justify-content-between'>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/mentors">Mentors</Link></li>
-                            <li><Link to="/events">Events</Link></li>
-                            {/* <li><Link to="/testimonials">Testimonials</Link></li> */}
-                            <li><Link to="/contactUs">Contact</Link></li>
+                            <li><Link to="/" className='navbar-caption-text'>About Us</Link></li>
+                            <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
+                            <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
+                            <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
                             <li>
                                 {
                                     props.isLoggedIn
                                         ?
-                                            <div className="dropdown"><span>{"Hi " + props.user.name}</span>
+                                            <div className="dropdown"><span className='navbar-caption-text'>{"Hi " + props.user.name.split(' ')[0]}</span>
                                                 <ul className="dropdown-content">
-                                                    <li><Link to={{ pathname: "/register", state: { userInfo: props.user } }}>My Profile</Link></li>
-                                                    <li><Link to="#" onClick={handleLogout}>Log Out</Link></li>
+                                                    <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li> 
+                                                    <li><Link to="#" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
                                                 </ul>
                                             </div>
                                         :

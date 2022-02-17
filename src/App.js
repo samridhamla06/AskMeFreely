@@ -25,6 +25,7 @@ function App() {
   const [mentorListObj, setMentorList] = useState([]);// returns a pair with variable name and the function
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isProfileChanged, setProfileChanged] = useState(0);
 
 
   const fetchMentorsFromServer = ()  => {
@@ -43,7 +44,7 @@ function App() {
   }
 
   const rerenderValue = () =>{
-    fetchMentorsFromServer();
+    setProfileChanged((oldValue) => oldValue + 1);
   }
 
   const updateUser = (userFromBackend, isLoggedIn) => {
@@ -55,7 +56,7 @@ function App() {
   useEffect(() => {
     // send HTTP request
     fetchMentorsFromServer(setMentorList);
-  }, [])
+  }, [isProfileChanged]) // if isProfileChanged is changed
 
 
 
@@ -78,7 +79,7 @@ function App() {
           <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/register" element={<Register rerenderValue = {rerenderValue}/>} />
+          <Route exact path="/register" element={<Register rerenderValue = {rerenderValue}/>} />
           <Route path="/events" element={<Events/>} />
           <Route exact path="/mentor/:name" element={<MentorProfile />} />
         </Routes>
