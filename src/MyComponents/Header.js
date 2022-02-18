@@ -66,6 +66,10 @@ export const Header = (props) => {
         localStorage.removeItem(LOGGED_IN_NAME);
     }
 
+    const handleLoginFailure = (result) =>{
+        alert(result);
+    }
+
     const handleLogin = (googleData) => {
         console.log('Try to login', googleData);
 
@@ -123,10 +127,10 @@ export const Header = (props) => {
                                                     renderProps => (
                                                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
                                                     )}
-                                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                                                clientId='903470043930-6t8j4sbd2j31qbllsql3is1iepvhtg7d.apps.googleusercontent.com'
                                                 buttonText="Log In"
                                                 onSuccess={handleLogin}
-                                                onFailure={handleLogin}
+                                                onFailure={handleLoginFailure}
                                                 cookiePolicy={'single_host_origin'} />
                                         </>
 
