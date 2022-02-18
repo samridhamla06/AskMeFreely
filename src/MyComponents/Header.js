@@ -83,20 +83,8 @@ export const Header = (props) => {
         validateTokenAndLogin(googleData.tokenId);
     }
 
-    const routeToProfile = () => {
-        console.log('routeToProfile is called');
-        navigate("/register", {
-            replace: true, state: { userInfo: props.user }
-        });
-    }
-
-    const newLocation1 = {
-        pathname: '/somewhere',
-        state: { fromDashboard: true }
-      }
-
     const newLocation = { pathname: "/register", state: { fromDashboard: true } };
-    console.log("**** The google API key is" + process.env.REACT_APP_GOOGLE_API_KEY);
+    //console.log("**** The google API key is" + process.env.REACT_APP_GOOGLE_API_KEY);
     return (
         <>
             <div id="header" className="header fixed-top m-1">
@@ -118,7 +106,7 @@ export const Header = (props) => {
                                             <div className="dropdown"><span className='navbar-caption-text'>{"Hi " + props.user.name.split(' ')[0]}</span>
                                                 <ul className="dropdown-content">
                                                     <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li> 
-                                                    <li><Link to="#" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
+                                                    <li><Link to="/" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
                                                 </ul>
                                             </div>
                                         :
@@ -128,7 +116,7 @@ export const Header = (props) => {
                                                     renderProps => (
                                                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
                                                     )}
-                                                clientId='903470043930-6t8j4sbd2j31qbllsql3is1iepvhtg7d.apps.googleusercontent.com'
+                                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
                                                 buttonText="Log In"
                                                 onSuccess={handleLogin}
                                                 onFailure={handleLoginFailure}
