@@ -96,6 +96,7 @@ export const Header = (props) => {
       }
 
     const newLocation = { pathname: "/register", state: { fromDashboard: true } };
+    console.log("**** The google API key is" + process.env.REACT_APP_GOOGLE_API_KEY);
     return (
         <>
             <div id="header" className="header fixed-top m-1">
