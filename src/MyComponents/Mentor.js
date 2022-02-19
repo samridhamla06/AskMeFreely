@@ -15,7 +15,7 @@ export const Mentor = (props) => {
 
     return (
         // <div className="d-flex mentor-card-element m-1">
-        <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div className="col-lg-3 col-md-6 mb-4 mb-lg-0 m-3">
             <Link to={"/mentor/" + props.mentorObj.name} state={{ mentorObj: props.mentorObj, replace: false }} style={{ textDecoration: 'none' }}>
                 <div className="card rounded shadow-sm border-0">
                     <div className="card-body p-0">

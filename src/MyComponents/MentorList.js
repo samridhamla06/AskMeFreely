@@ -12,7 +12,7 @@ export const MentorList = ({ mentorListObj }) => {
                     :
                     (
                         // <div className="d-flex flex-wrap mentor-container justify-content-start">    
-                        <div className="row pb-5 mb-4">
+                        <div className="row pb-5 m-4">
                             {mentorListObj.map((mentorObj, index) => {
                                 return <Mentor key={index} mentorObj={mentorObj} />
                             })}
