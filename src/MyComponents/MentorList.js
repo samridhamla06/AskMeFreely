@@ -5,18 +5,20 @@ export const MentorList = ({ mentorListObj }) => {
     console.log("Mentor List logs : " + { mentorListObj });
     return (
         <div className="container">
-                    {
-                    !mentorListObj.length 
-                    ? 
-                    <h2>No Mentors yet</h2> 
-                    : 
-                    (<div className="d-flex flex-wrap mentor-container justify-content-start">                  
-                    {mentorListObj.map((mentorObj, index) => {
-                        return <Mentor key={index} mentorObj={mentorObj} />
-                    })}
-                    </div>)
-                    }                   
-
+            {
+                !mentorListObj.length
+                    ?
+                    <h2>No Mentors yet</h2>
+                    :
+                    (
+                        // <div className="d-flex flex-wrap mentor-container justify-content-start">    
+                        <div className="row pb-5 mb-4">
+                            {mentorListObj.map((mentorObj, index) => {
+                                return <Mentor key={index} mentorObj={mentorObj} />
+                            })}
+                        </div>
+                    )
+            }
         </div>
     )
 }

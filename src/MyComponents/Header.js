@@ -88,14 +88,14 @@ export const Header = (props) => {
         <>
             <div id="header" className="header fixed-top m-1">
                 <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
-                    <Link to="/" className="logo d-flex align-items-center m-1 p-1">
+                    <Link to="/" className="logo d-flex align-items-center m-3 p-1">
                         {/* <img src={logoImage} alt="" /> */}
                         <span>TalkFreely</span>
                     </Link>
                     <nav id="navbar" className="navbar m-2 p-1">
                         <ul className='d-flex align-items-center justify-content-between'>
-                            <li><Link to="/" className='navbar-caption-text'>About Us</Link></li>
-                            <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
+                            <li><Link to="/" className='navbar-caption-text'>About</Link></li>
+                            <li><Link to="/mentors" className='navbar-caption-text'>Stammerers</Link></li>
                             <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
                             <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
                             <li>
