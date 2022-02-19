@@ -10,6 +10,7 @@ export const LOGGED_IN_EMAIL = "TALKFREELY_LOGGED_IN_EMAIL";
 export const GET_MENTOR_URL = API_BASE_URL + "/v1/mentor";
 export const GET_USER_URL = API_BASE_URL + "/v1/auth/user";
 export const ADD_MENTOR_URL = API_BASE_URL + "/v1/auth/mentor";
+export const UPLOAD_IMAGE_URL = API_BASE_URL + "/v1/auth/uploadImage";
 export const SEND_MESSAGE_URL = API_BASE_URL + "/v1/auth/sendMessage";
 export const GOOGLE_AUTH_URL = API_BASE_URL + "/auth/validate";
 

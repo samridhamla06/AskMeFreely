@@ -11,9 +11,7 @@ import {
 } from "react-router-dom";
 import { Testimonials } from './MyComponents/Testimonials';
 import { ContactUs } from './MyComponents/ContactUs';
-import { Mentor } from './MyComponents/Mentor';
 import { MentorProfile } from './MyComponents/MentorProfile';
-import { ApiCall } from './utils/Api';
 import { Register } from './MyComponents/Register';
 import { GET_MENTOR_URL } from './constants/url';
 import { Events } from './MyComponents/Events';
@@ -23,9 +21,9 @@ function App() {
 
   //state object
   const [mentorListObj, setMentorList] = useState([]);// returns a pair with variable name and the function
-  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileChanged, setProfileChanged] = useState(0);
+  const [user, setUser] = useState(null);
 
 
   const fetchMentorsFromServer = ()  => {
@@ -49,8 +47,8 @@ function App() {
 
   const updateUser = (userFromBackend, isLoggedIn) => {
     console.log('user from backend', userFromBackend);
-    setUser(userFromBackend);
     setIsLoggedIn(isLoggedIn);
+    setUser(userFromBackend);
   }
 
   useEffect(() => {

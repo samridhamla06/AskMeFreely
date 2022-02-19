@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { ACCESS_TOKEN, SEND_MESSAGE_URL, LOGGED_IN_NAME } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form'
 
 export const MentorProfile = (props) => {
     const [showPrompt, setShowPrompt] = useState(false);

@@ -101,9 +101,9 @@ export const Header = (props) => {
                             <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
                             <li>
                                 {
-                                    props.isLoggedIn
+                                    (props.isLoggedIn && props.user)
                                         ?
-                                            <div className="dropdown"><span className='navbar-caption-text'>{"Hi " + props.user.name.split(' ')[0]}</span>
+                                            <div className="dropdown"><span className='navbar-caption-text'>{"Hi, " + props.user.name.split(' ')[0]}</span>
                                                 <ul className="dropdown-content">
                                                     <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li> 
                                                     <li><Link to="/" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>

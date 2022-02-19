@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
+import { useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL } from '../constants/url';
+import defaultImage from '../assets/img/noPhoto.png'
 
 export const Register = ({ rerenderValue }) => {
 
     let navigate = useNavigate();
+    const [currImage, setCurrImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
     // console.log('info from google in Register location', location);
     const loggedInEmail = localStorage.getItem(LOGGED_IN_EMAIL);
     const loggedInName = localStorage.getItem(LOGGED_IN_NAME);
-    const[formValues, setFormValues] = useState({email: loggedInEmail, name:loggedInName });//Kept it non empty for new user, whose profile not added ever.
+    const[formValues, setFormValues] = useState({email: loggedInEmail, name:loggedInName, imageURL: 'https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png'});//Kept it non empty for new user, whose profile not added ever.
     console.log('Starting state in Register', formValues);
 
 
@@ -36,8 +39,6 @@ export const Register = ({ rerenderValue }) => {
             .then(response => response.json())
             .then(response => {
                 console.log('User received from Backend', response);
-                //let newUserInfoFromBackend = { name: response.name, email: response.email, imageURL: response.imageURL, age: response.age, story: response.story, mentor: response.mentor }
-                //setUserInfo(newUserInfoFromBackend);
                 setFormValues(() => {
                     let newValue = {name: response.name, email: response.email, imageURL: response.imageURL, age: response.age, story: response.story, myTip: response.tip,isMentor: response.mentor}  
                     return newValue;
@@ -95,17 +96,54 @@ export const Register = ({ rerenderValue }) => {
                 });
     }
 
+    const handlePreviewImage = (event) =>{
+        setCurrImage(event.target.files[0]);
+        setPreviewImage(URL.createObjectURL(event.target.files[0]));
+    }
+
+    const uploadPreviewImage = () =>{
+        const formData = new FormData();
+        formData.append('image', currImage);
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'authorization': access_token },
+            body: formData
+        };
+
+        fetch(UPLOAD_IMAGE_URL, requestOptions)
+            .then(response => response.json())
+            .then(response => {
+            if (response.status == 'Successfully Saved') {
+                alert('Image is Uploaded')
+            } else {
+                alert('ERROR OCCURED, TRY AGAIN')
+            }
+            })
+            .catch(
+                err => {
+                    console.log(err);
+                });
+    }
+
     return (
         <div className='d-flex flex-column justify-items-center align-items-stretch register-form' >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
+                {/* Image upload logic starts */}
+                <div className="register-element text-center">
+                    <div>
+                        <img className="img-fluid m-1" src={previewImage ? previewImage : formValues.imageURL} alt="" style={{ maxWidth: '200px',maxHeight: '500px' }}/>
+                    </div>   
+                    {previewImage ? <button className='myEvent-join-btn mt-5' onClick={uploadPreviewImage}>Upload Image</button> : <></>}
+                    <input type="file" className="form-control mt-2" id="profilePicture" accept="image/*" onChange={handlePreviewImage}/>           
+                </div>
                 <div className="register-element">
                     <div className="d-flex flex-wrap">
                         <div className = "register-caption mx-1 flex-grow-1">
-                            <h4 className='all-h4'>Name</h4>
+                            <h4>Name</h4>
                             <input type="text" className="form-control" id="name" value={formValues.name} readonly="readonly" />
                         </div>
                         <div className = "register-caption mx-1 flex-grow-1 mt-xs-2">
-                            <h4 className='all-h4'>Age</h4>
+                            <h4>Age</h4>
                             <input type="text" class="form-control" id="age" value={formValues.age ? formValues.age : ""} onChange={(event) => { 
                                 console.log('changing age value',event.target.value);
                                 setFormValues((oldValue) => {
