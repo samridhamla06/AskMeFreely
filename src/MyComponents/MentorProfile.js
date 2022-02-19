@@ -95,44 +95,16 @@ export const MentorProfile = (props) => {
                         {/* 1st Row begins */}
 
                         <div className='flex-grow-2 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-center p-5'>
-                            <img src={mentorObj.imageURL} alt="avatar" className="rounded-circle img-fluid align-self-center mt-1 mb-2" style={{ width: '150px' }} />
+                            <img src={mentorObj.imageURL} alt="avatar" className="img-fluid align-self-center mt-1 mb-2" style={{ width: '200px', height : '200px' }} />
                             <h4 >{mentorObj.name}</h4>
-                            <p className="text-muted mb-1">Full Stack Developer</p>
-                            <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                            <p className="text-muted mb-1">{mentorObj.occupation ? mentorObj.occupation : "Fellow Stammerer"}</p>
+                            <p className="text-muted mb-4">{mentorObj.location ? mentorObj.location : " "}</p>
                             <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}>Send Message</button>
                         </div>
                         <div className='flex-grow-1 mentor-profile-container flex-item border border-light m-2 p-2'>
                             <h4>My Journey</h4>
                             <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
                         </div>
-
-                        {/* <div className='mentor-profile-container d-flex flex-column flex-grow-1 mx-1 border border-light mt-xs-2'>
-                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
-                                <div><p className="text-muted mb-1 p-1">LinkedInLogo</p></div>
-                                <div><p className=" mb-1 p-1">https://mdbootstrap.com</p></div>
-                            </div>
-
-                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
-                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
-                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
-                            </div>
-
-                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
-                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
-                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
-                            </div>
-
-                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
-                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
-                                <p className="mb-1 p-1">https://mdbootstrap.com</p>
-                            </div>
-
-                            <div className="d-flex flex-grow-1 justify-content-between border border-light align-items-center">
-                                <p className="text-muted mb-1 p-1">LinkedInLogo</p>
-                                <p className=" mb-1 p-1">https://mdbootstrap.com</p>
-                            </div>
-                        </div> */}
-
                     </div>
                 </div>
 
@@ -141,10 +113,12 @@ export const MentorProfile = (props) => {
                     <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
                 </div> */}
 
+                {mentorObj.tip ? (
                 <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
                     <h4>How can I help ?</h4>
-                </div>
-
+                    <p className="text-muted mb-1 p-1">{mentorObj.tip}</p>
+                </div>) 
+                : <></>}
             </div>
 
         </div>

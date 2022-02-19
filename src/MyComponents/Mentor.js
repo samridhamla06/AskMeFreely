@@ -13,22 +13,24 @@ export const Mentor = (props) => {
     }
 
     return (
-        <div className="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div className="mentor">
-                <div className="mentor-img">
-                    <img src= {props.mentorObj.imageURL} className="img-fluid" alt="" style={{ maxWidth: '200px',maxHeight: '500px' }}/> {/*props.mentorObj.imageURL has the actual image*/}
-                </div>
-                <div class="mentor-info">
-                    <h4>{props.mentorObj.name}</h4>
-                    <span>Chief Executive Officer</span>
-                    <p>{props.mentorObj.name} is a Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-                    <button type="button" class="myButton" width="100%" onClick={() => {
-                        handleBooking();
-                    }}>Book a Session</button>
+        <div className="d-flex mentor-card-element m-1">
+            <div className='mentor-flex-item m-1'>
+                <div className="mentor-img p-3">
+                    <img src= {props.mentorObj.imageURL} className="rounded img-fluid" alt="" style={{ width: '200px', height : '200px' }} /> {/*props.mentorObj.imageURL has the actual image*/}
                 </div>
             </div>
-        </div>
 
+            <div className='mentor-flex-item '>
+                    <div class="mentor-info d-flex flex-column text-center justify-content-center">
+                            <h4>{props.mentorObj.name}</h4>
+                            {props.mentorObj.location ? (<span> {props.mentorObj.location}</span>) : <></>}
+                            <p>{props.mentorObj.tagLine ? props.mentorObj.tagLine : "Fellow Stammerer"}</p>
+                            <button type="button" class="myButton" width="100%" onClick={() => {
+                                handleBooking();
+                            }}>Connect</button>
+                        </div>
+            </div>
+        </div>
     )
 }
 
