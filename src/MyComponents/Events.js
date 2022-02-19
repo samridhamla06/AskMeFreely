@@ -1,5 +1,5 @@
 import React from 'react';
-import photo1 from '../assets/img/blog/blog-1.jpg'
+import photo1 from '../assets/img/blog-1.jpg'
 
 
 export const Events = () => {

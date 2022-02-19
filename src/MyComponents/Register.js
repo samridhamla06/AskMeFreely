@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL } from '../constants/url';
-import defaultImage from '../assets/img/noPhoto.png'
 
 export const Register = ({ rerenderValue }) => {
 
@@ -68,7 +67,7 @@ export const Register = ({ rerenderValue }) => {
             age: event.target.age.value,
             story: event.target.story.value,
             isMentor: event.target.mentorCheckBox.value == "on" ? true : false,
-            imageURL: ('https://i.imgur.com/PKHvlRS.jpg')
+            imageURL: formValues.imageURL
         };
 
         const requestOptions = {
@@ -114,6 +113,10 @@ export const Register = ({ rerenderValue }) => {
             .then(response => response.json())
             .then(response => {
             if (response.status == 'Successfully Saved') {
+                setFormValues((oldValue) => {
+                    let newValue = {...oldValue,imageURL:response.imageURL}  
+                    return newValue;
+                })
                 alert('Image is Uploaded')
             } else {
                 alert('ERROR OCCURED, TRY AGAIN')

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router';
 import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
-import logoImage from '../assets/img/logo.png'
 import GoogleLogin from 'react-google-login';
 import { Redirect } from 'react-router';
 
@@ -90,7 +89,7 @@ export const Header = (props) => {
             <div id="header" className="header fixed-top m-1">
                 <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
                     <Link to="/" className="logo d-flex align-items-center m-1 p-1">
-                        <img src={logoImage} alt="" />
+                        {/* <img src={logoImage} alt="" /> */}
                         <span>TalkFreely</span>
                     </Link>
                     <nav id="navbar" className="navbar m-2 p-1">
@@ -122,7 +121,6 @@ export const Header = (props) => {
                                                 onFailure={handleLoginFailure}
                                                 cookiePolicy={'single_host_origin'} />
                                         </>
-
                                 }
                             </li>
                         </ul>
