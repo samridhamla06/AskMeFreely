@@ -16,7 +16,7 @@ export const Mentor = (props) => {
         <div className="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div className="mentor">
                 <div className="mentor-img">
-                    <img src= {props.mentorObj.imageURL} className="img-fluid" alt=""/> {/*props.mentorObj.imageURL has the actual image*/}
+                    <img src= {props.mentorObj.imageURL} className="img-fluid" alt="" style={{ maxWidth: '200px',maxHeight: '500px' }}/> {/*props.mentorObj.imageURL has the actual image*/}
                 </div>
                 <div class="mentor-info">
                     <h4>{props.mentorObj.name}</h4>
