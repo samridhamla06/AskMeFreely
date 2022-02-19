@@ -13,4 +13,5 @@ export const ADD_MENTOR_URL = API_BASE_URL + "/v1/auth/mentor";
 export const UPLOAD_IMAGE_URL = API_BASE_URL + "/v1/auth/uploadImage";
 export const SEND_MESSAGE_URL = API_BASE_URL + "/v1/auth/sendMessage";
 export const GOOGLE_AUTH_URL = API_BASE_URL + "/auth/validate";
+export const DEFAULT_IMAGE_LOCATION  = "https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL } from '../constants/url';
+import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL , DEFAULT_IMAGE_LOCATION} from '../constants/url';
 
 export const Register = ({ rerenderValue }) => {
 
@@ -10,7 +10,7 @@ export const Register = ({ rerenderValue }) => {
     // console.log('info from google in Register location', location);
     const loggedInEmail = localStorage.getItem(LOGGED_IN_EMAIL);
     const loggedInName = localStorage.getItem(LOGGED_IN_NAME);
-    const [formValues, setFormValues] = useState({ email: loggedInEmail, name: loggedInName, imageURL: 'https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png' });//Kept it non empty for new user, whose profile not added ever.
+    const [formValues, setFormValues] = useState({ email: loggedInEmail, name: loggedInName, imageURL: DEFAULT_IMAGE_LOCATION });//Kept it non empty for new user, whose profile not added ever.
     console.log('Starting state in Register', formValues);
 
 
@@ -39,7 +39,7 @@ export const Register = ({ rerenderValue }) => {
             .then(response => {
                 console.log('User received from Backend', response);
                 setFormValues(() => {
-                    let newValue = { name: response.name, email: response.email, imageURL: response.imageURL, age: response.age, story: response.story, tip: response.tip, isMentor: response.mentor, tagLine: response.tagLine, location: response.location, occupation: response.occupation }
+                    let newValue = { name: response.name, email: response.email, imageURL: response.imageURL ? response.imageURL : DEFAULT_IMAGE_LOCATION, age: response.age, story: response.story, tip: response.tip, isMentor: response.mentor, tagLine: response.tagLine, location: response.location, occupation: response.occupation }
                     return newValue;
                 })
             })
