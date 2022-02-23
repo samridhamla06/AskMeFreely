@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 
 export const MentorProfile = (props) => {
     const [showPrompt, setShowPrompt] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
     // function useQuery() {
     //     // Use the URLSearchParams API to extract the query parameters
     //     // useLocation().search will have the query parameters eg: ?foo=bar&a=b
@@ -24,6 +25,15 @@ export const MentorProfile = (props) => {
         event.preventDefault();
         let access_token = localStorage.getItem(ACCESS_TOKEN);
         let from_name = localStorage.getItem(LOGGED_IN_NAME);
+
+        if (!access_token) {
+            alert('Please log in to Connect');
+            setShowPrompt(false);
+            return;
+        }
+
+        setShowSpinner(true);
+
 
         const requestBody = {
             message: event.target.story.value,
@@ -49,7 +59,11 @@ export const MentorProfile = (props) => {
             .catch(
                 err => {
                     console.log(err);
-                });
+                })
+            .finally(() => {
+                setShowSpinner(false);
+                setShowPrompt(false)
+            });
     }
 
     //let broValue = query.get("bro")
@@ -59,12 +73,12 @@ export const MentorProfile = (props) => {
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
-                    style={{ opacity: 1, display: 'block' }}
+                    style={{ opacity: 1, display: 'block',alignContent: 'center' }}
                     show={true}
                     onHide={() => setShowPrompt(false)}
                     centered>
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
+                        <Modal.Title id="contained-modal-title-vcenter" style={{fontWeight: '700',marginBottom : '5px',fontSize: '20px',color: '#012970', alignContent: 'center'}}>
                             Send Personalized message to Mentor
                         </Modal.Title>
                     </Modal.Header>
@@ -75,16 +89,19 @@ export const MentorProfile = (props) => {
                             dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
                             consectetur ac, vestibulum at eros.
                         </p>*/}
-                        <div className='container'>
-                            <form onSubmit={sendMessage}>
-                                <div className="form-group">
-                                    <label for="exampleFormControlTextarea1">Your Message</label>
-                                    <textarea className="form-control" id="story" rows="6" width='90%'></textarea>
+                            <form onSubmit={sendMessage} className='d-flex flex-column justify-content-center align-items-center'>
+                            {/* <div className='d-flex flex-column justify-content-center align-items-center'> */}
+                                <div className="form-group align-self-stretch">
+                                    <textarea className="form-control" id="story" rows="6" width='100%'></textarea>
                                 </div>
-                                <br />
-                                <button type="submit" className="btn btn-primary" on>Send</button>
+                                <button type="submit" className="myButton mt-2">
+                                {showSpinner ? 
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                : 
+                                <>Send</>}        
+                                </button>
+                                {/* </div> */}
                             </form>
-                        </div>
                     </Modal.Body>
                 </Modal>
                 : <div></div>
@@ -95,7 +112,7 @@ export const MentorProfile = (props) => {
                         {/* 1st Row begins */}
 
                         <div className='flex-grow-2 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-center p-5'>
-                            <img src={mentorObj.imageURL} alt="avatar" className="img-fluid align-self-center mt-1 mb-2" style={{ width: '200px', height : '200px' }} />
+                            <img src={mentorObj.imageURL} alt="avatar" className="img-fluid align-self-center mt-1 mb-2" style={{ width: '200px', height: '200px' }} />
                             <h4 >{mentorObj.name}</h4>
                             <p className="text-muted mb-1">{mentorObj.occupation ? mentorObj.occupation : "Fellow Stammerer"}</p>
                             <p className="text-muted mb-4">{mentorObj.location ? mentorObj.location : " "}</p>
@@ -114,11 +131,11 @@ export const MentorProfile = (props) => {
                 </div> */}
 
                 {mentorObj.tip ? (
-                <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
-                    <h4>How can I help ?</h4>
-                    <p className="text-muted mb-1 p-1">{mentorObj.tip}</p>
-                </div>) 
-                : <></>}
+                    <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
+                        <h4>How can I help ?</h4>
+                        <p className="text-muted mb-1 p-1">{mentorObj.tip}</p>
+                    </div>)
+                    : <></>}
             </div>
 
         </div>

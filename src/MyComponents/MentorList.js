@@ -3,12 +3,17 @@ import { Mentor } from './Mentor'
 
 export const MentorList = ({ mentorListObj }) => {
     console.log("Mentor List logs : " + { mentorListObj });
+    let foo = false;
     return (
         <div className="container">
             {
-                !mentorListObj.length
+                (!mentorListObj.length)
                     ?
-                    <h2>No Mentors yet</h2>
+            <div className="d-flex flex-column align-items-center justify-content-center">
+                <div className='d-flex flex-column justify-content-center'>
+                    <div class="spinner-border text-primary mt-4" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
                     :
                     (
                         // <div className="d-flex flex-wrap mentor-container justify-content-start">    
@@ -18,7 +23,7 @@ export const MentorList = ({ mentorListObj }) => {
                             })}
                         </div>
                     )
-            }
+            } 
         </div>
     )
 }

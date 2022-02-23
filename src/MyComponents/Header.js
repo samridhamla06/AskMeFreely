@@ -90,7 +90,7 @@ export const Header = (props) => {
                 <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
                     <Link to="/" className="logo d-flex align-items-center m-3 p-1">
                         {/* <img src={logoImage} alt="" /> */}
-                        <span>TalkFreely</span>
+                        <span>Stammerers Connect</span>
                     </Link>
                     <nav id="navbar" className="navbar m-2 p-1">
                         <ul className='d-flex align-items-center justify-content-between'>
