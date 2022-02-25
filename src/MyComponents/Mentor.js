@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { STAMMERING_STATUS_MAP } from '../constants/map';
 
 
 export const Mentor = (props) => {
@@ -22,7 +23,7 @@ export const Mentor = (props) => {
                         <div className="bg-primary px-5 py-4 text-center card-img-top"><img src={props.mentorObj.imageURL} alt="..." width="100" className="my-rounded-circle mb-2 img-thumbnail d-block mx-auto"               
                         />
                             <h5 className="text-white mb-0">{props.mentorObj.name}</h5>
-                            <p className="small text-white mb-0">{props.mentorObj.tagLine ? props.mentorObj.tagLine : "Moderate Stammerer"}</p>
+                            <p className="small text-white mb-0">{props.mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(props.mentorObj.tagLine) : "Moderate Stammerer"}</p>
                         </div>
                         <div className="p-4 d-flex justify-content-between">
                             <h5 className="list-inline-item m-0 font-weight-bold  d-block">12</h5><small className="text-muted"> Reviews</small>

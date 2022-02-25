@@ -16,7 +16,7 @@ export const AboutUs = () => {
             <div className="flex-1">
                     {/* Change font based on width */}
                     <div className="d-flex flex-column justify-content-center align-items-center">
-                        <div><h1 data-aos="fade-up">Platform to Ignite stammerers to Talk Freely</h1></div>
+                        <div><h1 data-aos="fade-up">Platform to Connect with Fellow Stammerers</h1></div>
                         <div><h2 data-aos="fade-up" data-aos-delay="400">We connect you with fellow stammerers who could overcome it and didn't let it impact their goals</h2></div>
                         <Link to="/mentors"><button type="submit" className="myButton m-2 p-3">Find Mentors</button></Link>
                     </div>

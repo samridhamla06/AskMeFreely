@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
 import GoogleLogin from 'react-google-login';
 import { Redirect } from 'react-router';
+import { STAMMERING_STATUS_MAP } from '../constants/map';
 
 export const Header = (props) => {
 
@@ -52,10 +53,6 @@ export const Header = (props) => {
 
     });
 
-    const handleSelect = (selectedKey) => {
-        console.log(selectedKey);
-    }
-
     const handleLogout = () => {
         console.log('logout is called');
         props.updateUser(null, false);
@@ -87,7 +84,7 @@ export const Header = (props) => {
     return (
         <>
             <div id="header" className="header fixed-top m-1">
-                <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-between">
+                <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-center">
                     <Link to="/" className="logo d-flex align-items-center m-3 p-1">
                         {/* <img src={logoImage} alt="" /> */}
                         <span>Stammerers Connect</span>

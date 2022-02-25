@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { ACCESS_TOKEN, SEND_MESSAGE_URL, LOGGED_IN_NAME } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
+import { STAMMERING_STATUS_MAP } from '../constants/map';
 
 export const MentorProfile = (props) => {
     const [showPrompt, setShowPrompt] = useState(false);
@@ -90,7 +91,6 @@ export const MentorProfile = (props) => {
                             consectetur ac, vestibulum at eros.
                         </p>*/}
                             <form onSubmit={sendMessage} className='d-flex flex-column justify-content-center align-items-center'>
-                            {/* <div className='d-flex flex-column justify-content-center align-items-center'> */}
                                 <div className="form-group align-self-stretch">
                                     <textarea className="form-control" id="story" rows="6" width='100%'></textarea>
                                 </div>
@@ -100,35 +100,33 @@ export const MentorProfile = (props) => {
                                 : 
                                 <>Send</>}        
                                 </button>
-                                {/* </div> */}
                             </form>
                     </Modal.Body>
                 </Modal>
                 : <div></div>
             }
-            <div className="d-flex flex-column bg-white justify-content-center">
-                <div className='flex-item m-2'>
-                    <div className='d-flex justify-content-center flex-wrap'>
+            <div className="d-flex flex-column bg-white justify-content-center align-items-stretch m-1">
+                <div className='flex-item m-2 d-flex'>
                         {/* 1st Row begins */}
-
-                        <div className='flex-grow-2 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-center p-5'>
-                            <img src={mentorObj.imageURL} alt="avatar" className="img-fluid align-self-center mt-1 mb-2" style={{ width: '200px', height: '200px' }} />
+                        <div className='flex-grow-1 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-start p-2'>
+                            <img src={mentorObj.imageURL} alt="avatar" className="my-rounded-circle mb-3 d-block" />
                             <h4 >{mentorObj.name}</h4>
-                            <p className="text-muted mb-1">{mentorObj.occupation ? mentorObj.occupation : "Fellow Stammerer"}</p>
-                            <p className="text-muted mb-4">{mentorObj.location ? mentorObj.location : " "}</p>
-                            <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}>Send Message</button>
+                            <p className="text-muted mb-1">{mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(mentorObj.tagLine) : "Fellow Stammerer"}</p>
+                            {mentorObj.location ? <p className="text-muted mb-4">{mentorObj.location} </p> : <></>}
+                            {/* <button type="button" className="myButton mb-1" onClick={() => setShowPrompt(true)}>Send Message</button> */}
                         </div>
-                        <div className='flex-grow-1 mentor-profile-container flex-item border border-light m-2 p-2'>
-                            <h4>My Journey</h4>
-                            <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
+
+                        <div>
+                            {/* ratings */}
+                            {/* reviews */}
+                            {/* connections */}
                         </div>
-                    </div>
                 </div>
 
-                {/* <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
+                <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
                     <h4>My Journey</h4>
                     <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
-                </div> */}
+                </div>
 
                 {mentorObj.tip ? (
                     <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
