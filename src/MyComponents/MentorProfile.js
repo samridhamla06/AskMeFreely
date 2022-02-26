@@ -108,8 +108,8 @@ export const MentorProfile = (props) => {
             <div className="d-flex flex-column bg-white justify-content-center align-items-stretch m-1">
                 <div className='flex-item m-2 d-flex'>
                         {/* 1st Row begins */}
-                        <div className='flex-grow-1 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-start p-2'>
-                            <img src={mentorObj.imageURL} alt="avatar" className="my-rounded-circle mb-3 d-block" />
+                        <div className='flex-grow-1 mentor-profile-container d-flex flex-column justify-content-center border border-light text-center align-items-center p-2'>
+                            <img src={mentorObj.imageURL} alt="avatar" className="my-profile-image mb-3 d-block" />
                             <h4 >{mentorObj.name}</h4>
                             <p className="text-muted mb-1">{mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(mentorObj.tagLine) : "Fellow Stammerer"}</p>
                             {mentorObj.location ? <p className="text-muted mb-4">{mentorObj.location} </p> : <></>}
