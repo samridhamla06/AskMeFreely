@@ -3,12 +3,12 @@ import { useLocation } from 'react-router';
 import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
 import GoogleLogin from 'react-google-login';
-import { Redirect } from 'react-router';
-import { STAMMERING_STATUS_MAP } from '../constants/map';
+import { useMediaQuery } from 'react-responsive';
+import swal from 'sweetalert';
 
 export const Header = (props) => {
 
-
+    const isMobile = useMediaQuery({ query: `(min-width: 760px)` });
     const location = useLocation();
     let navigate = useNavigate();
 
@@ -62,8 +62,8 @@ export const Header = (props) => {
         localStorage.removeItem(LOGGED_IN_NAME);
     }
 
-    const handleLoginFailure = (result) =>{
-        alert(result);
+    const handleLoginFailure = (result) => {
+        swal("Google Login Failed", "error");
     }
 
     const handleLogin = (googleData) => {
@@ -83,46 +83,71 @@ export const Header = (props) => {
     //console.log("**** The google API key is" + process.env.REACT_APP_GOOGLE_API_KEY);
     return (
         <>
-            <div id="header" className="header fixed-top m-1">
-                <div className="d-flex flex-wrap align-items-center justify-content-xs-center  justify-content-center">
-                    <Link to="/" className="logo d-flex align-items-center m-3 p-1">
-                        {/* <img src={logoImage} alt="" /> */}
-                        <span>Stammerers Connect</span>
-                    </Link>
-                    <nav id="navbar" className="navbar m-2 p-1">
-                        <ul className='d-flex align-items-center justify-content-between'>
-                            <li><Link to="/" className='navbar-caption-text'>About</Link></li>
-                            <li><Link to="/mentors" className='navbar-caption-text'>Stammerers</Link></li>
-                            <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
-                            <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
-                            <li>
-                                {
-                                    (props.isLoggedIn && props.user)
-                                        ?
-                                            <div className="dropdown"><span className='navbar-caption-text'>{"Hi, " + props.user.name.split(' ')[0]}</span>
-                                                <ul className="dropdown-content">
-                                                    <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li> 
-                                                    <li><Link to="/" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
-                                                </ul>
-                                            </div>
-                                        :
-                                        <>
-                                            <GoogleLogin
-                                                render={
-                                                    renderProps => (
-                                                        <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
-                                                    )}
-                                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-                                                buttonText="Log In"
-                                                onSuccess={handleLogin}
-                                                onFailure={handleLoginFailure}
-                                                cookiePolicy={'single_host_origin'} />
-                                        </>
-                                }
-                            </li>
-                        </ul>
-                        <i className="bi bi-list mobile-nav-toggle"></i>
-                    </nav>
+            <div id="header" className="header fixed-top">
+                <div className="d-flex flex-wrap align-items-center justify-content-evenly">
+                    <div>
+                        <Link to="/" className="logo d-flex align-items-center p-1">
+                            {/* <img src={logoImage} alt="" /> */}
+                            <span>Stammerers Connect</span>
+                        </Link>
+                    </div>
+                    <div className='d-flex flex-nowrap justify-content-evenly mt-4'>
+                        <div>
+                            {
+                                isMobile
+                                    ?
+                                    <nav id="navbar" className="navbar">
+                                        <ul className='d-flex align-items-center justify-content-between mt-2'>
+                                            <li><Link to="/" className='navbar-caption-text'>About</Link></li>
+                                            <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
+                                            <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
+                                            <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
+                                        </ul>
+                                    </nav>
+                                    :
+                                    // Hide navbar behind a button
+                                    <ul className='d-flex align-items-center justify-content-between'>
+                                        <div className="dropdown"><button className='myButton scrollto'><i class="fa fa-bars"></i> Menu</button>
+                                            <ul className="dropdown-content">
+                                                <li><Link to="/" className='navbar-caption-text'>About</Link></li>
+                                                <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
+                                                <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
+                                                <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
+                                            </ul>
+                                        </div>
+                                    </ul>
+                            }
+                        </div>
+
+                        <div>
+                            {
+                                (props.isLoggedIn && props.user)
+                                    ?
+                                    <div className="dropdown"><span className='navbar-caption-text'>
+                                    <button className="myButton scrollto" ><i class="fa fa-user" aria-hidden="true"></i>  {"Hi, " + props.user.name.split(' ')[0]}</button>
+                                    </span>
+                                        <ul className="dropdown-content">
+                                            <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li>
+                                            <li><Link to="/" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
+                                        </ul>
+                                    </div>
+                                    :
+                                    <>
+                                        <GoogleLogin
+                                            render={
+                                                renderProps => (
+                                                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
+                                                )}
+                                            clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                                            buttonText="Log In"
+                                            onSuccess={handleLogin}
+                                            onFailure={handleLoginFailure}
+                                            cookiePolicy={'single_host_origin'} />
+                                    </>
+                            }
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL, DEFAULT_IMAGE_LOCATION } from '../constants/url';
 import { STAMMERING_STATUS_MAP } from '../constants/map';
+import swal from 'sweetalert';
+import Rating from 'react-simple-star-rating'
 
 export const Register = ({ rerenderValue }) => {
 
@@ -12,6 +14,7 @@ export const Register = ({ rerenderValue }) => {
     const loggedInEmail = localStorage.getItem(LOGGED_IN_EMAIL);
     const loggedInName = localStorage.getItem(LOGGED_IN_NAME);
     const [showSpinner, setShowSpinner] = useState(false);
+    const [showSaveSpinner, setShowSaveSpinner] = useState(false);
     const [formValues, setFormValues] = useState({ email: loggedInEmail, name: loggedInName, imageURL: DEFAULT_IMAGE_LOCATION });//Kept it non empty for new user, whose profile not added ever.
     console.log('Starting state in Register', formValues);
 
@@ -19,7 +22,7 @@ export const Register = ({ rerenderValue }) => {
     let access_token = localStorage.getItem(ACCESS_TOKEN);
 
     if (!access_token) {
-        alert('No token present, Please log in and try again');
+        swal("Oops", "No token present, Please log in and try again", "error")
         //navigate to homepage
         navigate("/", { replace: true });
     }
@@ -29,7 +32,7 @@ export const Register = ({ rerenderValue }) => {
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
         if (!access_token) {
-            alert('No token present, Please log in and try again');
+            swal("Oops", "No token present, Please log in and try again", "error")
             //navigate to homepage
             navigate("/", { replace: true });
         }
@@ -41,7 +44,7 @@ export const Register = ({ rerenderValue }) => {
             .then(response => {
                 console.log('User received from Backend', response);
                 setFormValues(() => {
-                    let newValue = { name: response.name, email: response.email, imageURL: response.imageURL ? response.imageURL : DEFAULT_IMAGE_LOCATION, age: response.age, story: response.story, tip: response.tip, isMentor: response.mentor, tagLine: response.tagLine, location: response.location, occupation: response.occupation }
+                    let newValue = { name: response.name, email: response.email, imageURL: response.imageURL ? response.imageURL : DEFAULT_IMAGE_LOCATION, age: response.age, story: response.story, tip: response.tip, isMentor: response.isMentor, tagLine: response.tagLine, location: response.location, occupation: response.occupation }
                     return newValue;
                 })
             })
@@ -58,9 +61,10 @@ export const Register = ({ rerenderValue }) => {
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
         if (!access_token) {
-            alert('No token present, Please log in and try again');
+            swal("Oops!", "No token present, Please log in and try again", "error")
             navigate("/", { replace: true });
         }
+
         console.log('Current State of Form Object, isMentor ', event.target.mentorCheckBox);
         console.log('Current State of Form Object,  tagLine', event.target.tagLine.value);
         //construct body
@@ -73,7 +77,7 @@ export const Register = ({ rerenderValue }) => {
             location: event.target.location.value,
             tagLine: event.target.tagLine.value,
             tip: event.target.tip ? event.target.tip.value : "",
-            isMentor: event.target.mentorCheckBox.value === "on" ? true : false,
+            isMentor: event.target.mentorCheckBox.value ? true : false,
             imageURL: formValues.imageURL
         };
 
@@ -85,13 +89,14 @@ export const Register = ({ rerenderValue }) => {
 
         console.log(requestOptions);
 
+        setShowSaveSpinner(true);
         fetch(ADD_MENTOR_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
                 if (response.status == 'Successfully Saved') {
-                    alert('Profile is Added')
+                    swal("Awesome", "Profile is successfully updated", "success")
                 } else {
-                    alert('ERROR OCCURED, TRY AGAIN')
+                    swal("Oops", "ERROR OCCURED, TRY AGAIN", "error")
                 }
                 //change state of App.js value, to re-render the component.
                 rerenderValue();
@@ -99,7 +104,10 @@ export const Register = ({ rerenderValue }) => {
             .catch(
                 err => {
                     console.log(err);
-                });
+                })
+            .finally(() => {
+                setShowSaveSpinner(false);
+            });
     }
 
     const handlePreviewImage = (event) => {
@@ -133,20 +141,20 @@ export const Register = ({ rerenderValue }) => {
                         let newValue = { ...oldValue, imageURL: response.imageURL }
                         return newValue;
                     })
-                    alert('Image is Uploaded')
+                    swal("Awesome!", "Image is Uploaded", "success")
                     //change state of App.js value, to re-render the component.
                     rerenderValue();
                 } else {
-                    alert('ERROR OCCURED, TRY AGAIN')
+                    swal("Oops!", "ERROR OCCURED, TRY AGAIN", "error")
                 }
             })
             .catch(
                 err => {
                     console.log(err);
                 })
-            .finally(() =>{
+            .finally(() => {
                 setShowSpinner(false);
-                })
+            })
     }
 
     return (
@@ -207,20 +215,8 @@ export const Register = ({ rerenderValue }) => {
                     <small id="emailHelp" className="form-text text-muted">Only city name is sufficient.</small>
                 </div>
 
-                {/* <div className="register-element">
-                    <h4 >Occupation</h4>
-                    <input type="text" className="form-control" id="occupation" value={formValues.occupation ? formValues.occupation : ""} onChange={(event) => {
-                        console.log('changing age value', event.target.value);
-                        setFormValues((oldValue) => {
-                            let newValue = { ...oldValue, occupation: event.target.value }
-                            return newValue;
-                        })
-                    }} />
-                </div> */}
-
                 <div className='register-element'>
                     <h4>Stammering Status</h4>
-                    {/* className='form-select' */}
                     <select id="tagLine" name="tagLine" onChange={handleTagLine} className='form-select' value={formValues.tagLine ? formValues.tagLine : "mild"}  >
                         <option value="mild">Mild Stammerer</option>
                         <option value="moderate">Moderate Stammerer</option>
@@ -230,19 +226,6 @@ export const Register = ({ rerenderValue }) => {
                         <option value="conquer">Conquered Stammerer</option>
                     </select>
                 </div>
-
-                {/* <div className="register-element">
-                    <h4 >Tagline</h4>
-                    <textarea className="form-control" id="tagLine" rows="2" value={formValues.tagLine ? formValues.tagLine : ""} onChange={(event) => {
-                        console.log('changing age value', event.target.value);
-                        setFormValues((oldValue) => {
-                            let newValue = { ...oldValue, tagLine: event.target.value }
-                            return newValue;
-                        })
-                    }}>
-                    </textarea>
-                    <small id="emailHelp" className="form-text text-muted">Please keep it under 500 chars.</small>
-                </div> */}
 
                 <div className="register-element">
                     <h4 >My Struggle Journey</h4>
@@ -287,9 +270,10 @@ export const Register = ({ rerenderValue }) => {
                         : <></>
                 }
 
-
                 <div className='register-element text-center'>
-                    <button type="submit" className="myButton" on>Save</button>
+                    <button type="submit" className="myButton" on>
+                        {showSaveSpinner ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : <>Save</>}
+                    </button>
                 </div>
             </form>
         </div>
