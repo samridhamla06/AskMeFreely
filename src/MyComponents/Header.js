@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 
 export const Header = (props) => {
     const ref = useRef()
-    const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
+    const isMobile = useMediaQuery({ query: `(max-width: 900px)` });
     const [showDropdown, setShowDropDown] = useState(false);
     const [showNestedDropdown, setShowNestedDropDown] = useState(false);
     const location = useLocation();
@@ -149,6 +149,7 @@ export const Header = (props) => {
                                                     ? 
                                                         <ul className="navbar-submenu">
                                                             <li><Link to={newLocation} className='navbar-caption-text' onClick={closeDropDown}>My Profile</Link></li>
+                                                            <li><Link to={{ pathname: "/sessions" }} className='navbar-caption-text' onClick={closeDropDown}>My Sessions</Link></li>
                                                             <li><Link to="/" onClick={() => {
                                                                 handleLogout();
                                                                 closeDropDown();

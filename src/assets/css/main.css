@@ -174,7 +174,7 @@
     list-style: none;
   }
 
-  @media (max-width : 800px){
+  @media (max-width : 900px){
 
     .navbar{
       position: absolute;
@@ -506,4 +506,12 @@
 
 .checked {
   color: orange;
+}
+
+/**
+* Session button for Events Component
+*/
+
+.session-button{
+  text-decoration: none;
 }

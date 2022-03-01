@@ -16,6 +16,7 @@ import { Register } from './MyComponents/Register';
 import { GET_MENTOR_URL } from './constants/url';
 import { Events } from './MyComponents/Events';
 import './assets/css/main.css';
+import { SessionList } from './MyComponents/SessionList';
 
 function App() {
 
@@ -79,6 +80,7 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route exact path="/register" element={<Register rerenderValue = {rerenderValue}/>} />
           <Route path="/events" element={<Events/>} />
+          <Route path="/sessions" element={<SessionList/>} />
           <Route exact path="/mentor/:name" element={<MentorProfile />} />
         </Routes>
         <Footer />

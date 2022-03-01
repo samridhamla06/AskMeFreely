@@ -11,7 +11,9 @@ export const GET_MENTOR_URL = API_BASE_URL + "/v1/mentor";
 export const GET_USER_URL = API_BASE_URL + "/v1/auth/user";
 export const ADD_MENTOR_URL = API_BASE_URL + "/v1/auth/mentor";
 export const UPLOAD_IMAGE_URL = API_BASE_URL + "/v1/auth/uploadImage";
-export const SEND_MESSAGE_URL = API_BASE_URL + "/v1/auth/sendMessage";
+export const BOOK_SESSION_URL = API_BASE_URL + "/v1/auth/bookSession";
+export const COMPLETE_SESSION_URL = API_BASE_URL + "/v1/auth/completeSession";
+export const GET_SESSION_URL = API_BASE_URL + "/v1/auth/session";
 export const GOOGLE_AUTH_URL = API_BASE_URL + "/auth/validate";
 export const DEFAULT_IMAGE_LOCATION  = "https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png";
 

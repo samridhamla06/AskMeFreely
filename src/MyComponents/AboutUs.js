@@ -7,12 +7,12 @@ import { useNavigate, Link } from 'react-router-dom';
 export const AboutUs = () => {
     return (
             <div id="myHome" className="d-flex myHome flex-wrap align-items-center justify-content-center mx-1">
-                <i class="fa fa-book"></i>
+                {/* <i class="fa fa-book"></i>
                 <i class="fa fa-star-o fa-2x"></i>
                 <i class="fa fa-star fa-2x"></i>
                 <i class="fa fa-book"></i> 
                 <i class="fa-solid fa-caret-down"></i>
-                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i> */}
             <div className="flex-2">
                     <div className="image-fluid mx-1" data-aos="zoom-out" data-aos-delay="200">
                         <img src={logo} className="img-thumbnail" alt="" />

@@ -7,13 +7,14 @@ export const MentorList = ({ mentorListObj }) => {
     return (
         <div className="container">
             {
+                
                 (!mentorListObj.length)
                     ?
-            <div className="d-flex flex-column align-items-center justify-content-center">
-                <div className='d-flex flex-column justify-content-center'>
-                    <div class="spinner-border text-primary mt-4" role="status" aria-hidden="true"></div>
-                </div>
-            </div>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                        <div className='d-flex flex-column justify-content-center'>
+                            <div class="spinner-border text-primary mt-4" role="status" aria-hidden="true"></div>
+                        </div>
+                    </div>
                     :
                     (
                         // <div className="d-flex flex-wrap mentor-container justify-content-start">    
@@ -23,7 +24,7 @@ export const MentorList = ({ mentorListObj }) => {
                             })}
                         </div>
                     )
-            } 
+            }
         </div>
     )
 }

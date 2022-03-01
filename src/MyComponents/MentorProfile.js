@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { ACCESS_TOKEN, SEND_MESSAGE_URL, LOGGED_IN_NAME } from '../constants/url';
+import { ACCESS_TOKEN, BOOK_SESSION_URL, LOGGED_IN_EMAIL, LOGGED_IN_NAME } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
 import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
 import swal from 'sweetalert';
@@ -11,11 +11,7 @@ export const MentorProfile = (props) => {
     const [showReviewPrompt, setShowReviewPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
     const [rating, setRating] = useState(0);
-    // function useQuery() {
-    //     // Use the URLSearchParams API to extract the query parameters
-    //     // useLocation().search will have the query parameters eg: ?foo=bar&a=b
-    //     return new URLSearchParams(useLocation().search)
-    // }
+
     console.log(props.mentorObj);
     //const params = useParams();
     //const query = useQuery();
@@ -36,7 +32,6 @@ export const MentorProfile = (props) => {
             return;
         }
 
-
     }
 
     const handleRating = (rate) => {
@@ -47,7 +42,7 @@ export const MentorProfile = (props) => {
     const sendMessage = (event) => {
         event.preventDefault();
         let access_token = localStorage.getItem(ACCESS_TOKEN);
-        let from_name = localStorage.getItem(LOGGED_IN_NAME);
+        let from_email = localStorage.getItem(LOGGED_IN_EMAIL);
 
         if (!access_token) {
             swal("Oops!", "Please login to Book", "error");
@@ -55,12 +50,10 @@ export const MentorProfile = (props) => {
             return;
         }
 
-        setShowSpinner(true);
-
         const requestBody = {
             message: event.target.story.value,
-            fromEmail: from_name,
-            toEmail: mentorObj.email
+            menteeId: from_email,
+            mentorId: mentorObj.email
         };
 
         const requestOptions = {
@@ -69,7 +62,9 @@ export const MentorProfile = (props) => {
             body: JSON.stringify(requestBody)
         };
 
-        fetch(SEND_MESSAGE_URL, requestOptions)
+        setShowSpinner(true);
+
+        fetch(BOOK_SESSION_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
                 if (response.status == 'Successfully Saved') {
@@ -84,14 +79,14 @@ export const MentorProfile = (props) => {
                 })
             .finally(() => {
                 setShowSpinner(false);
-                setShowPrompt(false)
+                setShowPrompt(false);
             });
     }
 
     //let broValue = query.get("bro")
     return (
         <div >
-            {showPrompt ?
+            {showPrompt &&
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
@@ -123,7 +118,6 @@ export const MentorProfile = (props) => {
                         </form>
                     </Modal.Body>
                 </Modal>
-                : <div></div>
             }
 
             {showReviewPrompt ?
