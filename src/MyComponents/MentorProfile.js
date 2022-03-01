@@ -132,7 +132,7 @@ export const MentorProfile = (props) => {
                     aria-labelledby="contained-modal-title-vcenter"
                     style={{ opacity: 1, display: 'block', alignContent: 'center' }}
                     show={true}
-                    onHide={() => setShowPrompt(false)}
+                    onHide={() => setShowReviewPrompt(false)}
                     centered>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: '#012970', alignContent: 'center' }}>
@@ -186,8 +186,8 @@ export const MentorProfile = (props) => {
                             <p className="text-muted mb-1">{mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(mentorObj.tagLine) : "Fellow Stammerer"}</p>
                             {mentorObj.location ? <p className="text-muted mb-4">{mentorObj.location} </p> : <></>}
                             <div className='d-flex justify-content-center'>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}>Book a Session</button>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowReviewPrompt(true)}>Add a Review</button>
+                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}><i class="fa fa-meetup" aria-hidden="true"></i> | Session</button>
+                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowReviewPrompt(true)}><i class="fa fa-commenting-o" aria-hidden="true"></i> | Review</button>
                             </div>
                         </div>
 

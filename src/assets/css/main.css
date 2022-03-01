@@ -11,16 +11,6 @@
     white-space: pre-line;
   }
   
-  /* a {
-    color: #4154f1;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #717ff5;
-    text-decoration: none;
-  } */
-  
   h1, h2, h3, h4, h5, h6 {
     font-family: "Nunito", sans-serif;
   }
@@ -29,13 +19,6 @@
     font-weight: 700;
     margin-bottom: 5px;
     font-size: 20px;
-    color: #012970;
-  }
-
-  .name-caption{
-    font-weight: 700;
-    margin-bottom: 5px;
-    font-size: 30px;
     color: #012970;
   }
 
@@ -99,7 +82,7 @@
     padding: 20px 0;
     /* margin-bottom: 3px; */
     position: relative;
-    background-color: white;
+    /* background-color: red; */
   } 
  
   .header .logo {
@@ -125,44 +108,167 @@
 # Nav bar in header
 --------------------------------------------------------------*/
   .navbar {
+    margin: 0;
     padding: 0;
   }
-  .navbar ul {
+  .navbar-container {
+    margin: 0;
+    padding: 0;
+    /* background-color: khaki; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+  }
+
+  .navbar-caption{
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 2.1rem;
+    padding: 0.5rem;
+    color: #012970;
+  }
+
+  /* .navbar-links{
+    display: flex;
+    justify-content: space-between;
+  } */
+
+   .navbar ul {
     margin: 0;
     padding: 0;
     list-style: none;
-  } 
-  .navbar li {
-    /* position: static; */
-    margin-left: 20px;
-  } 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: crimson; */
+  }
+  
+  .navbar-button{
+    background: #4154f1;
+    padding : 0.6rem;
+    border-radius: 5px;
+    color: #fff;
+  }
 
   .navbar ul li{
     font-size: 15px;
     text-transform: none;
     font-weight: 600;
     color: #012970;
+    padding: 1rem;
   }
+
+  .navbar-submenu{
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    position: absolute;
+    top:5rem;
+    left:4rem;
+    right:1rem;
+  }
+
+  .navbar-submenu ul{
+    list-style: none;
+  }
+
+  @media (max-width : 800px){
+
+    .navbar{
+      position: absolute;
+      top:5rem;
+      left:4rem;
+      right:4rem;
+      /* background-color: black; */
+      background-color: #f9f9f9;
+      text-align: center;
+      display: block;
+      z-index: 99999;
+    }
+
+    .navbar-caption{
+      font-size: 1.5rem;
+    }
+     .navbar ul{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      /* background-color: khaki; */
+      width: '100%';
+    }
+
+    .navbar-container .navbar ul li{
+      /* background-color: blueviolet; */
+      padding: 1rem;
+      text-align: center;
+      z-index: 99999;
+    }
+
+    .navbar-submenu{
+      display: flex;
+      flex-direction: column;
+      background-color: #f9f9f9;
+      position: absolute;
+      top:18rem;
+      left:2rem;
+      right:2rem;
+    }
+  }
+/*--------------------------------------------------------------
+# Navbar new DropDown for my Home
+--------------------------------------------------------------*/
+
+/* .navbar-container .navbar-dropdown{
+  background-color: lawngreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top:10rem;
+  left:0rem;
+  right: 0rem;
+}
+
+.navbar-container .navbar-dropdown ul{
+  list-style: none;
+}
+
+.navbar-container .navbar-dropdown ul li{
+  background-color: black;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.navbar-container .navbar-dropdown ul li a{
+  text-decoration: none;
+  background-color: lightpink;
+  padding: 0.5rem;
+  text-align: center;
+} */
+
+
 
 /*--------------------------------------------------------------
 # DropDown for my Home
 --------------------------------------------------------------*/
 
-
+/*
 .dropdown {
   position: relative;
   display: inline-block;
-  /* border: 3px solid #73AD21; */
 }
 
 .dropdown-content {
-  /* border: 3px solid black; */
   list-style-type: none;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  /* min-width: 160px; */
-  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   padding: 12px 16px 0px 10px;
   z-index: 1;
   top: calc(100% + 1px); 
@@ -190,7 +296,7 @@
 .dropdown-content ul li:hover {
   color: #4154f1;
   background-color: black;
-}
+}/*
 
 /*--------------------------------------------------------------
 # Styling for the My home

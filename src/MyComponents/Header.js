@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router';
 import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
@@ -7,10 +7,29 @@ import { useMediaQuery } from 'react-responsive';
 import swal from 'sweetalert';
 
 export const Header = (props) => {
-
-    const isMobile = useMediaQuery({ query: `(min-width: 760px)` });
+    const ref = useRef()
+    const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
+    const [showDropdown, setShowDropDown] = useState(false);
+    const [showNestedDropdown, setShowNestedDropDown] = useState(false);
     const location = useLocation();
     let navigate = useNavigate();
+
+    const closeDropDown = () => {
+        setShowNestedDropDown(false);
+        setShowDropDown(false);
+    }
+
+    const toggleNestedDropDown = () => {
+        setShowNestedDropDown((oldValue) => {
+            return !oldValue;
+        })
+    }
+
+    const toggleDropDown = () => {
+        setShowDropDown((oldValue) => {
+            return !oldValue;
+        })
+    }
 
     function validateTokenAndLogin(tokenId) {
         fetch(GOOGLE_AUTH_URL, {
@@ -43,15 +62,35 @@ export const Header = (props) => {
 
     //TODO: Move this part to App.js
     useEffect(() => {
-
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
         //if token is present, then maybe we should try to validate the token and log in
         if (!props.isLoggedIn && access_token) {
             validateTokenAndLogin(access_token);
         }
+    }, []);
 
-    });
+
+    useEffect(() => {
+        console.log("showDropdown changed");
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            console.log("ref.current", ref.current);
+            console.log("e.target", e.target);
+            if (showDropdown && ref.current && !ref.current.contains(e.target)) {
+               console.log("call the dropdown");
+              closeDropDown();
+            }
+          }
+      
+          document.addEventListener("mousedown", checkIfClickedOutside)
+      
+          return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+          }
+    }, [showDropdown]);
 
     const handleLogout = () => {
         console.log('logout is called');
@@ -84,70 +123,62 @@ export const Header = (props) => {
     return (
         <>
             <div id="header" className="header fixed-top">
-                <div className="d-flex flex-wrap align-items-center justify-content-evenly">
+                <div className='navbar-container'>
                     <div>
-                        <Link to="/" className="logo d-flex align-items-center p-1">
-                            {/* <img src={logoImage} alt="" /> */}
-                            <span>Stammerers Connect</span>
+                        <Link to="/">
+                            <div className='navbar-caption'>Stammerers Connect</div>
                         </Link>
                     </div>
-                    <div className='d-flex flex-nowrap justify-content-evenly mt-4'>
-                        <div>
-                            {
-                                isMobile
-                                    ?
-                                    <nav id="navbar" className="navbar">
-                                        <ul className='d-flex align-items-center justify-content-between mt-2'>
-                                            <li><Link to="/" className='navbar-caption-text'>About</Link></li>
-                                            <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
-                                            <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
-                                            <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
-                                        </ul>
-                                    </nav>
-                                    :
-                                    // Hide navbar behind a button
-                                    <ul className='d-flex align-items-center justify-content-between'>
-                                        <div className="dropdown"><button className='myButton scrollto'><i class="fa fa-bars"></i> Menu</button>
-                                            <ul className="dropdown-content">
-                                                <li><Link to="/" className='navbar-caption-text'>About</Link></li>
-                                                <li><Link to="/mentors" className='navbar-caption-text'>Mentors</Link></li>
-                                                <li><Link to="/events" className='navbar-caption-text'>Events</Link></li>
-                                                <li><Link to="/contactUs" className='navbar-caption-text'>Contact</Link></li>
-                                            </ul>
-                                        </div>
-                                    </ul>
-                            }
-                        </div>
-
-                        <div>
-                            {
-                                (props.isLoggedIn && props.user)
-                                    ?
-                                    <div className="dropdown"><span className='navbar-caption-text'>
-                                    <button className="myButton scrollto" ><i class="fa fa-user" aria-hidden="true"></i>  {"Hi, " + props.user.name.split(' ')[0]}</button>
-                                    </span>
-                                        <ul className="dropdown-content">
-                                            <li><Link to={newLocation} className='navbar-caption-text'>My Profile</Link></li>
-                                            <li><Link to="/" onClick={handleLogout} className='navbar-caption-text'>Log Out</Link></li>
-                                        </ul>
+                    {(!isMobile || showDropdown)
+                        &&
+                        <div id="navbar" className="navbar" ref={ref}>
+                            <ul>
+                                <li><Link to="/" className='navbar-caption-text'onClick={closeDropDown}>About</Link></li>
+                                <li><Link to="/mentors" className='navbar-caption-text' onClick={closeDropDown}>Mentors</Link></li>
+                                <li><Link to="/events" className='navbar-caption-text' onClick={closeDropDown}>Events</Link></li>
+                                <li><Link to="/contactUs" className='navbar-caption-text' onClick={closeDropDown}>Contact</Link></li>
+                                <li>
+                                    <div>
+                                        {
+                                            (props.isLoggedIn && props.user)
+                                                ?
+                                                <>
+                                                    <button className="myButton scrollto" onClick={toggleNestedDropDown} ><i class="fa fa-user" aria-hidden="true"></i> | {"Hi, " + props.user.name.split(' ')[0]} <i class="fa fa-arrow-down" aria-hidden="true"></i></button>    
+                                                    {
+                                                    showNestedDropdown 
+                                                    ? 
+                                                        <ul className="navbar-submenu">
+                                                            <li><Link to={newLocation} className='navbar-caption-text' onClick={closeDropDown}>My Profile</Link></li>
+                                                            <li><Link to="/" onClick={() => {
+                                                                handleLogout();
+                                                                closeDropDown();
+                                                            }
+                                                                } className='navbar-caption-text'>Log Out</Link></li>
+                                                        </ul>
+                                                    :
+                                                    <></>
+                                                    }   
+                                                </>
+                                                :
+                                                <>
+                                                    <GoogleLogin
+                                                        render={
+                                                            renderProps => (
+                                                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="fa fa-sign-in" aria-hidden="true"></i> | Log In</button>
+                                                            )}
+                                                        clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                                                        buttonText="Log In"
+                                                        onSuccess={handleLogin}
+                                                        onFailure={handleLoginFailure}
+                                                        cookiePolicy={'single_host_origin'} />
+                                                </>
+                                        }
                                     </div>
-                                    :
-                                    <>
-                                        <GoogleLogin
-                                            render={
-                                                renderProps => (
-                                                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="myButton scrollto" >Log In</button>
-                                                )}
-                                            clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-                                            buttonText="Log In"
-                                            onSuccess={handleLogin}
-                                            onFailure={handleLoginFailure}
-                                            cookiePolicy={'single_host_origin'} />
-                                    </>
-                            }
-                        </div>
+                                </li>
+                            </ul>
+                        </div>}
 
-                    </div>
+                    {isMobile && <button className='myButton' onClick={toggleDropDown}><i class="fa fa-bars" aria-hidden="true"></i> | Menu</button>}
                 </div>
             </div>
         </>
