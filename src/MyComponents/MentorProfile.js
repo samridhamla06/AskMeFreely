@@ -8,9 +8,7 @@ import Rating from 'react-rating'
 
 export const MentorProfile = (props) => {
     const [showPrompt, setShowPrompt] = useState(false);
-    const [showReviewPrompt, setShowReviewPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
-    const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
 
     console.log(props.mentorObj);
@@ -21,24 +19,6 @@ export const MentorProfile = (props) => {
     if (!mentorObj) {
         mentorObj = props.dummmyMentorListObj;
     }
-
-    const createReview = (event) => {
-
-        event.preventDefault();
-        let access_token = localStorage.getItem(ACCESS_TOKEN);
-
-        if (!access_token) {
-            swal("Oops!", "Please login to Book", "error");
-            setShowPrompt(false);
-            return;
-        }
-
-    }
-
-    const handleRating = (rate) => {
-        setRating(rate);
-    }
-
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -138,56 +118,6 @@ export const MentorProfile = (props) => {
                 </Modal>
             }
 
-            {showReviewPrompt ?
-                <Modal
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    style={{ opacity: 1, display: 'block', alignContent: 'center' }}
-                    show={true}
-                    onHide={() => setShowReviewPrompt(false)}
-                    centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: '#012970', alignContent: 'center' }}>
-                            Give Review
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        {/* <h4 className='name-caption'>Book a Mentoring session with {mentorObj.name}</h4> */}
-                        <p>
-                            Please give your honest feedback/review for the session you had with {mentorObj.name}.
-                        </p>
-                        <div>
-                            <h4>Overall Rating:</h4>
-                            <Rating
-                                emptySymbol="fa fa-star-o fa-2x "
-                                fullSymbol="fa fa-star fa-2x checked"
-                                onChange={handleRating}
-                            />
-
-                            {rating > 0 ? <p>{RATING_MAP.get(rating)}!</p> : <></>}
-
-                        </div>
-                        <form onSubmit={createReview} className='d-flex flex-column justify-content-center align-items-center'>
-                            <div className="form-group align-self-stretch m-1">
-                                <h4>Review</h4>
-                                <textarea className="form-control" id="story" rows="6" width='100%'></textarea>
-                            </div>
-                            <button type="submit" className="myButton mt-2" onClick={() => {
-                                swal("Awesome!", "Review Accepted Successfully", "success");
-                                setShowReviewPrompt(false);
-                            }}>
-                                {showSpinner ?
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    :
-                                    <>Send Review</>}
-                            </button>
-                        </form>
-                    </Modal.Body>
-                </Modal>
-                : <div></div>
-            }
-
-
             <div className="d-flex flex-column bg-white justify-content-center align-items-stretch m-1">
                 <div className='flex-item m-2 d-flex'>
                     {/* 1st Row begins */}
@@ -198,17 +128,10 @@ export const MentorProfile = (props) => {
                             <p className="text-muted mb-1">{mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(mentorObj.tagLine) : "Fellow Stammerer"}</p>
                             {mentorObj.location ? <p className="text-muted mb-4">{mentorObj.location} </p> : <></>}
                             <div className='d-flex justify-content-center'>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}><i class="fa fa-meetup" aria-hidden="true"></i> Session</button>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowReviewPrompt(true)}><i class="fa fa-commenting-o" aria-hidden="true"></i> Review</button>
+                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}><i class="fa fa-meetup" aria-hidden="true"></i> Book Session</button>
                             </div>
                         </div>
 
-                    </div>
-
-                    <div>
-                        {/* ratings */}
-                        {/* reviews */}
-                        {/* connections */}
                     </div>
                 </div>
 
@@ -239,7 +162,7 @@ export const MentorProfile = (props) => {
                                             initialRating={reviewObj.actualRating}
                                         />
                                         <p className='text-muted'>{reviewObj.review}</p>
-                                        <footer class="blockquote-footer"><cite title="Source Title">{reviewObj.menteeId}</cite></footer>
+                                        <footer class="blockquote-footer"><cite title="Source Title">{reviewObj.reviewerName}</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>)

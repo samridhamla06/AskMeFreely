@@ -32,7 +32,7 @@ export const Session = (props) => {
         {
             sessionId: props.session.id,
             review: event.target.reviewMessage? event.target.reviewMessage.value : "",
-            ratingType:"LOVED_IT"
+            actualRating:rating
         };
 
         const requestOptions = {

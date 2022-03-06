@@ -25,9 +25,9 @@ export const Mentor = (props) => {
                             <h5 className="text-white mb-0">{props.mentorObj.name}</h5>
                             <p className="small text-white mb-0">{props.mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(props.mentorObj.tagLine) : "Moderate Stammerer"}</p>
                         </div>
-                        <div className="p-4 d-flex justify-content-between">
-                            <h5 className="list-inline-item m-0 font-weight-bold  d-block">12</h5><small className="text-muted"> Reviews</small>
-                            <h5 className="list-inline-item m-0 font-weight-bold  d-block">4.5</h5><small className="text-muted"><i className="fa fa-user-circle-o mr-1 text-primary"></i>Ratings</small>
+                        <div className="p-4 d-flex justify-content-around">
+                            <div className="list-inline-item m-0 font-weight-bold ">{props.mentorObj.numberOfReviews} <i class="fa fa-commenting-o" aria-hidden="true"></i></div>
+                            <div className="list-inline-item m-0 font-weight-bold ">{props.mentorObj.rating} <i class="fa fa-star-half-o" aria-hidden="true"></i> </div>
                             {/* <ul className="list-inline mb-0 bg-secondary">
                                 <li className="list-inline-item">
                                     <h5 className="font-weight-bold mb-0 d-block">12</h5><small className="text-muted"> Reviews</small>
