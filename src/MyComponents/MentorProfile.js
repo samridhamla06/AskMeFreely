@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { ACCESS_TOKEN, BOOK_SESSION_URL, LOGGED_IN_EMAIL, LOGGED_IN_NAME } from '../constants/url';
+import { ACCESS_TOKEN, BOOK_SESSION_URL, LOGGED_IN_EMAIL, LOGGED_IN_NAME, GET_REVIEW_URL } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
 import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
 import swal from 'sweetalert';
@@ -11,6 +11,7 @@ export const MentorProfile = (props) => {
     const [showReviewPrompt, setShowReviewPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
     const [rating, setRating] = useState(0);
+    const [reviews, setReviews] = useState([]);
 
     console.log(props.mentorObj);
     //const params = useParams();
@@ -83,6 +84,23 @@ export const MentorProfile = (props) => {
             });
     }
 
+
+    useEffect(() => {
+
+        //API call to fetch user info
+        fetch(GET_REVIEW_URL + "/?emailId=" + mentorObj.email,
+            { method: 'GET', headers: { 'Content-Type': 'application/json' } })
+            .then(response => response.json())
+            .then(response => {
+                console.log('Reviews received from Backend', response);
+                setReviews(response);
+            })
+            .catch(
+                err => {
+                    console.log(err);
+                });
+    }, [])
+
     //let broValue = query.get("bro")
     return (
         <div >
@@ -146,7 +164,7 @@ export const MentorProfile = (props) => {
                                 onChange={handleRating}
                             />
 
-                            {rating > 0 ? <p>{RATING_MAP.get(rating)}!</p>: <></>}
+                            {rating > 0 ? <p>{RATING_MAP.get(rating)}!</p> : <></>}
 
                         </div>
                         <form onSubmit={createReview} className='d-flex flex-column justify-content-center align-items-center'>
@@ -154,9 +172,9 @@ export const MentorProfile = (props) => {
                                 <h4>Review</h4>
                                 <textarea className="form-control" id="story" rows="6" width='100%'></textarea>
                             </div>
-                            <button type="submit" className="myButton mt-2" onClick={() =>{
+                            <button type="submit" className="myButton mt-2" onClick={() => {
                                 swal("Awesome!", "Review Accepted Successfully", "success");
-                                setShowReviewPrompt(false);                                
+                                setShowReviewPrompt(false);
                             }}>
                                 {showSpinner ?
                                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -180,8 +198,8 @@ export const MentorProfile = (props) => {
                             <p className="text-muted mb-1">{mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(mentorObj.tagLine) : "Fellow Stammerer"}</p>
                             {mentorObj.location ? <p className="text-muted mb-4">{mentorObj.location} </p> : <></>}
                             <div className='d-flex justify-content-center'>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}><i class="fa fa-meetup" aria-hidden="true"></i> | Session</button>
-                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowReviewPrompt(true)}><i class="fa fa-commenting-o" aria-hidden="true"></i> | Review</button>
+                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowPrompt(true)}><i class="fa fa-meetup" aria-hidden="true"></i> Session</button>
+                                <button type="button" className="myButton mb-1 align-self-center" onClick={() => setShowReviewPrompt(true)}><i class="fa fa-commenting-o" aria-hidden="true"></i> Review</button>
                             </div>
                         </div>
 
@@ -199,12 +217,35 @@ export const MentorProfile = (props) => {
                     <p className="text-muted mb-1 p-1">{mentorObj.story}</p>
                 </div>
 
-                {mentorObj.tip ? (
+                {
+                    mentorObj.tip && (
+                        <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
+                            <h4>How can I help ?</h4>
+                            <p className="text-muted mb-1 p-1">{mentorObj.tip}</p>
+                        </div>)
+                }
+
+                {reviews.length > 0 &&
                     <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
-                        <h4>How can I help ?</h4>
-                        <p className="text-muted mb-1 p-1">{mentorObj.tip}</p>
-                    </div>)
-                    : <></>}
+                        <h4>My Reviews</h4>
+                        {reviews.map((reviewObj, index) => {
+                            return (<div class="card m-1">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <Rating
+                                            emptySymbol="fa fa-star-o"
+                                            fullSymbol="fa fa-star checked"
+                                            readonly = "true"
+                                            initialRating={reviewObj.actualRating}
+                                        />
+                                        <p className='text-muted'>{reviewObj.review}</p>
+                                        <footer class="blockquote-footer"><cite title="Source Title">{reviewObj.menteeId}</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>)
+                        })}
+                    </div>
+                }
             </div>
 
         </div>

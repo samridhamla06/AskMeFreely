@@ -15,5 +15,8 @@ export const BOOK_SESSION_URL = API_BASE_URL + "/v1/auth/bookSession";
 export const COMPLETE_SESSION_URL = API_BASE_URL + "/v1/auth/completeSession";
 export const GET_SESSION_URL = API_BASE_URL + "/v1/auth/session";
 export const GOOGLE_AUTH_URL = API_BASE_URL + "/auth/validate";
+export const GET_REVIEW_URL = API_BASE_URL + "/v1/review";
+export const CREATE_REVIEW_URL = API_BASE_URL + "/v1/auth/review";
+
 export const DEFAULT_IMAGE_LOCATION  = "https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png";
 

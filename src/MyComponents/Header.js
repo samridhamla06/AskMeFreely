@@ -143,7 +143,7 @@ export const Header = (props) => {
                                             (props.isLoggedIn && props.user)
                                                 ?
                                                 <>
-                                                    <button className="myButton scrollto" onClick={toggleNestedDropDown} ><i class="fa fa-user" aria-hidden="true"></i> | {"Hi, " + props.user.name.split(' ')[0]} <i class="fa fa-arrow-down" aria-hidden="true"></i></button>    
+                                                    <button className="myButton scrollto" onClick={toggleNestedDropDown} ><i class="fa fa-user" aria-hidden="true"></i> {"Hi, " + props.user.name.split(' ')[0]}</button>    
                                                     {
                                                     showNestedDropdown 
                                                     ? 
@@ -165,7 +165,7 @@ export const Header = (props) => {
                                                     <GoogleLogin
                                                         render={
                                                             renderProps => (
-                                                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="fa fa-sign-in" aria-hidden="true"></i> | Log In</button>
+                                                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
                                                             )}
                                                         clientId={process.env.REACT_APP_GOOGLE_API_KEY}
                                                         buttonText="Log In"
@@ -179,7 +179,7 @@ export const Header = (props) => {
                             </ul>
                         </div>}
 
-                    {isMobile && <button className='myButton' onClick={toggleDropDown}><i class="fa fa-bars" aria-hidden="true"></i> | Menu</button>}
+                    {isMobile && <button className='myButton' onClick={toggleDropDown}><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>}
                 </div>
             </div>
         </>
