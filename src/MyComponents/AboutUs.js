@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export const AboutUs = () => {
     return (
-            <div id="myHome" className="d-flex myHome flex-wrap align-items-center justify-content-center mx-1">
+            <div id="myHome" className="d-flex flex-column myHome align-items-center justify-content-center m-2">
                 {/* <i class="fa fa-book"></i>
                 <i class="fa fa-star-o fa-2x"></i>
                 <i class="fa fa-star fa-2x"></i>
