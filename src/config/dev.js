@@ -1,3 +1,3 @@
 module.exports = {//asas
-    baseURL: "http://localhost:8080"
+    baseURL: "https://talkfreely-test-backend.herokuapp.com"
 };
