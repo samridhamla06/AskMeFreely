@@ -16,6 +16,7 @@ import { Register } from './MyComponents/Register';
 import { GET_MENTOR_URL } from './constants/url';
 import { Events } from './MyComponents/Events';
 import './assets/css/main.css';
+import './assets/css/home.css';
 import { SessionList } from './MyComponents/SessionList';
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
       <div>
         <Header updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>
         <Routes>
-          <Route exact path="/" element={<AboutUs />} />
+          <Route exact path="/" element={<AboutUs updateUser = {updateUser}/>} />
           <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />

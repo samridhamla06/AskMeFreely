@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
 import GoogleLogin from 'react-google-login';
 import { useMediaQuery } from 'react-responsive';
+import { handleLogin, handleLoginFailure, validateTokenAndLogin } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
 
 export const Header = (props) => {
@@ -31,34 +32,10 @@ export const Header = (props) => {
         })
     }
 
-    function validateTokenAndLogin(tokenId) {
-        fetch(GOOGLE_AUTH_URL, {
-            method: "POST",
-            body: JSON.stringify({
-                token: tokenId
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": tokenId
-            }
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                // store returned user somehow
-                console.log('Update the user', res);
-                //update user state
-                props.updateUser(res, true);
-                //add token to local storage
-                localStorage.setItem(ACCESS_TOKEN, tokenId);
-                localStorage.setItem(LOGGED_IN_NAME, res.name);
-                localStorage.setItem(LOGGED_IN_EMAIL, res.email);
-                //refreshTokenSetup(googleData.tokenObj.expires_in,googleData.reloadAuthResponse);
-            })
-            .catch(
-                err => {
-                    console.log(err);
-                });
+    const handleLoginWithProps = (googleData) => {
+        handleLogin(googleData, props.updateUser);
     }
+
 
     //TODO: Move this part to App.js
     useEffect(() => {
@@ -99,23 +76,6 @@ export const Header = (props) => {
         localStorage.removeItem(ACCESS_TOKEN);
         localStorage.removeItem(LOGGED_IN_EMAIL);
         localStorage.removeItem(LOGGED_IN_NAME);
-    }
-
-    const handleLoginFailure = (result) => {
-        swal("Google Login Failed", "error");
-    }
-
-    const handleLogin = (googleData) => {
-        console.log('Try to login', googleData);
-
-        if (!googleData.tokenId) {
-            console.log('Token looks invalid');
-            return;
-        }
-
-        console.log('local stprage is', localStorage);
-
-        validateTokenAndLogin(googleData.tokenId);
     }
 
     const newLocation = { pathname: "/register", state: { fromDashboard: true } };
@@ -165,11 +125,11 @@ export const Header = (props) => {
                                                     <GoogleLogin
                                                         render={
                                                             renderProps => (
-                                                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+                                                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="bi bi-google"></i> Log In</button>
                                                             )}
                                                         clientId={process.env.REACT_APP_GOOGLE_API_KEY}
                                                         buttonText="Log In"
-                                                        onSuccess={handleLogin}
+                                                        onSuccess={handleLoginWithProps}
                                                         onFailure={handleLoginFailure}
                                                         cookiePolicy={'single_host_origin'} />
                                                 </>
