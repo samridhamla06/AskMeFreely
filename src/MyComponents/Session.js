@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { COMPLETE_SESSION_URL, ACCESS_TOKEN,CREATE_REVIEW_URL } from '../constants/url';
+import { COMPLETE_SESSION_URL, ACCESS_TOKEN, CREATE_REVIEW_URL } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
 import swal from 'sweetalert';
 import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
@@ -28,11 +28,11 @@ export const Session = (props) => {
             return;
         }
         //construct body
-        const requestBody = 
+        const requestBody =
         {
             sessionId: props.session.id,
-            review: event.target.reviewMessage? event.target.reviewMessage.value : "",
-            actualRating:rating
+            review: event.target.reviewMessage ? event.target.reviewMessage.value : "",
+            actualRating: rating
         };
 
         const requestOptions = {
@@ -42,26 +42,26 @@ export const Session = (props) => {
         };
 
         fetch(CREATE_REVIEW_URL, requestOptions)
-        .then(response => response.json())
-        .then(response => {
-            if (response.status == 'Successfully Saved') {
-                swal("Awesome", "Profile is successfully updated", "success")
-            } else {
-                swal("Oops", "ERROR OCCURED, TRY AGAIN", "error")
-            }
-        })
-        .catch(
-            err => {
-                console.log(err);
+            .then(response => response.json())
+            .then(response => {
+                if (response.status == 'Successfully Saved') {
+                    swal("Awesome", "Profile is successfully updated", "success")
+                } else {
+                    swal("Oops", "ERROR OCCURED, TRY AGAIN", "error")
+                }
             })
-        .finally(() => {
+            .catch(
+                err => {
+                    console.log(err);
+                })
+            .finally(() => {
                 /**
                  * render count basically forces SessionList to reload and rerun useEffect again and call sessions again.
                  */
-            setShowReviewButtonSpinner(false);
-            setShowReviewPrompt(false);
-            props.setRenderCount((oldValue) => (oldValue + 1));
-        });
+                setShowReviewButtonSpinner(false);
+                setShowReviewPrompt(false);
+                props.setRenderCount((oldValue) => (oldValue + 1));
+            });
     }
 
     const completeSession = (event) => {
@@ -106,7 +106,7 @@ export const Session = (props) => {
     return (
 
         <>
-            {showReviewPrompt ?
+            {showReviewPrompt &&
                 <Modal
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
@@ -132,7 +132,7 @@ export const Session = (props) => {
                                 onChange={handleRating}
                             />
 
-                            {rating > 0 ? <p>{RATING_MAP.get(rating)}!</p> : <></>}
+                            {/* {rating > 0 ? <p>{RATING_MAP.get(rating)}!</p> : <></>} */}
 
                         </div>
                         <form onSubmit={createReview} className='d-flex flex-column justify-content-center align-items-center'>
@@ -149,56 +149,53 @@ export const Session = (props) => {
                         </form>
                     </Modal.Body>
                 </Modal>
-                : <div></div>
             }
-
-
-            <tr>
-                <th scope="row">{props.sNo}</th>
-                <td>{props.session.createTs.substring(0, 10)}</td>
-                <td>
-                    {(props.asMentor) ? props.session.menteeName : props.session.mentorName}              
-                </td>
-                <td>{props.session.sessionStatus}</td>
-                {            
-                    (props.asMentor) 
-                    ? 
-                    (
-                        <td>
-                            {(props.session.sessionStatus === 'COMPLETED')
-                                ? "N/A" :
-                                <button className='myButton m-lg-1 text-center p-2' onClick={completeSession}>
-                                    {showSpinner ?
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        :
-                                        <>Complete</>}
-                                </button>
-                            }
-                        </td>
-                    )                        
-                    :          
-                    (
-                        <td>
-                            {
-                                (!props.session.isReviewDone)
-                                ? 
-                                (
-                                    
-                                <button type="button" className="myButton mb-1 align-self-center" 
-                                onClick={() => {
-                                    setShowReviewPrompt(true);
-                                }}><i class="fa fa-commenting-o" 
-                                aria-hidden="true"></i> Review</button>
-                                )
-                                : 
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+            {/* style={{ width: '20rem' }} */}
+                <div class="card" style={{ width: '20rem', height : '17rem' }}>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div className='text-muted'>Booking Date </div> {props.session.createTs.substring(0, 10)}</li>
+                        <li class="list-group-item"><div className='text-muted'>Name </div>  {(props.asMentor) ? props.session.menteeName : props.session.mentorName} </li>
+                        <li class="list-group-item"><div className='text-muted'>Current Status </div>  {props.session.sessionStatus}</li>
+                    </ul>
+                    <div class="card-body text-center">
+                        {(props.asMentor) ?
+                            (
                                 <>
-                                Review Submitted!
+                                    {(props.session.sessionStatus === 'COMPLETED' || props.session.sessionStatus === 'PENDING_MENTEE_FEEDBACK')
+                                        ? "Session Already Completed by you!" :
+                                        <button className='myButton m-lg-1 text-center p-2' onClick={completeSession}>
+                                            {showSpinner ?
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                :
+                                                <><i class="bi bi-award-fill"></i> Complete</>}
+                                        </button>
+                                    }
                                 </>
-                            }
-                        </td>
-                    )
-                }
-            </tr>
+                            )
+                            : (
+                                <>
+                                    {
+                                        (!props.session.isReviewDone)
+                                            ?
+                                            (
+
+                                                <button className='myButton m-lg-1 text-center p-2'
+                                                    onClick={() => {
+                                                        setShowReviewPrompt(true);
+                                                    }}><i class="fa fa-commenting-o"
+                                                        aria-hidden="true"></i> Submit Review</button>
+                                            )
+                                            :
+                                            <>
+                                                Review Submitted!!!
+                                            </>
+                                    }
+                                </>
+                            )}
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

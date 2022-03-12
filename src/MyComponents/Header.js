@@ -88,7 +88,7 @@ export const Header = (props) => {
                     <div>
                         <Link to="/">
                             {/* <img src={logo} className="logo-image img-fluid" alt="Stammerers Connect" /> */}
-                            <div className='navbar-caption'>Stammerers Connect</div>
+                            <div className='navbar-caption'>STAMMERERS CONNECT</div>
                         </Link>
                     </div>
                     {(!isMobile || showDropdown)

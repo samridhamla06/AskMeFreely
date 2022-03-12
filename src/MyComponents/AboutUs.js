@@ -22,7 +22,7 @@ export const AboutUs = (props) => {
                         <div className="col-xl-6">
                             <div className="text-center text-white">
                                 {/* <!-- Page heading--> */}
-                                <h1 className="mb-5" style={{color : 'lightblue'}}>Get Help From Fellow Stammerers!</h1>
+                                <h1 className="mb-5" style={{color : 'white'}}>Get Help From Fellow Stammerers!</h1>
                                 <div className="row">
                                         <div className="col"><button className="myButton" onClick={() => { navigate("/mentors", { replace: true }) }}><i class="bi bi-binoculars"></i> Find Mentors</button></div>
                                 </div>

@@ -64,56 +64,31 @@ export const SessionList = () => {
                 :
                 (
                     <>
-                        <div className='container'>
+                        <div className='container mb-3'>
                             <h4 className='mb-3'>Sessions as Mentor</h4>
-                            <table className="table table-striped table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Booking Date</th>
-                                        <th scope="col">Mentee Name</th>
-                                        <th scope="col">Current Status</th>
-                                        <th scope="col">Action (if any)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        sessionAsMentorList.length > 0 &&
-                                        (
-                                            sessionAsMentorList.map((session, index) => {
-                                                { sNo_mentor = sNo_mentor + 1 }
-                                                return <Session key={index} sNo={sNo_mentor} session={session} setRenderCount={setRenderCount} asMentor = {true} />;
-                                            })
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                {
+                                    sessionAsMentorList.length > 0 &&
+                                    (
+                                        sessionAsMentorList.map((session, index) => {
+                                            return <Session key={index} session={session} setRenderCount={setRenderCount} asMentor={true} />;
+                                        })
+                                    )
+                                }
+                            </div>
                         </div>
-
                         <div className='container'>
                             <h4 className='mb-3'>Sessions as Mentee</h4>
-                            <table className="table table-striped table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Booking Date</th>
-                                        <th scope="col">Mentor Name</th>
-                                        <th scope="col">Current Status</th>
-                                        <th scope="col">Action (if any)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        sessionAsMenteeList.length > 0 &&
-                                        (
-                                            sessionAsMenteeList.map((session, index) => {
-                                                { sNo_mentee = sNo_mentee + 1 }
-                                                return <Session key={index} sNo={sNo_mentee} session={session} setRenderCount={setRenderCount} asMentor = {false} />;
-                                            })
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                {
+                                    sessionAsMenteeList.length > 0 &&
+                                    (
+                                        sessionAsMenteeList.map((session, index) => {
+                                            return <Session key={index} session={session} setRenderCount={setRenderCount} asMentor={false} />;
+                                        })
+                                    )
+                                }
+                            </div>
                         </div>
                     </>)
             }

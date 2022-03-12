@@ -17,6 +17,9 @@ export const Footer = () => {
                         <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item me-4">
+                                    <a href="#!"><i class="bi bi-envelope-fill fs-3"></i></a>
+                                </li>
+                                <li class="list-inline-item me-4">
                                     <a href="#!"><i class="bi-facebook fs-3"></i></a>
                                 </li>
                                 <li class="list-inline-item me-4">

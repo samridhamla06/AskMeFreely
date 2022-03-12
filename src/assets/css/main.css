@@ -137,6 +137,8 @@
     font-size: 2.1rem;
     padding: 0.5rem;
     color: #012970;
+    text-shadow: 2px 2px lightblue;
+    opacity: 4;
   }
 
   /* .navbar-links{
