@@ -75,7 +75,7 @@ function App() {
       <div>
         <Header updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>
         <Routes>
-          <Route exact path="/" element={<AboutUs updateUser = {updateUser}/>} />
+          <Route exact path="/" element={<AboutUs updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>} />
           <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />

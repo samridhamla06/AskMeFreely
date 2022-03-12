@@ -21,12 +21,6 @@ export const Register = ({ rerenderValue }) => {
 
     let access_token = localStorage.getItem(ACCESS_TOKEN);
 
-    if (!access_token) {
-        swal("Oops", "No token present, Please log in and try again", "error")
-        //navigate to homepage
-        navigate("/", { replace: true });
-    }
-
     useEffect(() => {
         console.log('useEffect called');
         let access_token = localStorage.getItem(ACCESS_TOKEN);

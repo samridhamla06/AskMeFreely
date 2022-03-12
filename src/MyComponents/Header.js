@@ -6,6 +6,7 @@ import GoogleLogin from 'react-google-login';
 import { useMediaQuery } from 'react-responsive';
 import { handleLogin, handleLoginFailure, validateTokenAndLogin } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
+import logo from '../assets/img/StammerersConnectLogo.jpeg';
 
 export const Header = (props) => {
     const ref = useRef()
@@ -43,7 +44,7 @@ export const Header = (props) => {
 
         //if token is present, then maybe we should try to validate the token and log in
         if (!props.isLoggedIn && access_token) {
-            validateTokenAndLogin(access_token);
+            validateTokenAndLogin(access_token, props.updateUser);
         }
     }, []);
 
@@ -86,6 +87,7 @@ export const Header = (props) => {
                 <div className='navbar-container'>
                     <div>
                         <Link to="/">
+                            {/* <img src={logo} className="logo-image img-fluid rounded-start" alt="Stammerers Connect" /> */}
                             <div className='navbar-caption'>Stammerers Connect</div>
                         </Link>
                     </div>
