@@ -85,8 +85,8 @@ export const AboutUs = (props) => {
                     </Link>
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <img src={photo2} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
-                            <div class="col-lg-6 my-auto showcase-text">
+                            <img src={photo2} className='col-lg-6 order-lg-1 text-white image-1 showcase-img' alt="..." /> 
+                            <div class="order-lg-2 col-lg-6 my-auto showcase-text">
                                 <h2>Schedule a 1:1 Mentoring Session</h2>
                                 <p class="lead mb-0">Log in with your Gmail account and book a 1:1 session with these mentors. You can coordinate and setup video call with the Mentor on a mutually decided time.</p>
                             </div>
@@ -109,8 +109,8 @@ export const AboutUs = (props) => {
                     </a>
                     <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <img src={photo4} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
-                            <div class="col-lg-6 my-auto showcase-text">
+                            <img src={photo4} className='col-lg-6 order-lg-1 text-white image-1 showcase-img' alt="..." /> 
+                            <div class="col-lg-6 my-auto showcase-text order-lg-2">
                                 <h2>Join Virtual Events</h2>
                                 <p class="lead mb-0">You can join various Virtual Events to interact with fellow stammerers in a group.</p>
                             </div>
