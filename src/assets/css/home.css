@@ -109,15 +109,19 @@ header.masthead {
   }
 
   .showcase .image-1 {
-    background-image: url('../img/bg-showcase-1.jpg')
+    background-image: url('../img/Mentor.jpeg')
   }
 
   .showcase  .image-2 {
-    background-image: url('../img/bg-showcase-2.jpg')
+    background-image: url('../img/BookNow.png')
   }
 
   .showcase .image-3 {
-    background-image: url('../img/bg-showcase-3.jpg')
+    background-image: url('../img/becomeMentor.jpeg')
+  }
+
+  .showcase .image-4 {
+    background-image: url('../img/VirtualEvents.jpeg')
   }
   
 

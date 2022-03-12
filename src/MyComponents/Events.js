@@ -1,59 +1,75 @@
-import React from 'react';
-import photo1 from '../assets/img/blog-1.jpg'
+import React, { useEffect, useState } from 'react';
+import photo1 from '../assets/img/VirtualEvents.jpeg'
+import { GET_EVENT_URL } from '../constants/url';
 
 
 export const Events = () => {
+
+  const [eventListObj, setEventList] = useState([]);
+  const [pageLoading, setPageLoading] = useState(true);
+
+  useEffect(() => {
+
+    //API call to fetch user info
+    fetch(GET_EVENT_URL,
+      { method: 'GET', headers: { 'Content-Type': 'application/json' } })
+      .then(response => response.json())
+      .then(response => {
+
+        console.log('Events received from Backend', response);
+        setEventList(response);
+      })
+      .catch(
+        err => {
+          console.log(err);
+        })
+      .finally(() => {
+        setPageLoading(false);
+      });
+  }, [])
+
   return (
-    <div className='container myEvent-container'>
-      <div className='container'><h4>Upcoming Group Sessions</h4></div>    
-      <div className="card mb-3">
-        <div className="row g-0 myEvent mb-2">
-          <div className="col-4 myEvent-img">
-            <img src={photo1} className="img-fluid rounded-start" alt="Event Image Not available" />
-          </div>
-          <div className="col-md-8 col-sm-4 myEvent-info">
-            <div className="card-body">
-              <h4 className="card-title all-h4">Description</h4>
-              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p className="card-text">Fri, August 28, 18:00 IST</p>
-              <a href="https://meet.google.com/eqj-zscy-cdf" className="myButton" target = "_blank">Join</a>
-              {/*<p className="card-text"><a href="https://meet.google.com/eqj-zscy-cdf" className="btn btn-primary" target = "_blank">Sign Up</a></p>*/}              
+    <div>
+      {pageLoading ?
+        (
+          <div className="d-flex flex-column align-items-center justify-content-center">
+            <div className='d-flex flex-column justify-content-center'>
+              <div class="spinner-border text-primary mt-4" role="status" aria-hidden="true"></div>
             </div>
-          </div>
-        </div>
-
-        <div className="row g-0 myEvent">
-          <div className="col-4 myEvent-img">
-            <img src={photo1} className="img-fluid rounded-start" alt="Event Image Not available" />
-          </div>
-          <div className="col-md-8 col-sm-4 myEvent-info">
-            <div className="card-body">
-            <h4 className="card-title">Description</h4>
-              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p className="card-text">Fri, August 28, 18:00 IST</p>
-              <a href="https://meet.google.com/eqj-zscy-cdf" className="myButton" target = "_blank">Join</a>
-              {/*<p className="card-text"><a href="https://meet.google.com/eqj-zscy-cdf" className="btn btn-primary" target = "_blank">Sign Up</a></p>*/}              
-            </div>
-          </div>
-        </div>
-
-        <div className="row g-0 myEvent">
-          <div className="col-4 myEvent-img">
-            <img src={photo1} className="img-fluid rounded-start" alt="Event Image Not available" />
-          </div>
-          <div className="col-md-8 col-sm-4 myEvent-info">
-            <div className="card-body">
-            <h4 className="card-title">Description</h4>
-              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p className="card-text">Fri, August 28, 18:00 IST</p>
-              <a href="https://meet.google.com/eqj-zscy-cdf" className="myButton" target = "_blank">Join</a>
-              {/*<p className="card-text"><a href="https://meet.google.com/eqj-zscy-cdf" className="btn btn-primary" target = "_blank">Sign Up</a></p>*/}              
-            </div>
-          </div>
-        </div>
-      </div>
+          </div>)
+        :
+        (
+          <div className='container'>
+            {
+              eventListObj.length > 0 &&
+              (
+                eventListObj.map((event, index) => {
+                  return (<div class="card m-2" style={{ width: '30rem' }}>
+                    <img src={photo1} class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                      <h5 class="card-title">{event.title}</h5>
+                      <p class="card-text">{event.description}</p>
+                      <p class="card-text text-muted">{event.date}</p>
+                      <a href={event.joiningLink} class="myButton" target="_blank" style={{ textDecoration: 'none' }}>Join</a>
+                    </div>
+                  </div>);
+                })
+              )
+            }
+          </div>)
+      }
     </div>
   )
 }
+
+
+
+{/* <div class="card" style={{ width: '18rem' }}>
+<img src={photo1} class="card-img-top" alt="..." />
+<div class="card-body">
+  <h5 class="card-title">Imprompto Speech Session</h5>
+  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <a href="#" class="btn btn-primary">Go somewhere</a>
+</div>
+</div>
+</div> */}

@@ -70,9 +70,10 @@
 
     .logo-image{
       border:1px solid;
-      border-radius:10%;
-      width:100px;
-      height:105px;
+      /* border-radius:10%; */
+      width:800px;
+      height:100px; 
+      text-decoration: none;
       }
 
   .my-profile-image{

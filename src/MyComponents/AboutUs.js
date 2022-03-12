@@ -6,7 +6,6 @@ import GoogleLogin from 'react-google-login';
 import { handleLogin, handleLoginFailure } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
 
-
 export const AboutUs = (props) => {
     let navigate = useNavigate();
 
@@ -23,21 +22,10 @@ export const AboutUs = (props) => {
                         <div className="col-xl-6">
                             <div className="text-center text-white">
                                 {/* <!-- Page heading--> */}
-                                <h1 className="mb-5">Get Help From Fellow Stammerers!</h1>
-                                <form className="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                    {/* <!-- Email address input--> */}
-                                    <div className="row">
+                                <h1 className="mb-5" style={{color : 'lightblue'}}>Get Help From Fellow Stammerers!</h1>
+                                <div className="row">
                                         <div className="col"><button className="myButton" onClick={() => { navigate("/mentors", { replace: true }) }}><i class="bi bi-binoculars"></i> Find Mentors</button></div>
-                                    </div>
-                                    <div className="d-none" id="submitSuccessMessage">
-                                        <div className="text-center mb-3">
-                                            <div className="fw-bolder">Form submission successful!</div>
-                                            <p>To activate this form, sign up at</p>
-                                            <a className="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
-                                    <div className="d-none" id="submitErrorMessage"><div className="text-center text-danger mb-3">Error sending message!</div></div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +103,7 @@ export const AboutUs = (props) => {
                     </a>
                     <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <div class="col-lg-6 text-white showcase-img image-2"></div>
+                            <div class="col-lg-6 text-white showcase-img image-4"></div>
                             <div class="col-lg-6 my-auto showcase-text">
                                 <h2>Join Virtual Events</h2>
                                 <p class="lead mb-0">You can join various Virtual Events to interact with fellow stammerers in a group.</p>
