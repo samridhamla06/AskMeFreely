@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 
 export const ContactUs = () => {
     useEffect(() => {
-        //document.getElementById('contactUs-nav').classNameName = "nav-link text-secondary";
-    }
-    )
+        window.scrollTo(0, 0)
+      }, [])
 
     return (
         <div className='container'>

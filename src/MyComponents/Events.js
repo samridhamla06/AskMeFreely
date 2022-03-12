@@ -9,6 +9,10 @@ export const Events = () => {
   const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
 
     //API call to fetch user info
     fetch(GET_EVENT_URL,
@@ -44,7 +48,7 @@ export const Events = () => {
               eventListObj.length > 0 &&
               (
                 eventListObj.map((event, index) => {
-                  return (<div class="card m-2" style={{ width: '30rem' }}>
+                  return (<div class="card m-2" style={{ maxWidth: '30rem' }}>
                     <img src={photo1} class="card-img-top" alt="..." />
                     <div class="card-body text-center">
                       <h5 class="card-title">{event.title}</h5>

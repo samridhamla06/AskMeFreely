@@ -7,6 +7,12 @@ import swal from 'sweetalert';
 import Rating from 'react-rating'
 
 export const MentorProfile = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+      
     const [showPrompt, setShowPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
     const [reviews, setReviews] = useState([]);

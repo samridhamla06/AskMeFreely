@@ -5,6 +5,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { handleLogin, handleLoginFailure } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
+import photo1 from '../assets/img/Mentor.jpeg';
+import photo2 from '../assets/img/BookNow.png';
+import photo3 from '../assets/img/becomeMentor.jpeg';
+import photo4 from '../assets/img/VirtualEvents.jpeg';
+
+
 
 export const AboutUs = (props) => {
     let navigate = useNavigate();
@@ -70,7 +76,7 @@ export const AboutUs = (props) => {
                 <div class="container-fluid p-0">
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <div class="col-lg-6 order-lg-2 text-white image-1 showcase-img "></div>
+                            <img src={photo1} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." />
                             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                                 <h2>Find Mentors</h2>
                                 <p class="lead mb-0">Choose from our highly rated Mentors, most of them have been stammerers themselves. Checkout their success journey on how they overcame this problem.</p>
@@ -79,7 +85,7 @@ export const AboutUs = (props) => {
                     </Link>
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <div class="col-lg-6 text-white showcase-img image-2"></div>
+                            <img src={photo2} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
                             <div class="col-lg-6 my-auto showcase-text">
                                 <h2>Schedule a 1:1 Mentoring Session</h2>
                                 <p class="lead mb-0">Log in with your Gmail account and book a 1:1 session with these mentors. You can coordinate and setup video call with the Mentor on a mutually decided time.</p>
@@ -94,7 +100,7 @@ export const AboutUs = (props) => {
                                 }
                     }} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }} href = "#">
                         <div class="row g-0">
-                            <div class="col-lg-6 order-lg-2 text-white showcase-img image-3"></div>
+                            <img src={photo3} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
                             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                                 <h2>Enroll as a Mentor</h2>
                                 <p class="lead mb-0">If you feel you can inspire/mentor other stammerers, please login through Gmail and Enroll as a Mentor</p>
@@ -103,7 +109,7 @@ export const AboutUs = (props) => {
                     </a>
                     <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div class="row g-0">
-                            <div class="col-lg-6 text-white showcase-img image-4"></div>
+                            <img src={photo4} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
                             <div class="col-lg-6 my-auto showcase-text">
                                 <h2>Join Virtual Events</h2>
                                 <p class="lead mb-0">You can join various Virtual Events to interact with fellow stammerers in a group.</p>

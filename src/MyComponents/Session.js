@@ -6,6 +6,12 @@ import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
 import Rating from 'react-rating'
 
 export const Session = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+      
     console.log('session obj ', props);
     let access_token = localStorage.getItem(ACCESS_TOKEN);
     const [showSpinner, setShowSpinner] = useState(false);
@@ -151,8 +157,8 @@ export const Session = (props) => {
                 </Modal>
             }
             <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
-            {/* style={{ width: '20rem' }} */}
-                <div class="card" style={{ width: '20rem', height : '17rem' }}>
+            {/*style={{ width: '20rem', height : '17rem' }}*/}
+                <div class="card" style={{height : '17rem' }}>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><div className='text-muted'>Booking Date </div> {props.session.createTs.substring(0, 10)}</li>
                         <li class="list-group-item"><div className='text-muted'>Name </div>  {(props.asMentor) ? props.session.menteeName : props.session.mentorName} </li>

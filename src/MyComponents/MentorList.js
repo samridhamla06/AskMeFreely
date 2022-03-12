@@ -4,6 +4,11 @@ import { Mentor } from './Mentor'
 export const MentorList = ({ mentorListObj }) => {
     console.log("Mentor List logs : " + { mentorListObj });
     let foo = false;
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+      
     return (
         <div className="container">
             {
