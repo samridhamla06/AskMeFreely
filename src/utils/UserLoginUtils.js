@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
+import swal from 'sweetalert';
 
 export const validateTokenAndLogin = (tokenId, updateUser) => {
     fetch(GOOGLE_AUTH_URL, {
@@ -15,17 +16,20 @@ export const validateTokenAndLogin = (tokenId, updateUser) => {
         .then((res) => {
             // store returned user somehow
             console.log('Update the user', res);
+            if(res.errorCode && res.errorCode === '400-001'){
+                handleLogout(updateUser);
+                return;
+            }
             //update user state
             updateUser(res, true);
             //add token to local storage
             localStorage.setItem(ACCESS_TOKEN, tokenId);
             localStorage.setItem(LOGGED_IN_NAME, res.name);
             localStorage.setItem(LOGGED_IN_EMAIL, res.email);
-            //refreshTokenSetup(googleData.tokenObj.expires_in,googleData.reloadAuthResponse);
         })
         .catch(
             err => {
-                console.log(err);
+                console.log('the error with the token', err);
             });
 }
 
@@ -53,5 +57,14 @@ export const handleLogout = (updateUser) => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(LOGGED_IN_EMAIL);
     localStorage.removeItem(LOGGED_IN_NAME);
+}
+
+export const checkTokenFromResponse = (response, updateUser) => {
+    if(response.errorCode && response.errorCode === '400-001'){
+        swal("Oops!", "Your session is expired, Please Log in again", "error");
+        handleLogout(updateUser);  
+        return true;
+    }
+    return false;
 }
 

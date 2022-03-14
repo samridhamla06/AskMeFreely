@@ -3,8 +3,9 @@ import { GET_SESSION_URL, ACCESS_TOKEN, LOGGED_IN_EMAIL } from '../constants/url
 import { Session } from './Session'
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { checkTokenFromResponse } from '../utils/UserLoginUtils';
 
-export const SessionList = () => {
+export const SessionList = (props) => {
 
     const [sessionAsMentorList, setSessionAsMentorList] = useState([]);
     const [sessionAsMenteeList, setSessionAsMenteeList] = useState([]);
@@ -30,6 +31,11 @@ export const SessionList = () => {
             { method: 'GET', headers: { 'Content-Type': 'application/json', 'authorization': access_token } })
             .then(response => response.json())
             .then(response => {
+                if(checkTokenFromResponse(response, props.updateUser)){
+                    //navigate to homepage
+                    navigate("/", { replace: true });
+                    return;                  
+                }
                 console.log('Sessions received from Backend', response);
                 let sessionForMentor = [];
                 let sessionForMentee = [];

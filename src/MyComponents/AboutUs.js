@@ -13,12 +13,18 @@ import photo4 from '../assets/img/VirtualEvents.jpeg';
 
 
 export const AboutUs = (props) => {
+
+
     let navigate = useNavigate();
 
 
     const handleLoginWithProps = (googleData) => {
         handleLogin(googleData, props.updateUser);
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     return (
         <div className='container-fluid'>

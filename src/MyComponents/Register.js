@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, ADD_MENTOR_URL, GET_USER_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL, UPLOAD_IMAGE_URL, DEFAULT_IMAGE_LOCATION } from '../constants/url';
-import { STAMMERING_STATUS_MAP } from '../constants/map';
 import swal from 'sweetalert';
-import Rating from 'react-simple-star-rating'
+import { checkTokenFromResponse } from '../utils/UserLoginUtils';
 
-export const Register = ({ rerenderValue }) => {
+export const Register = ({ rerenderValue, updateUser }) => {
 
     let navigate = useNavigate();
     const [currImage, setCurrImage] = useState(null);
@@ -26,7 +25,7 @@ export const Register = ({ rerenderValue }) => {
         let access_token = localStorage.getItem(ACCESS_TOKEN);
 
         if (!access_token) {
-            swal("Oops", "No token present, Please log in and try again", "error")
+            swal("Oops", "Session Expired, Please log in and try again", "error")
             //navigate to homepage
             navigate("/", { replace: true });
         }
@@ -37,6 +36,11 @@ export const Register = ({ rerenderValue }) => {
             .then(response => response.json())
             .then(response => {
                 console.log('User received from Backend', response);
+                if(checkTokenFromResponse(response, updateUser)){
+                    //navigate to homepage
+                    navigate("/", { replace: true });
+                    return;                  
+                }
                 setFormValues(() => {
                     let newValue = { name: response.name, email: response.email, imageURL: response.imageURL ? response.imageURL : DEFAULT_IMAGE_LOCATION, age: response.age, story: response.story, tip: response.tip, isMentor: response.isMentor, tagLine: response.tagLine, location: response.location, occupation: response.occupation }
                     return newValue;
@@ -87,10 +91,16 @@ export const Register = ({ rerenderValue }) => {
         fetch(ADD_MENTOR_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
+                if(checkTokenFromResponse(response, updateUser)){
+                    //navigate to homepage
+                    navigate("/", { replace: true });
+                    return;                  
+                }
+
                 if (response.status == 'Successfully Saved') {
                     swal("Awesome", "Profile is successfully updated", "success")
                 } else {
-                    swal("Oops", "ERROR OCCURED, TRY AGAIN", "error")
+                    swal("Oops", (response.errorMessage ? response.errorMessage : "ERROR OCCURED, TRY AGAIN"), "error")
                 }
                 //change state of App.js value, to re-render the component.
                 rerenderValue();

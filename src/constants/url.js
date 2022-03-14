@@ -19,6 +19,6 @@ export const GET_REVIEW_URL = API_BASE_URL + "/v1/review";
 export const CREATE_REVIEW_URL = API_BASE_URL + "/v1/auth/review";
 export const ADD_EVENT_URL = API_BASE_URL + "/v1/event";
 export const GET_EVENT_URL = API_BASE_URL + "/v1/event";
+export const CONTACT_REQUEST_URL = API_BASE_URL + "/v1/contact";
 
 export const DEFAULT_IMAGE_LOCATION  = "https://stammerly-bucket.s3.us-east-2.amazonaws.com/images/download.png";
-

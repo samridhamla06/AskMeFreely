@@ -5,21 +5,21 @@ import Modal from 'react-bootstrap/Modal';
 import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
 import swal from 'sweetalert';
 import Rating from 'react-rating'
+import { checkTokenFromResponse } from '../utils/UserLoginUtils';
 
 export const MentorProfile = (props) => {
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
       }, [])
 
-      
+
     const [showPrompt, setShowPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
     const [reviews, setReviews] = useState([]);
 
     console.log(props.mentorObj);
-    //const params = useParams();
-    //const query = useQuery();
+
     const location = useLocation();
     const mentorObj = location.state.mentorObj;
     if (!mentorObj) {
@@ -57,7 +57,12 @@ export const MentorProfile = (props) => {
                 if (response.status == 'Successfully Saved') {
                     swal("Awesome!", "Session Booked Succesfully", "success");
                 } else {
-                    swal("Oops!", "ERROR OCCURED, TRY AGAIN", "error");
+                    let message = response.errorCode ? response.errorMessage : 'ERROR OCCURED, TRY AGAIN';
+                    if(checkTokenFromResponse(response, props.updateUser)){
+                        return;                  
+                    }else{
+                        swal("Oops!", message, "error");
+                    }                
                 }
             })
             .catch(

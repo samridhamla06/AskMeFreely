@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '../constants/url';
 import GoogleLogin from 'react-google-login';
 import { useMediaQuery } from 'react-responsive';
-import { handleLogin, handleLoginFailure, validateTokenAndLogin } from '../utils/UserLoginUtils';
+import { handleLogin, handleLoginFailure, validateTokenAndLogin,handleLogout } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
 import logo from '../assets/img/logo1.png';
 
@@ -13,8 +13,7 @@ export const Header = (props) => {
     const isMobile = useMediaQuery({ query: `(max-width: 900px)` });
     const [showDropdown, setShowDropDown] = useState(false);
     const [showNestedDropdown, setShowNestedDropDown] = useState(false);
-    const location = useLocation();
-    let navigate = useNavigate();
+ 
 
     const closeDropDown = () => {
         setShowNestedDropDown(false);
@@ -70,15 +69,6 @@ export const Header = (props) => {
           }
     }, [showDropdown]);
 
-    const handleLogout = () => {
-        console.log('logout is called');
-        props.updateUser(null, false);
-        //delete the access token as well
-        localStorage.removeItem(ACCESS_TOKEN);
-        localStorage.removeItem(LOGGED_IN_EMAIL);
-        localStorage.removeItem(LOGGED_IN_NAME);
-    }
-
     const newLocation = { pathname: "/register", state: { fromDashboard: true } };
     //console.log("**** The google API key is" + process.env.REACT_APP_GOOGLE_API_KEY);
     return (
@@ -105,7 +95,7 @@ export const Header = (props) => {
                                             (props.isLoggedIn && props.user)
                                                 ?
                                                 <>
-                                                    <button className="myButton scrollto" onClick={toggleNestedDropDown} ><i class="fa fa-user" aria-hidden="true"></i> {"Hi, " + props.user.name.split(' ')[0]}</button>    
+                                                    <button className="myButton scrollto" onClick={toggleNestedDropDown} ><i class="fa fa-user" aria-hidden="true"></i> {props.user && props.user.name ? "Hi, " + props.user.name.split(' ')[0] : 'Hi, User'}</button>    
                                                     {
                                                     showNestedDropdown 
                                                     ? 
@@ -113,7 +103,7 @@ export const Header = (props) => {
                                                             <li><Link to={newLocation} className='navbar-caption-text' onClick={closeDropDown}>My Profile</Link></li>
                                                             <li><Link to={{ pathname: "/sessions" }} className='navbar-caption-text' onClick={closeDropDown}>My Sessions</Link></li>
                                                             <li><Link to="/" onClick={() => {
-                                                                handleLogout();
+                                                                handleLogout(props.updateUser);
                                                                 closeDropDown();
                                                             }
                                                                 } className='navbar-caption-text'>Log Out</Link></li>

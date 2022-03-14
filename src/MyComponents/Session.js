@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { COMPLETE_SESSION_URL, ACCESS_TOKEN, CREATE_REVIEW_URL } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
 import swal from 'sweetalert';
-import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
 import Rating from 'react-rating'
+import { checkTokenFromResponse } from '../utils/UserLoginUtils';
+import { useNavigate, Link } from 'react-router-dom';
 
 export const Session = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
+    
+      let navigate = useNavigate();
 
-      
+
     console.log('session obj ', props);
     let access_token = localStorage.getItem(ACCESS_TOKEN);
     const [showSpinner, setShowSpinner] = useState(false);
@@ -50,8 +53,13 @@ export const Session = (props) => {
         fetch(CREATE_REVIEW_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
+                if(checkTokenFromResponse(response, props.updateUser)){
+                    //navigate to homepage
+                    navigate("/", { replace: true });
+                    return;                  
+                }
                 if (response.status == 'Successfully Saved') {
-                    swal("Awesome", "Profile is successfully updated", "success")
+                    swal("Thank you", "Feedback is successfully shared", "success")
                 } else {
                     swal("Oops", "ERROR OCCURED, TRY AGAIN", "error")
                 }
@@ -90,6 +98,11 @@ export const Session = (props) => {
         fetch(COMPLETE_SESSION_URL, requestOptions)
             .then(response => response.json())
             .then(response => {
+                if(checkTokenFromResponse(response, props.updateUser)){
+                    //navigate to homepage
+                    navigate("/", { replace: true });
+                    return;                  
+                }
                 if (response.status == 'Successfully Saved') {
                     swal("Awesome", "Session is Completed", "success")
                 } else {

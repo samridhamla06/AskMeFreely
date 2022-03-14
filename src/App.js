@@ -33,13 +33,13 @@ function App() {
       .then(
         response => response.json())
       .then(response => {
-        console.log('Response received');
+        console.log('Response received {}', response);
         // save response to variable
         setMentorList(response);
       })
       .catch(
         err => {
-          console.log(err);
+          console.log('the Error received is', err);
         });
   }
 
@@ -59,41 +59,24 @@ function App() {
   }, [isProfileChanged]) // if isProfileChanged is changed
 
 
-
-
-
-  //method definition
-  // const deleteMentor = (mentorToDelete) => {
-  //   setMentorList((currentMentorListObj) => {
-  //     currentMentorListObj = currentMentorListObj.filter(mentor => {
-  //       console.log('Compared attempted ' + mentor.name);
-  //       return mentor.name != mentorToDelete.name
-  //     });
-  //     return currentMentorListObj;
-  //   })
-  // }
   return (
     <>
       <div>
         <Header updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>
         <Routes>
           <Route exact path="/" element={<AboutUs updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>} />
-          <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} />} />
+          <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} updateUser = {updateUser} />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />
-          <Route exact path="/register" element={<Register rerenderValue = {rerenderValue}/>} />
+          <Route exact path="/register" element={<Register rerenderValue = {rerenderValue} updateUser = {updateUser} />} />
           <Route path="/events" element={<Events/>} />
-          <Route path="/sessions" element={<SessionList/>} />
-          <Route exact path="/mentor/:name" element={<MentorProfile />} />
+          <Route path="/sessions" element={<SessionList updateUser = {updateUser} />} />
+          <Route exact path="/mentor/:name" element={<MentorProfile updateUser = {updateUser} />} />
         </Routes>
         <Footer />
       </div>
     </>
   );
 }
-
-
-
-
 
 export default App;
