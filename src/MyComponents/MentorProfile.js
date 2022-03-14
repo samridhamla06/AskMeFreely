@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation,useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, BOOK_SESSION_URL, LOGGED_IN_EMAIL, LOGGED_IN_NAME, GET_REVIEW_URL } from '../constants/url';
 import Modal from 'react-bootstrap/Modal';
 import { STAMMERING_STATUS_MAP, RATING_MAP } from '../constants/map';
@@ -13,6 +13,7 @@ export const MentorProfile = (props) => {
         window.scrollTo(0, 0);
       }, [])
 
+      let navigate = useNavigate();
 
     const [showPrompt, setShowPrompt] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
@@ -21,6 +22,10 @@ export const MentorProfile = (props) => {
     console.log(props.mentorObj);
 
     const location = useLocation();
+    if(!location.state){
+        //redirect to home page
+        navigate("/", { replace: true });
+    }
     const mentorObj = location.state.mentorObj;
     if (!mentorObj) {
         mentorObj = props.dummmyMentorListObj;
