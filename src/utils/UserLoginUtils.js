@@ -16,7 +16,7 @@ export const validateTokenAndLogin = (tokenId, updateUser) => {
         .then((res) => {
             // store returned user somehow
             console.log('Update the user', res);
-            if(res.errorCode && res.errorCode === '400-001'){
+            if(res.errorCode){
                 handleLogout(updateUser);
                 return;
             }
