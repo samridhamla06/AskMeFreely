@@ -14,8 +14,8 @@ export const Register = ({ rerenderValue, updateUser }) => {
     const loggedInName = localStorage.getItem(LOGGED_IN_NAME);
     const [showSpinner, setShowSpinner] = useState(false);
     const [showSaveSpinner, setShowSaveSpinner] = useState(false);
-    const [formValues, setFormValues] = useState({ email: loggedInEmail, name: loggedInName, imageURL: DEFAULT_IMAGE_LOCATION });//Kept it non empty for new user, whose profile not added ever.
-    console.log('Starting state in Register', formValues);
+    const [formValues, setFormValues] = useState({ email: loggedInEmail, name: loggedInName, imageURL: DEFAULT_IMAGE_LOCATION, isMentor: false });//Kept it non empty for new user, whose profile not added ever.
+    //console.log('Starting state in Register', formValues);
 
 
     let access_token = localStorage.getItem(ACCESS_TOKEN);
@@ -75,7 +75,7 @@ export const Register = ({ rerenderValue, updateUser }) => {
             location: event.target.location.value,
             tagLine: event.target.tagLine.value,
             tip: event.target.tip ? event.target.tip.value : "",
-            isMentor: event.target.mentorCheckBox.value ? true : false,
+            isMentor: formValues.isMentor,
             imageURL: formValues.imageURL
         };
 
