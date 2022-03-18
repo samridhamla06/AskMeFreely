@@ -185,7 +185,13 @@ export const Register = ({ rerenderValue, updateUser }) => {
                     <div className="d-flex flex-wrap">
                         <div className="register-caption mx-1 flex-grow-1">
                             <h4>Name</h4>
-                            <input type="text" className="form-control" id="name" value={formValues.name} readonly="readonly" />
+                            <input type="text" className="form-control" id="name" value={formValues.name} onChange={(event) => {
+                                //console.log('changing name value', event.target.value);
+                                setFormValues((oldValue) => {
+                                    let newValue = { ...oldValue, name: event.target.value }
+                                    return newValue;
+                                });
+                             }}/>
                         </div>
                         <div className="register-caption mx-1 flex-grow-1 mt-xs-2">
                             <h4>Age</h4>
