@@ -1,6 +1,5 @@
 {
   "name": "todo-list",
-  "homepage": "https://www.stammerersconnect.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
