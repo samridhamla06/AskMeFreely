@@ -46,34 +46,34 @@ export const AboutUs = (props) => {
             <section className="features-icons bg-light text-center">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3">
+                        <div className="col-lg-4">
                             <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                                 <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
                                 <h3>1:1 Mentorship</h3>
                                 <p className="lead mb-0">Book 1:1 Mentorship sessions with friends who have overcome stammering themselves</p>
                             </div>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-4">
                             <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                                 <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
                                 <h3>Join Events</h3>
                                 <p className="lead mb-0">Interact with fellow stammerers with various events</p>
                             </div>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-4">
                             <div className="features-icons-item mx-auto mb-5 mb-lg-3">
                                 <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
                                 <h3>Parents of Stammerers</h3>
                                 <p className="lead mb-0">Parents of stammerers can connect among themselves</p>
                             </div>
                         </div>
-                        <div className="col-lg-3">
+                        {/* <div className="col-lg-3">
                             <div className="features-icons-item mx-auto mb-5 mb-lg-3">
                                 <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
                                 <h3>Speech Therapists</h3>
                                 <p className="lead mb-0">Connect with multiple Speech Therapists</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
