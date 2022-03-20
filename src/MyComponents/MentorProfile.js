@@ -42,6 +42,12 @@ export const MentorProfile = (props) => {
             return;
         }
 
+        if(from_email === mentorObj.email){
+            swal("Oops!", "You can't book session with yourself", "error");
+            setShowPrompt(false);
+            return;
+        }
+
         const requestBody = {
             message: event.target.story.value,
             menteeId: from_email,

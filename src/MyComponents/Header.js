@@ -5,8 +5,6 @@ import { ACCESS_TOKEN, GOOGLE_AUTH_URL, LOGGED_IN_NAME, LOGGED_IN_EMAIL } from '
 import GoogleLogin from 'react-google-login';
 import { useMediaQuery } from 'react-responsive';
 import { handleLogin, handleLoginFailure, validateTokenAndLogin,handleLogout } from '../utils/UserLoginUtils';
-import swal from 'sweetalert';
-import logo from '../assets/img/logo1.png';
 
 export const Header = (props) => {
     const ref = useRef()

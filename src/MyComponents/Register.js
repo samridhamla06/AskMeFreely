@@ -115,6 +115,12 @@ export const Register = ({ rerenderValue, updateUser }) => {
     }
 
     const handlePreviewImage = (event) => {
+        let file = event.target.files[0];
+        console.log('image size is ', file.size);
+        if(file.size >= '1000000'){
+            swal("Oops", "Please keep Image size less than 1 MB", "error");
+            return;
+        }
         setCurrImage(event.target.files[0]);
         setPreviewImage(URL.createObjectURL(event.target.files[0]));
     }
@@ -168,7 +174,6 @@ export const Register = ({ rerenderValue, updateUser }) => {
                     <img className="img-fluid m-1" src={previewImage ? previewImage : formValues.imageURL} alt="" style={{ width: '200px', height: '200px' }} />
                 </div>
                 {previewImage ? <button className='myEvent-join-btn mt-5' onClick={uploadPreviewImage}>
-
                     {
                         showSpinner ?
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -176,7 +181,7 @@ export const Register = ({ rerenderValue, updateUser }) => {
                             <>Upload Image</>
                     }
                 </button> : <></>}
-                <input type="file" className="form-control mt-2" id="profilePicture" accept="image/*" onChange={handlePreviewImage} />
+                <input type="file" className="form-control mt-2" id="profilePicture"  accept="image/x-png,image/gif,image/jpeg" onChange={handlePreviewImage} />
             </div>
             <form onSubmit={handleSubmit} >
                 {/* Image upload logic starts */}
