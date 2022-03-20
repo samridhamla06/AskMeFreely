@@ -116,7 +116,10 @@ export const Register = ({ rerenderValue, updateUser }) => {
 
     const handlePreviewImage = (event) => {
         let file = event.target.files[0];
-        console.log('image size is ', file.size);
+        //console.log('image size is ', file.size);
+        if(!file){
+            return;
+        }
         if(file.size >= '1000000'){
             swal("Oops", "Please keep Image size less than 1 MB", "error");
             return;
