@@ -66,7 +66,7 @@ export const MentorProfile = (props) => {
             .then(response => response.json())
             .then(response => {
                 if (response.status == 'Successfully Saved') {
-                    swal("Awesome!", "Session Booked Succesfully", "success");
+                    swal("Awesome!", "Session Booked Successfully", "success");
                 } else {
                     let message = response.errorCode ? response.errorMessage : 'ERROR OCCURED, TRY AGAIN';
                     if(checkTokenFromResponse(response, props.updateUser)){
