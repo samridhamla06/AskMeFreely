@@ -1,73 +1,228 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useMediaQuery } from 'react-responsive';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+import photo2 from '../assets/img/BookNow.png';
+import photo3 from '../assets/img/becomeMentor.jpeg';
+import photo4 from "../assets/img/Swirl1.png";
+import photo5 from "../assets/img/image1.png";
+import { Owl } from "./Owl";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { STAMMERING_STATUS_MAP } from '../constants/map';
 
 
-export const Mentor = (props) => {
+export const Mentor = ({ mentorListObj }) => {
 
-    let navigate = useNavigate();
+    // const [showDropdown, setShowDropDown] = useState(4);
+    const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
 
-    const handleBooking = (e) => {
-        navigate("/mentor/" + props.mentorObj.name, {
-            replace: false, state: { mentorObj: props.mentorObj }
-        });
-    }
+
+    // useEffect(() => {
+    //     setShowDropDown(1);
+    // }, [OwlCarousel]);
+
+    // let navigate = useNavigate();
+
+    // const handleBooking = (e) => {
+    //     navigate("/mentor/" + props.mentorObj.name, {
+    //         replace: false, state: { mentorObj: props.mentorObj }
+    //     });
+    // }
 
     return (
-        // <div className="d-flex mentor-card-element m-1">
-        <div className="col-lg-3 col-md-6 mb-4 mb-lg-0 m-3">
-            <Link to={"/mentor/" + props.mentorObj.name} state={{ mentorObj: props.mentorObj, replace: false }} style={{ textDecoration: 'none' }}>
-                <div className="card rounded shadow-sm border-0">
-                    <div className="card-body p-0">
-                        <div className="bg-primary px-5 py-4 text-center card-img-top"><img src={props.mentorObj.imageURL} alt="..." width="100" className="my-rounded-circle mb-2 img-thumbnail d-block mx-auto"               
-                        />
-                            <h5 className="text-white mb-0">{props.mentorObj.name}</h5>
-                            <p className="small text-white mb-0">{props.mentorObj.tagLine ? STAMMERING_STATUS_MAP.get(props.mentorObj.tagLine) : "Moderate Stammerer"}</p>
+        <div className='container-fluid mt-5'>
+            <div className="container-fluid text-center t1">
+                <h3 className="fw-bolder">Meet Our Mentor</h3>
+                <div className="text-ceneter fw-normal mt-4">
+                    <p className='fw_p_1'>Realize your fullest potential and lay a concrete path to recovery with industry-best doctors and <br /> experienced mentors who are here to give you affordable, but and step-by-step support<br />to embolden you with your highest self!</p>
+                </div>
+                <button type="button " className="bt_ment">I want to become a mentor!</button>
+            </div>
+            <section className="features-icons">
+                <div className="container ch text-center ct_h">
+                    <div className="row" >
+                        <div className="col-md-4 cq">
+                            <div className="card">
+                                <img src={photo3} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">1:1 Mentorship</h5>
+                                    <p className="card-text mt-4">Speech Therapists, Audiologists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="p-4 d-flex justify-content-around">
-                            <div className="list-inline-item m-0  small mb-0"><i class="fa fa-commenting-o" aria-hidden="true"></i> {props.mentorObj.numberOfReviews} Reviews</div>
-                            <div className="list-inline-item m-0 font-weight-bold "><i class="bi bi-star-fill"></i> {props.mentorObj.rating ? props.mentorObj.rating : 0}/5</div>
-                            {/* <ul className="list-inline mb-0 bg-secondary">
-                                <li className="list-inline-item">
-                                    <h5 className="font-weight-bold mb-0 d-block">12</h5><small className="text-muted"> Reviews</small>
-                                </li>
-                                <li className="list-inline-item">
-                                    <h5 className="font-weight-bold mb-0 d-block">4.5</h5><small className="text-muted"><i className="fa fa-user-circle-o mr-1 text-primary"></i>Ratings</small>
-                                </li>
-                            </ul> */}
+                        <div className="col-lg-4 cq">
+                            <div className="card m_t">
+                                <img src={photo2} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Join Events</h5>
+                                    <p className="card-text mt-4">Interact with your stammering friends who have overcome stammering. Gaining confidence, career lessons and much more! </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 mb-3 cq">
+                            <div className="card m_t">
+                                <img src={photo3} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">For change makers</h5>
+                                    <p className="card-text mt-4">Parents, siblings, and friends of stammerers! You're all invited to connect, share your experiences and become emotionally intelligent.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="col-lg-3">
+                            <div className="features-icons-item mx-auto mb-5 mb-lg-3">
+                                <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
+                                <h3>Speech Therapists</h3>
+                                <p className="lead mb-0">Connect with multiple Speech Therapists</p>
+                            </div>
+                        </div> */}
+                    </div>
+                </div>
+            </section>
+            <div className="texth text-center m_t1">
+                <h3 className="fw-bolder_1">Some kind feedback from our dear stammerers</h3>
+            </div>
+            <div className="container-fluid mt-3 ">
+                
+                <div className="row md_carousel">
+                    <div className="col-lg-6 cl">
+                        <OwlCarousel
+                            className='owl-theme owl-nav owl-prev owl-next owl-dot' 
+                            items="1"
+                            autoplay
+                            dots
+                            // navigation= "true"
+                            
+                            loop margin={10} nav="true">
+                            <div class='item '>
+                                <div className='container'>
+                                    <div className='row'>
+                                        <div className='col-md-2 c_img1'>
+                                            <img className="c_img" src={photo5} alt="" />
+                                        </div>
+                                        <div className='col-md-6'>
+                                            <p className='owl_p1'>Samridh Amla</p>
+                                            <p className='owl_p2'>Lorem Ipsum</p>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col-md-12 owl_div1'>
+                                            <p className='owl_p3'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ulabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='item'>
+                                <div className='container'>
+                                    <div className='row'>
+                                        <div className='col-md-2 c_img1'>
+                                        <img className="c_img" src={photo5} alt="" />
+                                        </div>
+                                        <div className='col-md-6'>
+                                            <p className='owl_p1'>Samridh Amla</p>
+                                            <p className='owl_p2'>Lorem Ipsum</p>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col-md-12 owl_div1'>
+                                            <p className='owl_p3'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ulabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='item'>
+                                <div className='container'>
+                                    <div className='row'>
+                                        <div className='col-md-2 c_img1'>
+                                        <img className="c_img" src={photo5} alt="" />
+                                        </div>
+                                        <div className='col-md-6'>
+                                            <p className='owl_p1'>Samridh Amla</p>
+                                            <p className='owl_p2'>Lorem Ipsum</p>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col-md-12 owl_div1'>
+                                            <p className='owl_p3'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ulabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </OwlCarousel>
+                    </div>
+
+                    <div className="col-lg-6 hid">
+                        {/* <img src={photo4} className="img-fluid" alt="" />
+                        <img src={photo5} className="img_circle_1" alt="" /> */}
+                        <div className="container sm_ct_set">
+                            <img src={photo4} className="img-fluid" alt="" />
+                            <div className="img_circle_1"><img src={photo5} className="ic_1" alt="" /></div>
+                            <div className="img_circle_2"><img src={photo5} className="ic_2" alt="" /></div>
+                            <div className="img_circle_3"><img src={photo5} className="ic_3" alt="" /></div>
+                            <div className="img_circle_4"><img src={photo5} className="ic_4" alt="" /></div>
+                            <div className="img_circle_5"><img src={photo5} className="ic_5" alt="" /></div>
                         </div>
                     </div>
                 </div>
-
-                {/* <div className='mentor-flex-item m-1'>
-                <div className="mentor-img p-3">
-                    <img src= {props.mentorObj.imageURL} className="rounded img-fluid" alt="" style={{ width: '200px', height : '200px' }} /> 
-                </div>
             </div>
 
-            <div className='mentor-flex-item '>
-                    <div class="mentor-info d-flex flex-column text-center justify-content-center">
-                            <h4>{props.mentorObj.name}</h4>
-                            {props.mentorObj.location ? (<span> {props.mentorObj.location}</span>) : <></>}
-                            <p>{props.mentorObj.tagLine ? props.mentorObj.tagLine : "Fellow Stammerer"}</p>
-                            <button type="button" class="myButton" width="100%" onClick={() => {
-                                handleBooking();
-                            }}>Connect</button>
-                        </div>
-            </div> */}
-            </Link>
+            <h1 className='text-center text-black our_ment'>Our Mentor</h1>
+            {(isMobile) ? (
+                <div className='container mt-4 m_r'>
+                    <OwlCarousel
+                        className='owl-theme owl-nav owl-prev owl-next owl-dot'
+                        loop margin={10}
+                        items="1"
+                        autoplay
+                        dots
+                        nav>
+                        {mentorListObj.map((mentorObj, index) => {
+                            return (
+                                <Link to={"/mentor/" + mentorObj.name} state={{ mentorObj: mentorObj, replace: false }} style={{ textDecoration: 'none' }}>
+                                <div className='item'>
+                                    <div className='image'>
+                                        <img src={mentorObj.imageURL} className='olc image_img' alt="..." />
+                                        <div className='image_overlay'>
+                                            <div className='image_title'>{mentorObj.name}</div>
+                                            <p className='image_description'>{mentorObj.tagLine}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </Link>
+                            )
+                        })}
+                    </OwlCarousel>
+                </div>) : <Owl mentorListObj={mentorListObj} />}
 
 
-
+            <h1 className='text-center text-black mt-5 owl_h1'>Stammerers, for the heart-to-heart and career conversation</h1>
+            {(isMobile) ? (
+                <div className='container mt-3 m_r'>
+                    <OwlCarousel
+                        className='owl-theme owl-nav owl-prev owl-next owl-dot'
+                        loop margin={10}
+                        items="1"
+                        autoplay
+                        dots
+                        nav>
+                        {mentorListObj.map((mentorObj, index) => {
+                            return (
+                                <div className='item'>
+                                    <div className='image'>
+                                        <img src={mentorObj.imageURL} className='olc image_img' alt="..." />
+                                        <div className='image_overlay'>
+                                            <div className='image_title'>{mentorObj.name}</div>
+                                            <p className='image_description'>{mentorObj.tagLine}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </OwlCarousel>
+                </div>) : <Owl mentorListObj={mentorListObj} />}
         </div>
-    )
-}
 
-Mentor.defaultProps = {
-    mentorObj: {
-        name: "Samridh Name",
-        age: "28",
-        story: "Started my journey 20 years ago, still struggling."
-    }
+    )
 }

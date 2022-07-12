@@ -105,7 +105,8 @@ export const MentorProfile = (props) => {
 
     //let broValue = query.get("bro")
     return (
-        <div >
+        <div className='pt-5'>
+            <div className="mt-5">
             {showPrompt &&
                 <Modal
                     size="lg"
@@ -193,6 +194,7 @@ export const MentorProfile = (props) => {
                 }
             </div>
 
+        </div>
         </div>
     )
 }

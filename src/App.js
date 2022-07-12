@@ -9,8 +9,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import {SignUp} from './MyComponents/SignUp';
+import { Login } from './MyComponents/Login';
 import { Testimonials } from './MyComponents/Testimonials';
 import { ContactUs } from './MyComponents/ContactUs';
+import { Mentor } from './MyComponents/Mentor'
 import { MentorProfile } from './MyComponents/MentorProfile';
 import { Register } from './MyComponents/Register';
 import { GET_MENTOR_URL } from './constants/url';
@@ -65,9 +68,12 @@ function App() {
         <Header updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>
         <Routes>
           <Route exact path="/" element={<AboutUs updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>} />
-          <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} updateUser = {updateUser} />} />
+          {/* <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} updateUser = {updateUser} />} /> */}
+          <Route path="/mentors" element={<Mentor mentorListObj={mentorListObj}/>} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />
+          <Route path="/SignUp" element={<SignUp/>} />
+          <Route path="/Login" element={<Login/>}/>
           <Route exact path="/register" element={<Register rerenderValue = {rerenderValue} updateUser = {updateUser} />} />
           <Route path="/events" element={<Events/>} />
           <Route path="/sessions" element={<SessionList updateUser = {updateUser} />} />

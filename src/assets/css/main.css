@@ -52,7 +52,7 @@
   .myButton, .myButton:focus{
     background: #4154f1;
     padding: 8px 20px;
-    margin-left: 30px;
+    /* margin-left: 30rem; */
     border-radius: 4px;
     color: #fff;
   }
@@ -120,6 +120,10 @@
     margin: 0;
     padding: 0;
   }
+
+  .navbar .nav-margin{
+    margin-right: 3rem;
+  }
   .navbar-container {
     margin: 0;
     padding: 0;
@@ -174,29 +178,48 @@
   .navbar-submenu{
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
+    background-color: white;
+    border: 1px solid black;
     position: absolute;
-    top:5rem;
-    left:4rem;
-    right:1rem;
+    top: 45px;
+    left: 0;
+    right: 0;
   }
 
   .navbar-submenu ul{
     list-style: none;
   }
 
+  .navbar-submenu li{
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-submenu li:last-child{
+    border-bottom: none;
+  }
+
+  .navbar-submenu li a{
+    color: rgba(var(--bs-dark-rgb))!important;
+  }
+
   @media (max-width : 900px){
 
     .navbar{
       position: absolute;
-      top:5rem;
-      left:4rem;
-      right:4rem;
+      top: 0rem;
+      left: 0rem;
+      right: 0rem;
       /* background-color: black; */
       background-color: #f9f9f9;
       text-align: center;
       display: block;
       z-index: 99999;
+    }
+
+    .navbar .nav-margin{
+      margin-right: 0;
     }
 
     .navbar-caption{
@@ -221,11 +244,15 @@
     .navbar-submenu{
       display: flex;
       flex-direction: column;
-      background-color: #f9f9f9;
+      border: unset;
       position: absolute;
-      top:18rem;
-      left:2rem;
-      right:2rem;
+      top:55px;
+    }
+
+    .navbar-submenu li{
+      border-bottom: unset;
+      width: 100%;
+      text-align: center;
     }
   }
 /*--------------------------------------------------------------
