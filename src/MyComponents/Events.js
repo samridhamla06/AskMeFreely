@@ -33,7 +33,7 @@ export const Events = () => {
   }, [])
 
   return (
-    <div>
+    <div className='t1'>
       {pageLoading ?
         (
           <div className="d-flex flex-column align-items-center justify-content-center">
@@ -43,7 +43,7 @@ export const Events = () => {
           </div>)
         :
         (
-          <div className='container'>
+          <div className='container mt-5'>
             {
               eventListObj.length > 0 &&
               (

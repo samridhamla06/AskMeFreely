@@ -1900,10 +1900,11 @@ Logged in Arrao by Samridh
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-.footer {
+/* .footer {
   background: #f6f9ff;
-  padding: 0 0 30px 0;
+  padding: 0 0 100px 0;
   font-size: 14px;
+  width: 100%;
 }
 .footer .footer-newsletter {
   padding: 50px 0;
@@ -2049,4 +2050,4 @@ Logged in Arrao by Samridh
   text-align: center;
   font-size: 13px;
   color: #012970;
-}
+} */

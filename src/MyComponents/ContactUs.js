@@ -49,7 +49,7 @@ export const ContactUs = () => {
       }
 
     return (
-        <div className='container'>
+        <div className='container  t1'>
             <div className='d-flex flex-column justify-items-center'>
                 <div className="flex-element mx-1 mx-md-3 mt-2 align-self-center">
                     <h4>Please Share your Feedback!</h4>

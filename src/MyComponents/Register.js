@@ -171,7 +171,8 @@ export const Register = ({ rerenderValue, updateUser }) => {
     }
 
     return (
-        <div className='d-flex flex-column justify-items-center align-items-stretch register-form' >
+        <div className='pt-4'>
+            <div className='d-flex flex-column justify-items-center align-items-stretch register-form mt-5' >
             <div className="register-element text-center">
                 <div>
                     <img className="img-fluid m-1" src={previewImage ? previewImage : formValues.imageURL} alt="" style={{ width: '200px', height: '200px' }} />
@@ -294,6 +295,7 @@ export const Register = ({ rerenderValue, updateUser }) => {
                     </button>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

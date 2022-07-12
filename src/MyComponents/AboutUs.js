@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import GoogleLogin from 'react-google-login';
 import { handleLogin, handleLoginFailure } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
 import photo1 from '../assets/img/Mentor.jpeg';
 import photo2 from '../assets/img/BookNow.png';
 import photo3 from '../assets/img/becomeMentor.jpeg';
-import photo4 from '../assets/img/VirtualEvents.jpeg';
+import photo4 from '../assets/img/bg-masthead.jpg';
 
 
 
 export const AboutUs = (props) => {
 
+    const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
 
     let navigate = useNavigate();
 
@@ -24,47 +26,67 @@ export const AboutUs = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
 
     return (
         <div className='container-fluid'>
             <header className="masthead">
-                <div className="container position-relative">
-                    <div className="row justify-content-center">
-                        <div className="col-xl-6">
-                            <div className="text-center text-white">
-                                {/* <!-- Page heading--> */}
-                                <h1 className="mb-5" style={{color : 'white'}}>Get Help From Fellow Stammerers!</h1>
-                                <div className="row">
-                                        <div className="col"><button className="myButton" onClick={() => { navigate("/mentors", { replace: true }) }}><i class="bi bi-binoculars"></i> Find Mentors</button></div>
+                <div className="container position-relative ">
+                    <div className="row justify-content-center d-flex">
+                        <div className="col-6 ">
+                            <div className='h_ft1'>For the stammerers<br /> who don't want<br /> Stammering to <br />control their life</div>
+                            <p className='p_ft2'>We are non-profit organization with the<br />mission to provide affordable help to stammerers<br />from experts</p>
+                            <div className='row d-flex text-white text-center mt-4'>
+                                <div className='col-2 stm bt_h'>
+                                    <p className='p_stm'>Stammerers</p>
                                 </div>
+                                <div className='col-sm-2 part bt_h'>
+                                    <p className='p_part'>Parents</p>
+                                </div>
+                                <div className='col-sm-2 sf bt_h'>
+                                    <p className='p_sf'>Sibling/Friends</p>
+                                </div>
+                                {(isMobile) ? (
+                                    <div className='col-sm-2 mdq'>
+                                        <p className='mdq_p'>Start here</p>
+                                    </div>) : false}
                             </div>
                         </div>
+                        <div className="col-6 side_img img-fluid mh"></div>
+                    </div>
+                    <div className="d-flex mt-5 justify-content-center">
+                        <button className="myButton btn btn-lg" onClick={() => { navigate("/mentors", { replace: true }) }}> Avail Your First Free Session </button>
                     </div>
                 </div>
             </header>
-            <section className="features-icons bg-light text-center">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
-                                <h3>1:1 Mentorship</h3>
-                                <p className="lead mb-0">Book 1:1 Mentorship sessions with friends who have overcome stammering themselves</p>
+            <section className="features-icons">
+                <div className="container ch text-center">
+                    <div className="row" >
+                        <div className="col-md-4 cq">
+                            <div className="card">
+                                <img src={photo3} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">1:1 Mentorship</h5>
+                                    <p className="card-text mt-4">Speech Therapists, Audiologists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
-                                <h3>Join Events</h3>
-                                <p className="lead mb-0">Interact with fellow stammerers with various events</p>
+                        <div className="col-lg-4 cq">
+                            <div className="card m_t">
+                                <img src={photo2} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Join Events</h5>
+                                    <p className="card-text mt-4">Interact with your stammering friends who have overcome stammering. Gaining confidence, career lessons and much more! </p>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="features-icons-item mx-auto mb-5 mb-lg-3">
-                                <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
-                                <h3>Parents of Stammerers</h3>
-                                <p className="lead mb-0">Parents of stammerers can connect among themselves</p>
+                        <div className="col-lg-4 mb-3 cq">
+                            <div className="card m_t">
+                                <img src={photo3} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">For change makers</h5>
+                                    <p className="card-text mt-4">Parents, siblings, and friends of stammerers! You're all invited to connect, share your experiences and become emotionally intelligent.</p>
+                                </div>
                             </div>
                         </div>
                         {/* <div className="col-lg-3">
@@ -78,73 +100,78 @@ export const AboutUs = (props) => {
                 </div>
             </section>
 
-            <section class="showcase">
-                <div class="container-fluid p-0">
+            <section class="showcase text-center show_top">
+                <div class="container shc">
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
-                        <div class="row g-0">
-                            <img src={photo1} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." />
-                            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                                <h2>Find Mentors</h2>
-                                <p class="lead mb-0">Choose from our highly rated Mentors, most of them have been stammerers themselves. Checkout their success journey on how they overcame this problem.</p>
+                        <div className='row'>
+                            <div className='col-lg-6'>
+                                <img src={photo3} className='img-fluid rounded showcase-img' alt="..." />
+                            </div>
+                            <div className='col-lg-6'>
+                                <h2 className='show_h2'>STAMMERERS</h2>
+                                <p className='show_p1 mt-4'>"I was struggling to find a space <br />where I can share what I feel since <br /> help was not affordable but once I <br /> found Stammerers Connect, I have<br /> been exceptionally improving not <br /> just in stammering, but literally in all <br /> areas of my life!"</p>
+                                <p className='show_p2 mt-4'>We connect you with real doctors having min 25 years of <br />experience to help build unbreakable confidence within<br /> yourself.</p>
+                                <div className='show_stm_jcs'>
+                                    <div className='d-flex  justify-content-end'>
+                                        <div className='showcase_stm'>
+                                            <p className='show_stm_p1'>Stammerers, start here</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Link>
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
-                        <div class="row g-0">
-                            <img src={photo2} className='col-lg-6 order-lg-1 text-white image-1 showcase-img' alt="..." /> 
-                            <div class="order-lg-2 col-lg-6 my-auto showcase-text">
-                                <h2>Schedule a 1:1 Mentoring Session</h2>
-                                <p class="lead mb-0">Log in with your Gmail account and book a 1:1 session with these mentors. You can coordinate and setup video call with the Mentor on a mutually decided time.</p>
+                        <div className='row show_m_top'>
+                            <div className='col-lg-6 move_down'>
+                                <h2 className='show_parent_h2'>PARENTS OF STAMMERERS</h2>
+                                <p className='show_parent_p1 mt-4'>"My child has been stammering <br />from  the minute he starting <br />uttering his first words. Stammerers <br />Connect helps me to understand <br />and fix my actions and reactions to <br />become more careful with my  <br />parenting"</p>
+                                <p className='show_parent_p2 mt-4'>Parents, siblings and friends of stammerers, we're here to help <br />you to show that you care and create a comfortable <br />environment for them.</p>
+                                <div className='d-flex justify-content-start'>
+                                    <div className='showcase_part'>
+                                        <p className='show_part_p1'>Parents, start here</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-lg-6 move_up'>
+                                <img src={photo2} className='img-fluid rounded showcase-img' alt="..." />
                             </div>
                         </div>
                     </Link>
-                    <a onClick={() => {
-                                if (!props.isLoggedIn) {
-                                    swal("Oops", "Please log in and try again", "error");
-                                }else{
-                                    navigate("/register");
-                                }
-                    }} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }} href = "#">
-                        <div class="row g-0">
-                            <img src={photo3} className='col-lg-6 order-lg-2 text-white image-1 showcase-img' alt="..." /> 
-                            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                                <h2>Enroll as a Mentor</h2>
-                                <p class="lead mb-0">If you feel you can inspire/mentor other stammerers, please login through Gmail and Enroll as a Mentor</p>
-                            </div>
-                        </div>
-                    </a>
                     <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
-                        <div class="row g-0">
-                            <img src={photo4} className='col-lg-6 order-lg-1 text-white image-1 showcase-img' alt="..." /> 
-                            <div class="col-lg-6 my-auto showcase-text order-lg-2">
-                                <h2>Join Virtual Events</h2>
-                                <p class="lead mb-0">You can join various Virtual Events to interact with fellow stammerers in a group.</p>
+                        <div className='row show_m_top'>
+                            <div className='col-lg-6'>
+                                <img src={photo3} className='img-fluid rounded showcase-img' alt="..." />
+                            </div>
+                            <div className='col-lg-6'>
+                                <h2 className='show_h2'>PARENTS OF STAMMERERS</h2>
+                                <p className='show_p1 mt-4'>"My child has been stammering <br />from  the minute he starting <br />uttering his first words. Stammerers <br />Connect helps me to understand <br />and fix my actions and reactions to <br />become more careful with my  <br />parenting"</p>
+                                <p className='show_p2 mt-4'>Parents, siblings and friends of stammerers, we're here to help <br />you to show that you care and create a comfortable <br />environment for them.</p>
+                                <div className='show_stm_jcs'>
+                                    <div className='d-flex  justify-content-end'>
+                                        <div className='showcase_stm'>
+                                            <p className='show_stm_p1'>Mentor, start here</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Link>
                 </div>
             </section>
-
-            {!props.isLoggedIn && (<section class="call-to-action text-white text-center" id="signup">
-                <div class="container position-relative">
-                    <div class="row justify-content-center">
-                        <h2 class="mb-4">Ready to get Mentored? Log In now!</h2>
-                        <div class="col-xl-6">
-                            <GoogleLogin
-                                render={
-                                    renderProps => (
-                                        <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="navbar-button" ><i class="bi bi-google"></i> Log In With Google</button>
-                                    )}
-                                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-                                buttonText="Log In"
-                                onSuccess={handleLoginWithProps}
-                                onFailure={handleLoginFailure}
-                                cookiePolicy={'single_host_origin'} />
+            <section className='slider'>
+                <div className='container-fluid'>
+                    <h1 className='text-center text-black slide_h1'>Meet our co-founder, Samridh</h1>
+                    <div className='container text-center ifrm'>
+                        <div className="embed-responsive embed-responsive-16by9">
+                            <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                         </div>
                     </div>
+                    <h1 className='slide_h2'>Share your story, and empower thousand of <br />stammers to create their own life</h1>
+                    <p className='slide_p1'>We will share your story on our social media. Share a few lines, or a 1 minute video about your<br />life, and teach others who stammering is not their whole life, but only a part of it.<br />
+                        Email us at stammerersconnect@gmail.com </p>
                 </div>
-            </section>)}
-
+            </section>
         </div>
     )
 }
