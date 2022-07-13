@@ -49,13 +49,23 @@
     text-decoration: none;
   }
 
+
   .myButton, .myButton:focus{
-    background: #4154f1;
-    padding: 8px 20px;
+    /* background: #4154f1; */
+     padding: 8px 20px; 
     /* margin-left: 30rem; */
-    border-radius: 4px;
+    /* border-radius: 4px; */
     color: #fff;
+    /* width: 144px; */
+    height: 42px;
+    background-color: #0D2A69;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-weight: 500;
   }
+
+
+
   .myButton:hover,  .myButton:focus:hover {
     color: #fff;
     background: #5969f3; 
@@ -502,7 +512,7 @@
   }
 
   .register-form .h4{
-    color:blue
+    color:black
   }
 
   .register-form .register-element{

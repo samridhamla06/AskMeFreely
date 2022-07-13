@@ -225,7 +225,7 @@ header.masthead .h1 {
 .p_stm {
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   margin-top: 8px;
@@ -242,7 +242,7 @@ header.masthead .h1 {
 .p_part {
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   margin-top: 8px;
@@ -259,14 +259,14 @@ header.masthead .h1 {
 .p_sf {
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   margin-top: 8px;
 }
 
 .side_img {
-  background: url("../img/becomeMentor.jpeg");
+  background: url("../img/landingPagePhoto.jpg");
   background-repeat: no-repeat;
 
 }
@@ -1258,7 +1258,7 @@ bottom: 40px;
   }
 
   .side_img {
-    background: url("../img/becomeMentor.jpeg");
+    background: url("../img/landingPagePhoto.jpg");
     box-sizing: border-box;
 
   }

@@ -105,8 +105,7 @@ export const MentorProfile = (props) => {
 
     //let broValue = query.get("bro")
     return (
-        <div className='pt-5'>
-            <div className="mt-5">
+        <div className='pt-5 mt-4'>
             {showPrompt &&
                 <Modal
                     size="lg"
@@ -172,29 +171,26 @@ export const MentorProfile = (props) => {
                 }
 
                 {reviews.length > 0 &&
-                    <div className='mentor-profile-container flex-item border border-light m-2 p-2'>
-                        <h4>My Reviews</h4>
+                    <div className='mentor-profile-container flex-item m-2 p-2'>
+                        <h4>My Reviews</h4>               
                         {reviews.map((reviewObj, index) => {
-                            return (<div class="card m-1">
-                                <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <Rating
-                                            emptySymbol="fa fa-star-o"
-                                            fullSymbol="fa fa-star checked"
-                                            readonly = "true"
-                                            initialRating={reviewObj.actualRating}
-                                        />
-                                        <p className='text-muted'>{reviewObj.review}</p>
-                                        <footer class="blockquote-footer"><cite title="Source Title">{reviewObj.reviewerName}</cite></footer>
-                                    </blockquote>
-                                </div>
-                            </div>)
+                            return (
+                            <div className='mentor-profile-container blockquote flex-item m-2 p-2'>
+                                            <Rating
+                                                emptySymbol="fa fa-star-o"
+                                                fullSymbol="fa fa-star checked"
+                                                readonly = "true"
+                                                initialRating={reviewObj.actualRating}
+                                            />
+                                            <p className='text-muted'>{reviewObj.review}</p>
+                                            <footer class="blockquote-footer"><cite title="Source Title">{reviewObj.reviewerName}</cite></footer>
+                            </div>
+                            )
                         })}
                     </div>
                 }
             </div>
 
-        </div>
         </div>
     )
 }

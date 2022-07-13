@@ -59,7 +59,7 @@ export const SessionList = (props) => {
     }, [renderCount])
 
     return (
-        <div>
+        <div className='pt-5 mt-5'>
             {pageLoading ?
                 (
                     <div className="d-flex flex-column align-items-center justify-content-center">

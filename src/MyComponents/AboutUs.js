@@ -6,12 +6,12 @@ import { useMediaQuery } from 'react-responsive';
 import GoogleLogin from 'react-google-login';
 import { handleLogin, handleLoginFailure } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
-import photo1 from '../assets/img/Mentor.jpeg';
-import photo2 from '../assets/img/BookNow.png';
-import photo3 from '../assets/img/becomeMentor.jpeg';
-import photo4 from '../assets/img/bg-masthead.jpg';
-
-
+import photo3 from '../assets/img/landingPagePhoto.jpg';
+import mentorPhoto from '../assets/img/Mentorship.png';
+import teachingPhoto from '../assets/img/teaching.png';
+import parentsPhoto from '../assets/img/Parents2.jpg';
+import stammerersPhoto from '../assets/img/concept-about-business-failure.png'
+import changeMakers from '../assets/img/online-learning-concept.png'
 
 export const AboutUs = (props) => {
 
@@ -33,7 +33,7 @@ export const AboutUs = (props) => {
             <header className="masthead">
                 <div className="container position-relative ">
                     <div className="row justify-content-center d-flex">
-                        <div className="col-6 ">
+                        <div className="col-6">
                             <div className='h_ft1'>For the stammerers<br /> who don't want<br /> Stammering to <br />control their life</div>
                             <p className='p_ft2'>We are non-profit organization with the<br />mission to provide affordable help to stammerers<br />from experts</p>
                             <div className='row d-flex text-white text-center mt-4'>
@@ -52,7 +52,8 @@ export const AboutUs = (props) => {
                                     </div>) : false}
                             </div>
                         </div>
-                        <div className="col-6 side_img img-fluid mh"></div>
+                        {!isMobile ? <div className='col-6 img-fluid mh'><img src={photo3} className="card-img-top" alt="..." /></div> : <></>}           
+                        {/* <div className="col-6 side_img img-fluid mh"></div> */}
                     </div>
                     <div className="d-flex mt-5 justify-content-center">
                         <button className="myButton btn btn-lg" onClick={() => { navigate("/mentors", { replace: true }) }}> Avail Your First Free Session </button>
@@ -60,11 +61,11 @@ export const AboutUs = (props) => {
                 </div>
             </header>
             <section className="features-icons">
-                <div className="container ch text-center">
+                <div className="container ch text-center mb-lg-3">
                     <div className="row" >
-                        <div className="col-md-4 cq">
+                        <div className="col-lg-4 cq">
                             <div className="card">
-                                <img src={photo3} className="card-img-top" alt="..." />
+                                <img src={mentorPhoto} className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">1:1 Mentorship</h5>
                                     <p className="card-text mt-4">Speech Therapists, Audiologists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
@@ -72,30 +73,23 @@ export const AboutUs = (props) => {
                             </div>
                         </div>
                         <div className="col-lg-4 cq">
-                            <div className="card m_t">
-                                <img src={photo2} className="card-img-top" alt="..." />
+                            <div className="card">
+                                <img src={teachingPhoto} className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">Join Events</h5>
                                     <p className="card-text mt-4">Interact with your stammering friends who have overcome stammering. Gaining confidence, career lessons and much more! </p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 mb-3 cq">
-                            <div className="card m_t">
-                                <img src={photo3} className="card-img-top" alt="..." />
+                        <div className="col-lg-4 cq">
+                            <div className="card">
+                                <img src={changeMakers} className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">For change makers</h5>
                                     <p className="card-text mt-4">Parents, siblings, and friends of stammerers! You're all invited to connect, share your experiences and become emotionally intelligent.</p>
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="col-lg-3">
-                            <div className="features-icons-item mx-auto mb-5 mb-lg-3">
-                                <div className="features-icons-icon d-flex"><i className="fa fa-book m-auto text-primary"></i></div>
-                                <h3>Speech Therapists</h3>
-                                <p className="lead mb-0">Connect with multiple Speech Therapists</p>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </section>
@@ -105,7 +99,7 @@ export const AboutUs = (props) => {
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='row'>
                             <div className='col-lg-6'>
-                                <img src={photo3} className='img-fluid rounded showcase-img' alt="..." />
+                                <img src={stammerersPhoto} className='img-fluid rounded showcase-img' alt="..." />
                             </div>
                             <div className='col-lg-6'>
                                 <h2 className='show_h2'>STAMMERERS</h2>
@@ -113,8 +107,8 @@ export const AboutUs = (props) => {
                                 <p className='show_p2 mt-4'>We connect you with real doctors having min 25 years of <br />experience to help build unbreakable confidence within<br /> yourself.</p>
                                 <div className='show_stm_jcs'>
                                     <div className='d-flex  justify-content-end'>
-                                        <div className='showcase_stm'>
-                                            <p className='show_stm_p1'>Stammerers, start here</p>
+                                        <div className=''>
+                                            <p className='myButton'>Stammerers, start here</p>
                                         </div>
                                     </div>
                                 </div>
@@ -128,17 +122,17 @@ export const AboutUs = (props) => {
                                 <p className='show_parent_p1 mt-4'>"My child has been stammering <br />from  the minute he starting <br />uttering his first words. Stammerers <br />Connect helps me to understand <br />and fix my actions and reactions to <br />become more careful with my  <br />parenting"</p>
                                 <p className='show_parent_p2 mt-4'>Parents, siblings and friends of stammerers, we're here to help <br />you to show that you care and create a comfortable <br />environment for them.</p>
                                 <div className='d-flex justify-content-start'>
-                                    <div className='showcase_part'>
-                                        <p className='show_part_p1'>Parents, start here</p>
+                                    <div className=''>
+                                        <p className='myButton'>Parents, start here</p>
                                     </div>
                                 </div>
                             </div>
                             <div className='col-lg-6 move_up'>
-                                <img src={photo2} className='img-fluid rounded showcase-img' alt="..." />
+                                <img src={parentsPhoto} className='img-fluid rounded showcase-img' alt="..." />
                             </div>
                         </div>
                     </Link>
-                    <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
+                    {/* <Link to={"/events"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='row show_m_top'>
                             <div className='col-lg-6'>
                                 <img src={photo3} className='img-fluid rounded showcase-img' alt="..." />
@@ -156,7 +150,7 @@ export const AboutUs = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </section>
             <section className='slider'>
@@ -169,7 +163,7 @@ export const AboutUs = (props) => {
                     </div>
                     <h1 className='slide_h2'>Share your story, and empower thousand of <br />stammers to create their own life</h1>
                     <p className='slide_p1'>We will share your story on our social media. Share a few lines, or a 1 minute video about your<br />life, and teach others who stammering is not their whole life, but only a part of it.<br />
-                        Email us at stammerersconnect@gmail.com </p>
+                        Email us at hello@stammerersconnect.org </p>
                 </div>
             </section>
         </div>
