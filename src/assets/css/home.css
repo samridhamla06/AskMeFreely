@@ -848,6 +848,31 @@ footer.footer {
   margin-left: 50px;
 }
 
+.landing_page_style {
+  max-height: 60rem;
+  max-width: 30rem;
+}
+
+.mentor_page_style {
+  height: 20rem;
+  width: 10rem;
+}
+
+.teaching_photo_style {
+  height: 18rem;
+  width: 9rem;
+}
+
+.sad_stammerer_style {
+  max-height: 30rem;
+  max-width: 30rem;
+}
+
+.parent_stammerer_style {
+  max-height: 30rem;
+  max-width: 10rem;
+}
+
 .sign {
   align-items: center;
   margin-top: 150px;
@@ -1143,12 +1168,6 @@ bottom: 40px;
     font-size: 22px;
     line-height: 30px;
     margin-top: 50px;
-  }
-
-  .card-img-top {
-    margin: 0 auto;
-    width: 158px;
-    height: 232px;
   }
 
   .card {

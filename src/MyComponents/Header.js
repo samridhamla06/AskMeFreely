@@ -231,7 +231,7 @@ export const Header = (props) => {
                             <button
                               onClick={renderProps.onClick}
                               disabled={renderProps.disabled}
-                              className="navbar-button"
+                              className="myButton"
                             >
                               <i class="bi bi-google"></i> Log In
                             </button>

@@ -69,7 +69,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<AboutUs updateUser = {updateUser} isLoggedIn = {isLoggedIn} user = {user}/>} />
           {/* <Route path="/mentors" element={<MentorList mentorListObj={mentorListObj} updateUser = {updateUser} />} /> */}
-          <Route path="/mentors" element={<Mentor mentorListObj={mentorListObj}/>} />
+          <Route path="/mentors" element={<Mentor mentorListObj={mentorListObj} updateUser = {updateUser}/>} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/SignUp" element={<SignUp/>} />

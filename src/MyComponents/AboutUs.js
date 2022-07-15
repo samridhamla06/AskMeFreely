@@ -6,12 +6,12 @@ import { useMediaQuery } from 'react-responsive';
 import GoogleLogin from 'react-google-login';
 import { handleLogin, handleLoginFailure } from '../utils/UserLoginUtils';
 import swal from 'sweetalert';
-import photo3 from '../assets/img/landingPagePhoto.jpg';
-import mentorPhoto from '../assets/img/Mentorship.png';
-import teachingPhoto from '../assets/img/teaching.png';
-import parentsPhoto from '../assets/img/Parents2.jpg';
-import stammerersPhoto from '../assets/img/concept-about-business-failure.png'
-import changeMakers from '../assets/img/online-learning-concept.png'
+import landingPagePhoto from '../assets/img/landingPage3.png';
+import mentorPhoto from '../assets/img/mentorPhoto2.png';
+import teachingPhoto from '../assets/img/teachingPhoto4.png';
+import parentsPhoto from '../assets/img/parents.png';
+import stammerersPhoto from '../assets/img/stammerersPhoto1.png'
+import changeMakers from '../assets/img/allies.png'
 
 export const AboutUs = (props) => {
 
@@ -31,10 +31,10 @@ export const AboutUs = (props) => {
     return (
         <div className='container-fluid'>
             <header className="masthead">
-                <div className="container position-relative ">
+                <div className="container position-relative">
                     <div className="row justify-content-center d-flex">
                         <div className="col-6">
-                            <div className='h_ft1'>For the stammerers<br /> who don't want<br /> Stammering to <br />control their life</div>
+                            <h5 className='h_ft1'>For the stammerers<br /> who don't want<br /> Stammering to <br />control their life</h5>
                             <p className='p_ft2'>We are non-profit organization with the<br />mission to provide affordable help to stammerers<br />from experts</p>
                             <div className='row d-flex text-white text-center mt-4'>
                                 <div className='col-2 stm bt_h'>
@@ -52,7 +52,10 @@ export const AboutUs = (props) => {
                                     </div>) : false}
                             </div>
                         </div>
-                        {!isMobile ? <div className='col-6 img-fluid mh'><img src={photo3} className="card-img-top" alt="..." /></div> : <></>}           
+                        {!isMobile ? <div className='col-6 img-fluid d-flex justify-content-center'>
+                            <img src={landingPagePhoto} className="landing_page_style flex-item" alt="..." />
+                            </div> : 
+                        <></>}           
                         {/* <div className="col-6 side_img img-fluid mh"></div> */}
                     </div>
                     <div className="d-flex mt-5 justify-content-center">
@@ -65,16 +68,16 @@ export const AboutUs = (props) => {
                     <div className="row" >
                         <div className="col-lg-4 cq">
                             <div className="card">
-                                <img src={mentorPhoto} className="card-img-top" alt="..." />
+                                <img src={mentorPhoto} className="mentor_page_style" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">1:1 Mentorship</h5>
-                                    <p className="card-text mt-4">Speech Therapists, Audiologists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
+                                    <p className="card-text mt-4">Speech Therapists, AudioLogists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-4 cq">
                             <div className="card">
-                                <img src={teachingPhoto} className="card-img-top" alt="..." />
+                                <img src={teachingPhoto} className= "mentor_page_style" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">Join Events</h5>
                                     <p className="card-text mt-4">Interact with your stammering friends who have overcome stammering. Gaining confidence, career lessons and much more! </p>
@@ -83,9 +86,9 @@ export const AboutUs = (props) => {
                         </div>
                         <div className="col-lg-4 cq">
                             <div className="card">
-                                <img src={changeMakers} className="card-img-top" alt="..." />
+                                <img src={changeMakers} className="mentor_page_style" alt="..." />
                                 <div className="card-body">
-                                    <h5 className="card-title">For change makers</h5>
+                                    <h5 className="card-title">Allies</h5>
                                     <p className="card-text mt-4">Parents, siblings, and friends of stammerers! You're all invited to connect, share your experiences and become emotionally intelligent.</p>
                                 </div>
                             </div>
@@ -99,7 +102,7 @@ export const AboutUs = (props) => {
                     <Link to={"/mentors"} state={{ replace: false }} style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='row'>
                             <div className='col-lg-6'>
-                                <img src={stammerersPhoto} className='img-fluid rounded showcase-img' alt="..." />
+                                <img src={stammerersPhoto} className='sad_stammerer_style img-fluid rounded showcase-img' alt="..." />
                             </div>
                             <div className='col-lg-6'>
                                 <h2 className='show_h2'>STAMMERERS</h2>
@@ -128,7 +131,7 @@ export const AboutUs = (props) => {
                                 </div>
                             </div>
                             <div className='col-lg-6 move_up'>
-                                <img src={parentsPhoto} className='img-fluid rounded showcase-img' alt="..." />
+                                <img src={parentsPhoto} className='parent_stammerer_style img-fluid rounded showcase-img' alt="..." />
                             </div>
                         </div>
                     </Link>

@@ -19,11 +19,14 @@ import stammerersPhoto from '../assets/img/concept-about-business-failure.png'
 import changeMakers from '../assets/img/online-learning-concept.png'
 
 
-export const Mentor = ({ mentorListObj }) => {
+export const Mentor = ({ mentorListObj, updateUser }) => {
 
     // const [showDropdown, setShowDropDown] = useState(4);
     const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     // useEffect(() => {
     //     setShowDropDown(1);
@@ -82,17 +85,15 @@ export const Mentor = ({ mentorListObj }) => {
             <div className="texth text-center m-3">
                 <h3 className="fw-bolder_1">Some kind feedback from our dear stammerers</h3>
             </div>
-            <div className="container-fluid mt-3 ">
-                
-                <div className="row md_carousel">
-                    <div className="col-lg-6 cl">
+            <div className="container-fluid mt-3 mb-5 align-items-center">            
+                <div className="row md_carousel justify-content-center">
+                    <div className="col-6 cl">
                         <OwlCarousel
                             className='owl-theme owl-nav owl-prev owl-next owl-dot' 
                             items="1"
                             autoplay
                             dots
-                            // navigation= "true"
-                            
+                            // navigation= "true"                         
                             loop margin={10} nav="true">
                             <div class='item '>
                                 <div className='container'>
@@ -151,9 +152,10 @@ export const Mentor = ({ mentorListObj }) => {
                         </OwlCarousel>
                     </div>
 
-                    <div className="col-lg-6 hid">
-                        {/* <img src={photo4} className="img-fluid" alt="" />
-                        <img src={photo5} className="img_circle_1" alt="" /> */}
+
+                    {/* <div className="col-lg-6 hid">
+                        <img src={photo4} className="img-fluid" alt="" />
+                        <img src={photo5} className="img_circle_1" alt="" /> 
                         <div className="container sm_ct_set">
                             <img src={photo4} className="img-fluid" alt="" />
                             <div className="img_circle_1"><img src={photo5} className="ic_1" alt="" /></div>
@@ -162,12 +164,24 @@ export const Mentor = ({ mentorListObj }) => {
                             <div className="img_circle_4"><img src={photo5} className="ic_4" alt="" /></div>
                             <div className="img_circle_5"><img src={photo5} className="ic_5" alt="" /></div>
                         </div>
-                    </div>
+                    </div> */}
+
                 </div>
             </div>
 
-            <h1 className='text-center text-black our_ment'>Our Mentor</h1>
-            {(isMobile) ? (
+            <h1 className='text-center text-black our_ment mt-5'>Our Mentors</h1>
+            {
+            (!mentorListObj.length)
+                    ?
+            <div className="d-flex flex-column align-items-center justify-content-center">
+                        <div className='d-flex flex-column justify-content-center'>
+                            <div class="spinner-border text-primary mt-4" role="status" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                    :
+                 (    
+            <div className='container'>        
+            { (isMobile) ? (
                 <div className='container mt-4 m_r'>
                     <OwlCarousel
                         className='owl-theme owl-nav owl-prev owl-next owl-dot'
@@ -193,10 +207,10 @@ export const Mentor = ({ mentorListObj }) => {
                         })}
                     </OwlCarousel>
                 </div>) : <Owl mentorListObj={mentorListObj} />}
-
-
+            
             <h1 className='text-center text-black mt-5 owl_h1'>Stammerers, for the heart-to-heart and career conversation</h1>
-            {(isMobile) ? (
+            
+            { (isMobile) ? (
                 <div className='container mt-3 m_r'>
                     <OwlCarousel
                         className='owl-theme owl-nav owl-prev owl-next owl-dot'
@@ -205,7 +219,8 @@ export const Mentor = ({ mentorListObj }) => {
                         autoplay
                         dots
                         nav>
-                        {mentorListObj.map((mentorObj, index) => {
+                        {
+                        mentorListObj.map((mentorObj, index) => {
                             return (
                                 <div className='item'>
                                     <div className='image'>
@@ -220,6 +235,10 @@ export const Mentor = ({ mentorListObj }) => {
                         })}
                     </OwlCarousel>
                 </div>) : <Owl mentorListObj={mentorListObj} />}
+            </div>  
+                 
+                 ) 
+                }
         </div>
 
     )
