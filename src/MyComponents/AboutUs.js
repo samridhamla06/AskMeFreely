@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 import landingPagePhoto from '../assets/img/landingPage3.png';
 import mentorPhoto from '../assets/img/mentorPhoto2.png';
 import teachingPhoto from '../assets/img/teachingPhoto4.png';
-import parentsPhoto from '../assets/img/parents.png';
+import parentsPhoto from '../assets/img/parents3.png';
 import stammerersPhoto from '../assets/img/stammerersPhoto1.png'
 import changeMakers from '../assets/img/allies.png'
 
@@ -59,14 +59,14 @@ export const AboutUs = (props) => {
                         {/* <div className="col-6 side_img img-fluid mh"></div> */}
                     </div>
                     <div className="d-flex mt-5 justify-content-center">
-                        <button className="myButton btn btn-lg" onClick={() => { navigate("/mentors", { replace: true }) }}> Avail Your First Free Session </button>
+                        <button className="bt_ment" onClick={() => { navigate("/mentors", { replace: true }) }}> Avail Your First Free Session </button>
                     </div>
                 </div>
             </header>
             <section className="features-icons">
-                <div className="container ch text-center mb-lg-3">
+                <div className="container text-center mb-lg-3">
                     <div className="row" >
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
                                 <img src={mentorPhoto} className="mentor_page_style" alt="..." />
                                 <div className="card-body">
@@ -75,7 +75,7 @@ export const AboutUs = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
                                 <img src={teachingPhoto} className= "mentor_page_style" alt="..." />
                                 <div className="card-body">
@@ -84,7 +84,7 @@ export const AboutUs = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
                                 <img src={changeMakers} className="mentor_page_style" alt="..." />
                                 <div className="card-body">

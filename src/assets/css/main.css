@@ -7,13 +7,13 @@
 
   
   body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "BlinkMacSystemFont";
     color: #444444;
     white-space: pre-line;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Nunito", sans-serif;
+    font-family: "BlinkMacSystemFont";
   }
 
   h4{
@@ -28,7 +28,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    font-family: "Nunito", sans-serif;
+    font-family: "BlinkMacSystemFont";
   }
 
   h2{
@@ -36,7 +36,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    font-family: "Nunito", sans-serif;
+    font-family: "BlinkMacSystemFont";
   }
 
   .navbar-caption-text{
@@ -45,8 +45,28 @@
   }
 
   .navbar-caption-text:hover {
-    color: #717ff5;
+    color: beige;
     text-decoration: none;
+  }
+
+  .bt_ment {
+    width: 554px;
+    height: 77px;
+    background: #0D2A69;
+    border-radius: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    text-align: center;
+    color: #fff;
+    margin-top: 40px;
+  }
+
+  .bt_ment:hover, .bt_ment:focus:hover {
+    color: #fff;
+    background: #5969f3; 
   }
 
 

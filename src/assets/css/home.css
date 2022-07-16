@@ -531,21 +531,6 @@ header.masthead .h1 {
   margin-top: 100px;
 }
 
-.bt_ment {
-  width: 554px;
-  height: 77px;
-  background: #0D2A69;
-  border-radius: 10px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 39px;
-  text-align: center;
-  color: white;
-  margin-top: 40px;
-}
-
 .fw_p_1 {
   font-family: 'Inter';
   font-style: normal;
@@ -854,8 +839,19 @@ footer.footer {
 }
 
 .mentor_page_style {
-  height: 20rem;
-  width: 10rem;
+  /* height: 20rem;
+  width: 10rem; */
+}
+
+.mentor_page_style {
+  height: 18vh;
+  width: 100%; 
+  object-fit: contain;
+}
+
+.card-img-top {
+  height: 30vh;
+  width: 100%; 
 }
 
 .teaching_photo_style {
@@ -870,7 +866,7 @@ footer.footer {
 
 .parent_stammerer_style {
   max-height: 30rem;
-  max-width: 10rem;
+  max-width: 20rem;
 }
 
 .sign {
@@ -1215,9 +1211,6 @@ bottom: 40px;
     justify-content: center;
   }
 
-  .ch {
-    height: 62rem;
-  }
 
   .shc {
     /* margin-left: 20px; */
@@ -1299,10 +1292,6 @@ bottom: 40px;
 
   }
 
-  /* .myButton {
-    display: none;
-  } */
-
   .bt {
     font-size: 15px;
   }
@@ -1364,19 +1353,6 @@ bottom: 40px;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
-  }
-
-  .bt_ment {
-    background: #0D2A69;
-    border-radius: 10px;
-    width: 218px;
-    height: 32px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    margin-top: 15px;
   }
 
   .cl {

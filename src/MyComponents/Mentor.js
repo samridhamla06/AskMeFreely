@@ -11,12 +11,12 @@ import { Owl } from "./Owl";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { STAMMERING_STATUS_MAP } from '../constants/map';
-import photo3 from '../assets/img/landingPagePhoto.jpg';
-import mentorPhoto from '../assets/img/Mentorship.png';
-import teachingPhoto from '../assets/img/teaching.png';
-import parentsPhoto from '../assets/img/Parents2.jpg';
-import stammerersPhoto from '../assets/img/concept-about-business-failure.png'
-import changeMakers from '../assets/img/online-learning-concept.png'
+import landingPagePhoto from '../assets/img/landingPage3.png';
+import mentorPhoto from '../assets/img/mentorPhoto2.png';
+import teachingPhoto from '../assets/img/teachingPhoto4.png';
+import parentsPhoto from '../assets/img/parents3.png';
+import stammerersPhoto from '../assets/img/stammerersPhoto1.png'
+import changeMakers from '../assets/img/allies.png'
 
 
 export const Mentor = ({ mentorListObj, updateUser }) => {
@@ -50,31 +50,31 @@ export const Mentor = ({ mentorListObj, updateUser }) => {
                 <button type="button " className="bt_ment">I want to become a mentor!</button>
             </div>
             <section className="features-icons">
-                <div className="container ch text-center mb-5">
+                <div className="container text-center mb-lg-3">
                     <div className="row" >
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
-                                <img src={mentorPhoto} className="card-img-top" alt="..." />
+                                <img src={mentorPhoto} className="mentor_page_style" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">1:1 Mentorship</h5>
-                                    <p className="card-text mt-4">Speech Therapists, Audiologists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
+                                    <p className="card-text mt-4">Speech Therapists, AudioLogists, Psychologists, and experienced Stammerers, all here to help you at the most affordable cost.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
-                                <img src={teachingPhoto} className="card-img-top" alt="..." />
+                                <img src={teachingPhoto} className= "mentor_page_style" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">Join Events</h5>
                                     <p className="card-text mt-4">Interact with your stammering friends who have overcome stammering. Gaining confidence, career lessons and much more! </p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 cq">
+                        <div className="col-lg-4">
                             <div className="card">
-                                <img src={changeMakers} className="card-img-top" alt="..." />
+                                <img src={changeMakers} className="mentor_page_style" alt="..." />
                                 <div className="card-body">
-                                    <h5 className="card-title">For change makers</h5>
+                                    <h5 className="card-title">Allies</h5>
                                     <p className="card-text mt-4">Parents, siblings, and friends of stammerers! You're all invited to connect, share your experiences and become emotionally intelligent.</p>
                                 </div>
                             </div>
@@ -82,10 +82,10 @@ export const Mentor = ({ mentorListObj, updateUser }) => {
                     </div>
                 </div>
             </section>
-            <div className="texth text-center m-3">
+            <div className="texth text-center mb-5">
                 <h3 className="fw-bolder_1">Some kind feedback from our dear stammerers</h3>
             </div>
-            <div className="container-fluid mt-3 mb-5 align-items-center">            
+            <div className="container-fluid mt-3 mb-5 align-items-center pb-5">            
                 <div className="row md_carousel justify-content-center">
                     <div className="col-6 cl">
                         <OwlCarousel
