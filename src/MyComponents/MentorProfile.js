@@ -102,7 +102,7 @@ export const MentorProfile = (props) => {
                     console.log(err);
                 });
     }, [])
-
+//https://calendly.com/samridh06/60min
     //let broValue = query.get("bro")
     return (
         <div className='pt-5 mt-4'>

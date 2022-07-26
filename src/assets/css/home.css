@@ -135,14 +135,15 @@
   left: 30px;
   font-size: 30px;
 } */
-.owl-prev{
+
+ .owl-prev{
   position: relative;
-  right: 26px;
+  right: 26px; 
   font-size: 25px;
 }
 .owl-next{
   position: relative;
-  left: 26px;
+   left: 26px; 
   font-size: 25px;
 }
 .owl-nav{
@@ -222,8 +223,24 @@ header.masthead .h1 {
   /* padding-top: 2px; */
 }
 
+.landingPageList{
+  /* background-color: beige; */
+}
+
+.landingPageListElement{
+  color: black;
+  /* width: 144px; */
+  /* height: 30px; */
+  border-radius: 10px;
+  /* margin-left: 10px; */
+  /* font-weight: 500; */
+  list-style: none;
+  /* max-height : '20px';
+  max-width : '20px' */
+}
+
 .p_stm {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -240,7 +257,7 @@ header.masthead .h1 {
 }
 
 .p_part {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -257,7 +274,7 @@ header.masthead .h1 {
 }
 
 .p_sf {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -279,7 +296,7 @@ header.masthead .h1 {
 }
 
 .card-title {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
@@ -288,7 +305,7 @@ header.masthead .h1 {
 }
 
 .card-text {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -312,7 +329,7 @@ header.masthead .h1 {
 }
 
 .show_stm_p1 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -368,7 +385,7 @@ header.masthead .h1 {
 }
 
 .slide_p1 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -431,7 +448,7 @@ header.masthead .h1 {
   height: 100%;
   /* background: rgba(0, 0, 0, 0.6); */
   color: black;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'SF Pro Display';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -489,7 +506,7 @@ header.masthead .h1 {
 }
 
 .p_ft2 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -532,7 +549,7 @@ header.masthead .h1 {
 }
 
 .fw_p_1 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -601,7 +618,7 @@ header.masthead .h1 {
 
 .show_h2 {
   text-align: right;
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -609,7 +626,7 @@ header.masthead .h1 {
 }
 
 .show_p1 {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 350;
   font-size: 28px;
@@ -618,7 +635,7 @@ header.masthead .h1 {
 }
 
 .show_p2 {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 350;
   font-size: 20px;
@@ -627,7 +644,7 @@ header.masthead .h1 {
 }
 
 .show_parent_h2 {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -636,7 +653,7 @@ header.masthead .h1 {
 }
 
 .show_parent_p1 {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 350;
   font-size: 28px;
@@ -645,7 +662,7 @@ header.masthead .h1 {
 }
 
 .show_parent_p2 {
-  font-family: 'Segoe UI';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 350;
   font-size: 20px;
@@ -654,7 +671,7 @@ header.masthead .h1 {
 }
 
 .show_part_p1 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -715,8 +732,8 @@ header.masthead .h1 {
 }
 
 .olc {
-  width: 300px;
-  height: 400px;
+  /* width: 3rem; */
+  height: 20rem;
 }
 
 .show_top {
@@ -805,7 +822,7 @@ footer.footer {
 }
 
 .box_d1 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -814,7 +831,7 @@ footer.footer {
 }
 
 .box_d2 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -824,7 +841,7 @@ footer.footer {
 }
 
 .box_d3 {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -838,15 +855,15 @@ footer.footer {
   max-width: 30rem;
 }
 
-.mentor_page_style {
-  /* height: 20rem;
-  width: 10rem; */
-}
 
 .mentor_page_style {
   height: 18vh;
   width: 100%; 
   object-fit: contain;
+}
+
+.mentor_page_card:hover {
+   background-color: beige; 
 }
 
 .card-img-top {
@@ -901,7 +918,7 @@ footer.footer {
 }
 
 .mdq_p {
-  font-family: 'Inter';
+  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -957,7 +974,7 @@ bottom: 40px;
   }
 
   .box_d1 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -966,7 +983,7 @@ bottom: 40px;
   }
 
   .box_d2 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -976,7 +993,7 @@ bottom: 40px;
   }
 
   .box_d3 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -1009,7 +1026,7 @@ bottom: 40px;
   }
 
   .slide_p1 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -1047,7 +1064,7 @@ bottom: 40px;
   .show_h2 {
     margin-top: 40px;
     text-align: left;
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -1055,7 +1072,7 @@ bottom: 40px;
   }
 
   .show_p1 {
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 350;
     font-size: 20px;
@@ -1064,7 +1081,7 @@ bottom: 40px;
   }
 
   .show_p2 {
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 350;
     font-size: 12px;
@@ -1083,7 +1100,7 @@ bottom: 40px;
   }
 
   .show_stm_p1 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
@@ -1100,7 +1117,7 @@ bottom: 40px;
   .show_parent_h2 {
     margin-top: 40px;
     text-align: left;
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -1108,7 +1125,7 @@ bottom: 40px;
   }
 
   .show_parent_p1 {
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 350;
     font-size: 20px;
@@ -1117,7 +1134,7 @@ bottom: 40px;
   }
 
   .show_parent_p2 {
-    font-family: 'Segoe UI';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 350;
     font-size: 12px;
@@ -1136,7 +1153,7 @@ bottom: 40px;
   }
 
   .show_part_p1 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
@@ -1194,7 +1211,7 @@ bottom: 40px;
   }
 
   .p_ft2 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -1348,7 +1365,7 @@ bottom: 40px;
   }
 
   .fw_p_1 {
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -1413,10 +1430,6 @@ bottom: 40px;
     margin-top: 70px;
   }
 
-  .olc {
-    width: 131px;
-    height: 300px;
-  }
 
   .owl_h1 {
     font-family: 'SF Pro Display';

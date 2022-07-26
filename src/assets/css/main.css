@@ -7,13 +7,13 @@
 
   
   body {
-    font-family: "BlinkMacSystemFont";
+    font-family: "SF Pro Display";
     color: #444444;
     white-space: pre-line;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: "BlinkMacSystemFont";
+    font-family: "SF Pro Display";
   }
 
   h4{
@@ -28,7 +28,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    font-family: "BlinkMacSystemFont";
+    font-family: "SF Pro Display";
   }
 
   h2{
@@ -36,7 +36,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    font-family: "BlinkMacSystemFont";
+    font-family: "SF Pro Display";
   }
 
   .navbar-caption-text{
@@ -50,14 +50,14 @@
   }
 
   .bt_ment {
-    width: 554px;
-    height: 77px;
+    width: 20rem;
+    height: 5rem;
     background: #0D2A69;
     border-radius: 10px;
-    font-family: 'Inter';
+    font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 1.25rem;
     line-height: 39px;
     text-align: center;
     color: #fff;
@@ -136,7 +136,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    font-family: "Nunito", sans-serif;
+    font-family: "SF Pro Display";
     /* margin-top: 3px; */
   }
 
@@ -404,7 +404,7 @@
   }
 
 .myHome-get-started span {
-    font-family: "Nunito", sans-serif;
+    font-family: "SF Pro Display";
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 1px;
